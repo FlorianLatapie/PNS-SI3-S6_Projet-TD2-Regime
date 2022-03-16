@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Projet - TD2 - Regime</string>
+    <string name="MEAL">meal</string>
+
 </resources>
