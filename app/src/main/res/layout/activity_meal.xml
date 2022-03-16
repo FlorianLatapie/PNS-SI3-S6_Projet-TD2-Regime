@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#BAD1A2"
-    tools:context=".listViewElements.MealActivity">
+    tools:context=".home.MealActivity">
 
     <TextView
         android:id="@+id/mealName"
@@ -26,7 +26,7 @@
         android:layout_marginTop="80dp"
         android:scaleX="2"
         android:scaleY="2"
-        app:srcCompat="@drawable/pizza1"
+        app:srcCompat="@drawable/meal1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mealName"/>

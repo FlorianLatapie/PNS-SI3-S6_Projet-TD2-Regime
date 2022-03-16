@@ -1,4 +1,4 @@
-package fr.univ.cotedazur.polytech.projet_td2_regime.listViewElements;
+package fr.univ.cotedazur.polytech.projet_td2_regime.home;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,10 +12,8 @@ import android.widget.TextView;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 
-public class MealsAdapter extends BaseAdapter {
-
+public class MealsAdatpter extends BaseAdapter {
     private IListner listener;
-    private MealsList meals;
 
     //Le contexte dans lequel est présent notre adapter
     private Context context;
@@ -23,24 +21,30 @@ public class MealsAdapter extends BaseAdapter {
     //Un mécanisme pour gérer l'affichage graphique depuis un layout XML
     private LayoutInflater inflater;
 
-
-    public MealsAdapter(Context context, MealsList meals) {
+    public MealsAdatpter(Context context) {
         this.context = context;
-        this.meals = meals;
         inflater = LayoutInflater.from(this.context);
     }
 
+    @Override
     public int getCount() {
-        return meals.size();
+        return MealsList.size();
     }
+
+
+    @Override
     public Object getItem(int position) {
-        return meals.get(position);
+        return MealsList.get(position);
     }
+
+
+    @Override
     public long getItemId(int position) {
         return position;
     }
 
 
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LinearLayout layoutItem;
 
@@ -51,27 +55,24 @@ public class MealsAdapter extends BaseAdapter {
         //(2) : Récupération des TextView de notre layout
         TextView tvName = layoutItem.findViewById(R.id.mealName);
         TextView tvPrice = layoutItem.findViewById(R.id.mealPrice);
-        ImageView pizzaPicture = layoutItem.findViewById(R.id.mealPicture);
+        ImageView mealPicture = layoutItem.findViewById(R.id.mealPicture);
 
         //(3) : Renseignement des valeurs
-        tvName.setText(meals.get(position).getName());
-        tvPrice.setText(Float.toString(meals.get(position).getPrice())+"0 €");  //TODO change uggly text format
-        pizzaPicture.setImageResource(meals.get(position).getPicture());
+        tvName.setText(MealsList.get(position).getName());
+        tvPrice.setText(MealsList.get(position).getPrice() + "0 €");  //TODO change uggly text format
+        mealPicture.setImageResource(MealsList.get(position).getPicture());
 
         //(4) Changement de la couleur du fond de notre item
-        tvPrice.setTextColor( meals.get(position).getPrice() >= 5 ? Color.RED : Color.BLACK);
+        tvPrice.setTextColor(MealsList.get(position).getPrice() >= 5 ? Color.RED : Color.BLACK);
 
-        layoutItem.setOnClickListener( click -> {
-            listener.onClickMeal(meals.get(position));
+        layoutItem.setOnClickListener(click -> {
+            listener.onClickMeal(position);
         });
         //On retourne l'item créé.
         return layoutItem;
     }
 
-    //abonnement pour click sur le nom...
     public void addListener(IListner listener) {
         this.listener = listener;
     }
-
-
 }
