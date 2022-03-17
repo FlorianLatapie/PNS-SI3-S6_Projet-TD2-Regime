@@ -5,6 +5,17 @@
       <map>
         <entry key="..\:/Users/mlesa/Documents/Cours/Semestre 6/IHM/PROJET/Projet-TD2-Regime/app/src/main/res/layout/activity_meal.xml" value="0.1" />
         <entry key="..\:/Users/mlesa/Documents/Cours/Semestre 6/IHM/PROJET/Projet-TD2-Regime/app/src/main/res/layout/pizza_layout.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3472222222222222" />
+        <entry key="app/src/main/res/layout/activity_meal.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_a.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_c.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_like.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/fragment_profil.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/meal_fragment.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/meal_layout.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.36041666666666666" />
       </map>
     </option>
   </component>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:title="Accueil"
+        android:icon="@drawable/home_24"/>
+
+    <item
+        android:id="@+id/likeFragment"
+        android:title="Likes"
+        android:icon="@drawable/heart_24"/>
+
+    <item
+        android:id="@+id/notificationFragment"
+        android:title="Notifications"
+        android:icon="@drawable/bell_24"/>
+
+    <item
+        android:id="@+id/profilFragment"
+        android:title="Profil"
+        android:icon="@drawable/user_24"/>
+
+</menu>

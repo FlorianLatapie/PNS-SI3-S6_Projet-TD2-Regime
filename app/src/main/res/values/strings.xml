@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Projet - TD2 - Regime</string>
+
+    <string name="home_fragment">HOME fragment</string>
+    <string name="like_fragment">LIKE fragment</string>
+    <string name="notification_fragment">NOTIFICATION fragment</string>
+    <string name="profil_fragment">PROFIL fragment</string>
 </resources>
