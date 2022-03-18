@@ -1,4 +1,4 @@
-package fr.univ.cotedazur.polytech.projet_td2_regime;
+package fr.univ.cotedazur.polytech.projet_td2_regime.like;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 
 /**
  * A simple {@link Fragment} subclass.

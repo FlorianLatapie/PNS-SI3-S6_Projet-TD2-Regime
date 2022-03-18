@@ -1,4 +1,4 @@
-package fr.univ.cotedazur.polytech.projet_td2_regime;
+package fr.univ.cotedazur.polytech.projet_td2_regime.profile;
 
 import android.os.Bundle;
 
@@ -8,12 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ProfilFragment#newInstance} factory method to
+ * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfilFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class ProfilFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public ProfilFragment() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +39,8 @@ public class ProfilFragment extends Fragment {
      * @return A new instance of fragment ProfilFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ProfilFragment newInstance(String param1, String param2) {
-        ProfilFragment fragment = new ProfilFragment();
+    public static ProfileFragment newInstance(String param1, String param2) {
+        ProfileFragment fragment = new ProfileFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,6 @@ public class ProfilFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profil, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 }

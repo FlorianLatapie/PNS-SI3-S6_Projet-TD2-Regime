@@ -6,22 +6,22 @@
     app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/homeFragment"
-        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.HomeFragment"
+        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/likeFragment"
-        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.LikeFragment"
+        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.like.LikeFragment"
         android:label="fragment_like"
         tools:layout="@layout/fragment_like" />
     <fragment
         android:id="@+id/notificationFragment"
-        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.NotificationFragment"
+        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.notification.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/profilFragment"
-        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.ProfilFragment"
+        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.profile.ProfileFragment"
         android:label="fragment_profil"
-        tools:layout="@layout/fragment_profil" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>
