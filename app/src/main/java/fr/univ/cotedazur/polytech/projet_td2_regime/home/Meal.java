@@ -4,11 +4,16 @@ import android.os.Parcel;
 
 public class Meal {
     private String name;
+
+
+
+    private String description;
     private float price;
     private int picture;
 
-    public Meal(String name, float price, int picture) {
+    public Meal(String name, String description, float price, int picture) {
         this.name = name;
+        this.description = description;
         this.price = price;
         this.picture =picture;
     }
@@ -22,6 +27,7 @@ public class Meal {
     public String getName() {
         return name;
     }
+    public String getDescription() { return description;}
     public float getPrice() {
         return price;
     }

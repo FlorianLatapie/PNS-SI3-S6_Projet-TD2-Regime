@@ -54,11 +54,13 @@ public class MealsAdatpter extends BaseAdapter {
 
         //(2) : Récupération des TextView de notre layout
         TextView tvName = layoutItem.findViewById(R.id.mealName);
+        TextView tvDescription = layoutItem.findViewById(R.id.mealDescription);
         TextView tvPrice = layoutItem.findViewById(R.id.mealPrice);
         ImageView mealPicture = layoutItem.findViewById(R.id.mealPicture);
 
         //(3) : Renseignement des valeurs
         tvName.setText(MealsList.get(position).getName());
+        tvDescription.setText(MealsList.get(position).getDescription());
         tvPrice.setText(MealsList.get(position).getPrice() + "0 €");  //TODO change uggly text format
         mealPicture.setImageResource(MealsList.get(position).getPicture());
 

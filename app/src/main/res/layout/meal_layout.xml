@@ -1,28 +1,52 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="90dp"
-    android:orientation="horizontal">
+    android:layout_height="90dp">
 
     <ImageView
         android:id="@+id/mealPicture"
-        android:layout_width="100dp"
-        android:layout_height="90dp"
-        />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mealPrice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/mealName"
         android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:layout_marginTop="20dp"
-        android:textSize="22sp" />
+        android:layout_height="0dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="3dp"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/mealDescription"
+        app:layout_constraintEnd_toStartOf="@+id/mealDescription"
+        app:layout_constraintStart_toEndOf="@+id/mealPrice"
+        app:layout_constraintTop_toTopOf="@+id/mealPrice" />
+
+    <TextView
+        android:id="@+id/mealDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="75dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="311dp"
+        android:layout_marginRight="311dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mealName"
+        app:layout_constraintTop_toTopOf="@+id/mealPrice" />
 
     <TextView
         android:id="@+id/mealPrice"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
         android:gravity="end"
-        android:layout_marginEnd="20dp"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mealName"
+        app:layout_constraintStart_toEndOf="@+id/mealPicture"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
