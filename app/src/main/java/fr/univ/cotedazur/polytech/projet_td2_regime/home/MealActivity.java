@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 
+//Détail du repas
 public class MealActivity extends AppCompatActivity {
 
     @Override

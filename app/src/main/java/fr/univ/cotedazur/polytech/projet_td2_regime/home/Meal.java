@@ -6,11 +6,19 @@ public class Meal {
     private String name;
     private float price;
     private int picture;
+    private String ingredients;
+    private String preparation;
+    private int kcal;
+    private int eatIt;
+
 
     public Meal(String name, float price, int picture) {
         this.name = name;
         this.price = price;
         this.picture =picture;
+        this.ingredients = "Lorem ipsum dolor sit amet. Nam alias dignissimos a incidunt consequatur qui doloremque deserunt aut voluptas quis ut illo";
+        this.preparation = "Lorem ipsum dolor sit amet. Nam alias dignissimos a incidunt consequatur qui doloremque deserunt aut voluptas quis ut illo";
+        this.kcal = 321;
     }
 
     protected Meal(Parcel in) {
@@ -26,4 +34,10 @@ public class Meal {
         return price;
     }
     public int getPicture(){ return picture; }
+    public String getIngredients(){ return ingredients;}
+    public String getPreparation(){ return preparation;}
+    public int getKcal(){ return kcal;}
+    public int getEatIt(){ return eatIt;}
+
+    public void setEatIt(boolean bool){ this.eatIt++;}
 }
