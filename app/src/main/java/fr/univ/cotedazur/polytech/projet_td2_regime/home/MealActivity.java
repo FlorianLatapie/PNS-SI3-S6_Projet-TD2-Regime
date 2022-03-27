@@ -19,11 +19,10 @@ public class MealActivity extends AppCompatActivity {
         setContentView(R.layout.activity_meal);
 
         Meal meal = MealsList.get(getIntent().getIntExtra("Meal", 0));
-        ((TextView)findViewById( R.id.mealPrice)).setText(meal.getPrice() +"0 €");
         ((TextView)findViewById( R.id.mealName)).setText(meal.getName());
         ((ImageView)findViewById( R.id.imageMeal)).setImageResource(meal.getPicture());
 
-        ((Button)findViewById(R.id.button)).setOnClickListener(click -> {
+        ((Button)findViewById(R.id.eatIt)).setOnClickListener(click -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("MEAL");
             builder.setMessage("Vous avez cliqué sur : " + meal);
