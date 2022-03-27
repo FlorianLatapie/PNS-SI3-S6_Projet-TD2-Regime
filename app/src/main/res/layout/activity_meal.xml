@@ -32,43 +32,46 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageMeal" />
 
-
-    <TextView
-        android:id="@+id/mealTimePreparation"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="12dp"
-        android:text="time"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealName" />
-
-    <TextView
-        android:id="@+id/mealNumberOfPeople"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
-        android:text="nbPersonnes"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@id/mealTimePreparation"
-        app:layout_constraintTop_toBottomOf="@id/mealName" />
-
-    <TextView
-        android:id="@+id/mealKcal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="nb kcal"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/mealDescription"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintStart_toEndOf="@+id/mealNumberOfPeople"
-        app:layout_constraintTop_toBottomOf="@id/mealName" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mealName">
+
+        <TextView
+            android:id="@+id/mealTimePreparation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="time"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/mealNumberOfPeople"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/mealNumberOfPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nbPersonnes"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/mealKcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nb kcal"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/mealNumberOfPeople" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/mealDescription"
@@ -83,19 +86,20 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mealName" />
 
+    <!--
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#2196F3"
         android:text="retour"
         android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
 
     <Button
         android:id="@+id/eatIt"
@@ -103,11 +107,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:textSize="13sp"
         android:text="je l'ai mangé +"
         android:textColor="@color/black"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
-        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="13sp"
+        android:backgroundTint="#2196F3"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

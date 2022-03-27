@@ -5,4 +5,6 @@
     <string name="like_fragment">LIKE fragment</string>
     <string name="notification_fragment">NOTIFICATION fragment</string>
     <string name="profil_fragment">PROFIL fragment</string>
+    <string name="stats_fragment">STATS fragment</string>
+
 </resources>

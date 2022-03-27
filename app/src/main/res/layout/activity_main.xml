@@ -6,34 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <!--<fragment
-        android:id="@+id/fragment_a"
-        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.FragmentA"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:minHeight="50dp"
-
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"></fragment>
-
-    <fragment
-        android:id="@+id/fragment_b"
-        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.home.HomeFragment"
-        android:layout_width="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/fragment_c"
-        app:layout_constraintTop_toBottomOf="@+id/fragment_a"
-        android:layout_height="505dp"></fragment>
-
-    <fragment
-        android:id="@+id/fragment_c"
-        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.FragmentC"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="32dp"></fragment>-->
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
