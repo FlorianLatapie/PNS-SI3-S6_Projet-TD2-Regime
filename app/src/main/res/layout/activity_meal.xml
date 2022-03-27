@@ -7,49 +7,107 @@
     android:background="@color/white"
     tools:context=".home.MealActivity">
 
+    <ImageView
+        android:id="@+id/imageMeal"
+        android:layout_width="177dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="70dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/meal1" />
+
+
     <TextView
         android:id="@+id/mealName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Name"
+        android:textColor="@color/black"
         android:textSize="40sp"
-        android:textColor="#9F0E0E"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"/>
+        app:layout_constraintTop_toBottomOf="@id/imageMeal" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:scaleX="2"
-        android:scaleY="2"
-        app:srcCompat="@drawable/meal1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealName"/>
 
     <TextView
-        android:id="@+id/mealPrice"
+        android:id="@+id/mealTimePreparation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="12dp"
+        android:text="time"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mealName" />
+
+    <TextView
+        android:id="@+id/mealNumberOfPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="nbPersonnes"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toRightOf="@id/mealTimePreparation"
+        app:layout_constraintTop_toBottomOf="@id/mealName" />
+
+    <TextView
+        android:id="@+id/mealKcal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="nb kcal"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toEndOf="@+id/mealNumberOfPeople"
+        app:layout_constraintTop_toBottomOf="@id/mealName" />
+
+    <TextView
+        android:id="@+id/mealDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="Description"
+        android:textColor="#9F0E0E"
         android:textSize="20sp"
-        android:textColor="#C57777"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"/>
+        app:layout_constraintTop_toBottomOf="@id/mealName" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Buy it"
-        android:layout_marginTop="120dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:text="retour"
+        android:textColor="@color/black"
+        android:textSize="13sp"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/eatIt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="13sp"
+        android:text="je l'ai mangé +"
+        android:textColor="@color/black"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageView"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
