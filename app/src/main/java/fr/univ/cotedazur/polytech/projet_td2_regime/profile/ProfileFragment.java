@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 
@@ -30,7 +31,7 @@ public class ProfileFragment extends Fragment {
 
     public ProfileFragment() {
         // Required empty public constructor
-        currentUser = new User("Bob", "Doe", "My awesome bio !", Diet.PROTEIN, null);
+        currentUser = new User("Bob", "Dylan", "My awesome bio !", Diet.PROTEIN, null);
     }
 
     /**
@@ -64,6 +65,12 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        TextView firstName = view.findViewById(R.id.profilFirstName);
+        TextView lastName = view.findViewById(R.id.profilLastName);
+        firstName.setText(currentUser.getFirstName());
+        lastName.setText(currentUser.getLastName());
+        return view;
     }
 }
