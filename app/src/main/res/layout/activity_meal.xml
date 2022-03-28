@@ -32,101 +32,115 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageMeal" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/mealName"
+        tools:layout_editor_absoluteX="10dp">
+
+        <TextView
+            android:id="@+id/mealTimePreparation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="time"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/mealNumberOfPeople"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mealName" />
+
+        <TextView
+            android:id="@+id/mealNumberOfPeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:text="nbPersonnes"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/mealTimePreparation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mealName" />
+
+        <TextView
+            android:id="@+id/mealKcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:text="nb kcal"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/mealNumberOfPeople"
+            app:layout_constraintTop_toBottomOf="@id/mealName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/mealTimePreparation"
+        android:id="@+id/textIngredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="12dp"
-        android:text="time"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealName" />
-
-    <TextView
-        android:id="@+id/mealNumberOfPeople"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
-        android:text="nbPersonnes"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@id/mealTimePreparation"
-        app:layout_constraintTop_toBottomOf="@id/mealName" />
-
-    <TextView
-        android:id="@+id/mealKcal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="nb kcal"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
-        app:layout_constraintStart_toEndOf="@+id/mealNumberOfPeople"
-        app:layout_constraintTop_toBottomOf="@id/mealName" />
-
-    <TextView
-        android:id="@+id/textDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Description :"
+        android:layout_marginTop="16dp"
+        android:text="Ingredients :"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintHorizontal_bias="0.119"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealName" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
     <TextView
-        android:id="@+id/mealDescription"
+        android:id="@+id/mealIngredients"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="5dp"
-        android:text="mealDescription"
+        android:layout_marginRight="8dp"
+        android:text="mealIngredients"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintHorizontal_bias="0.106"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textDescription" />
+        app:layout_constraintTop_toBottomOf="@id/textIngredients" />
 
     <TextView
         android:id="@+id/textPreparation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="Preparation :"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mealDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/mealIngredients" />
 
     <TextView
         android:id="@+id/mealPreparation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp"
         android:text="mealPreparation"
         android:textColor="@color/black"
         android:textSize="15sp"
-        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textPreparation" />
+        app:layout_constraintTop_toBottomOf="@+id/textPreparation" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
         android:background="?android:attr/selectableItemBackgroundBorderless"
         android:text="retour"
@@ -142,95 +156,111 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:textSize="13sp"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
         android:text="je l'ai mangé +"
         android:textColor="@color/black"
-        android:background="?android:attr/selectableItemBackgroundBorderless"
-        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/likes"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="30dp"
+
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2">
+
+        <ImageView
+            android:id="@+id/likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/heart_24"
+            tools:layout_conversion_absoluteHeight="24dp"
+            tools:layout_conversion_absoluteWidth="24dp"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="504dp" />
+
+        <TextView
+            android:id="@+id/mealLikes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mealLikes"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            tools:layout_conversion_absoluteHeight="20dp"
+            tools:layout_conversion_absoluteWidth="67dp"
+            tools:layout_editor_absoluteX="25dp"
+            tools:layout_editor_absoluteY="504dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:adjustViewBounds="true"
-        android:minWidth="50dp"
-        android:minHeight="50dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/heart_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:orientation="horizontal"
 
-    <TextView
-        android:id="@+id/mealLikes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="true"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_mode_comment_24" />
+
+        <TextView
+            android:id="@+id/mealComments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="nbOfComments"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="17dp"
-        android:text="nbOfLikes"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/likes" />
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2">
 
-    <ImageView
-        android:id="@+id/comments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="16dp"
-        android:adjustViewBounds="true"
-        android:minWidth="50dp"
-        android:minHeight="50dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_baseline_mode_comment_24"
-        app:layout_constraintLeft_toRightOf="@id/mealLikes"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        <ImageView
+            android:id="@+id/author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:adjustViewBounds="true"
+            android:minWidth="50dp"
+            android:minHeight="50dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-    <TextView
-        android:id="@+id/mealComments"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="17dp"
-        android:text="nbOfComments"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/comments" />
-
-    <ImageView
-        android:id="@+id/author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="16dp"
-        android:adjustViewBounds="true"
-        android:minWidth="50dp"
-        android:minHeight="50dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_baseline_account_circle_24"
-        app:layout_constraintLeft_toRightOf="@id/mealComments"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/mealAuthor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginBottom="17dp"
-        android:text="author"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/author" />
+        <TextView
+            android:id="@+id/mealAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="author"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
