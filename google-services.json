@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "668554736014",
+    "project_id": "td2-regime",
+    "storage_bucket": "td2-regime.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668554736014:android:fd03ac6a32426dd71eb4df",
+        "android_client_info": {
+          "package_name": "fr.univ.cotedazur.polytech.projet_td2_regime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668554736014-blihj53mpven2j1fbhh96td331iem4d8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7HzNfbCgA2wzdyQ5P8OvUuz-tr_J4_lA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668554736014-blihj53mpven2j1fbhh96td331iem4d8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
