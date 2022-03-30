@@ -30,15 +30,18 @@ public class MealActivity extends AppCompatActivity {
         ((TextView)findViewById( R.id.mealPreparation)).setText(meal.getPreparation());
 
 
-        //meal reactions
+        //meal init reactions
         ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
-
         ((TextView)findViewById( R.id.mealComments)).setText(meal.getComments()+" comments");
         ((TextView)findViewById( R.id.mealAuthor)).setText(meal.getAuthor());
 
+        //meal like increase
         ((TextView)findViewById(R.id.mealLikes)).setOnClickListener(click -> {
             meal.increaseLikes();
+            ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
         });
+
+        //meal comment section
 
 
 
