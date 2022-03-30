@@ -1,4 +1,4 @@
-package fr.univ.cotedazur.polytech.projet_td2_regime.like;
+package fr.univ.cotedazur.polytech.projet_td2_regime.Interactions;
 
 import android.os.Bundle;
 

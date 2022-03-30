@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 
+//Détail du repas
 public class MealActivity extends AppCompatActivity {
 
     @Override
@@ -18,16 +19,38 @@ public class MealActivity extends AppCompatActivity {
         setContentView(R.layout.activity_meal);
 
         Meal meal = MealsList.get(getIntent().getIntExtra("Meal", 0));
-        ((TextView)findViewById( R.id.mealPrice)).setText(meal.getPrice() +"0 €");
-        ((TextView)findViewById( R.id.mealName)).setText(meal.getName());
-        ((ImageView)findViewById( R.id.imageView)).setImageResource(meal.getPicture());
 
-        ((Button)findViewById(R.id.button)).setOnClickListener(click -> {
+        //meal property
+        ((TextView)findViewById( R.id.mealName)).setText(meal.getName());
+        ((ImageView)findViewById( R.id.imageMeal)).setImageResource(meal.getPicture());
+        ((TextView)findViewById( R.id.mealTimePreparation)).setText(meal.getPreparationTime()+ "mn");
+        ((TextView)findViewById( R.id.mealKcal)).setText(meal.getKcal()+" kcal");
+        ((TextView)findViewById( R.id.mealNumberOfPeople)).setText(meal.getNbOfPeople()+" peoples");
+        ((TextView)findViewById( R.id.mealIngredients)).setText(meal.getIngredients());
+        ((TextView)findViewById( R.id.mealPreparation)).setText(meal.getPreparation());
+
+
+        //meal init reactions
+        ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
+        ((TextView)findViewById( R.id.mealComments)).setText(meal.getComments()+" comments");
+        ((TextView)findViewById( R.id.mealAuthor)).setText(meal.getAuthor());
+
+        //meal like increase
+        ((TextView)findViewById(R.id.mealLikes)).setOnClickListener(click -> {
+            meal.increaseLikes();
+            ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
+        });
+
+        //meal comment section
+
+
+
+        ((Button)findViewById(R.id.eatIt)).setOnClickListener(click -> {
+            meal.increaseEatIt();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("MEAL");
-            builder.setMessage("Vous avez cliqué sur : " + meal);
-            builder.setNeutralButton("OK", null);
+            builder.setMessage(meal.getName()+" mangé " + meal.getEatIt()+" fois");
             builder.show();
+
         });
     }
 }
