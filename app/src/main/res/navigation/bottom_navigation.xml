@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/likeFragment"
-        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.like.LikeFragment"
+        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.LikeFragment"
         android:label="fragment_like"
         tools:layout="@layout/fragment_like" />
     <fragment

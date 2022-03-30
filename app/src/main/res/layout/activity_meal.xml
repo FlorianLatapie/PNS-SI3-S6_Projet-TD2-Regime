@@ -212,30 +212,22 @@
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        android:background="#ff0000"
         android:fillViewport="false"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.0"
-        tools:visibility="visible">
+        tools:visibility="visible"
+        android:background="#ff0000">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout9"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout6"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="324dp"
-                android:layout_marginBottom="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/textPreparation"
@@ -251,6 +243,9 @@
                     android:id="@+id/mealPreparation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
                     android:text="mealPreparation"
                     android:textColor="@color/black"
                     android:textSize="15sp"
@@ -263,18 +258,16 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout3"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="12036dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_marginTop="20dp">
 
                 <TextView
                     android:id="@+id/mealIngredients"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:text="mealIngredients"
                     android:textColor="@color/black"
                     android:textSize="15sp"
@@ -294,7 +287,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
