@@ -30,21 +30,27 @@ public class MealActivity extends AppCompatActivity {
         ((TextView)findViewById( R.id.mealPreparation)).setText(meal.getPreparation());
 
 
-        //meal reactions
+        //meal init reactions
         ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
         ((TextView)findViewById( R.id.mealComments)).setText(meal.getComments()+" comments");
         ((TextView)findViewById( R.id.mealAuthor)).setText(meal.getAuthor());
 
+        //meal like increase
+        ((TextView)findViewById(R.id.mealLikes)).setOnClickListener(click -> {
+            meal.increaseLikes();
+            ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
+        });
 
+        //meal comment section
 
 
 
         ((Button)findViewById(R.id.eatIt)).setOnClickListener(click -> {
+            meal.increaseEatIt();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("MEAL");
-            builder.setMessage("Vous avez cliqué sur : " + meal);
-            builder.setNeutralButton("OK", null);
+            builder.setMessage(meal.getName()+" mangé " + meal.getEatIt()+" fois");
             builder.show();
+
         });
     }
 }
