@@ -16,6 +16,9 @@ public class User {
     private int weight;
     private ArrayList<Meal> likeMeals;
     private ArrayList<Comment> myComments;
+    private ArrayList<Meal> eatenMeals;
+
+
 
     public User(String firstName, String lastName, String bio, Diet diet, int weight, List<Meal> publishedMeals) {
         this.firstName = firstName;
@@ -25,6 +28,7 @@ public class User {
         this.publishedMeals = publishedMeals;
         this.likeMeals = new ArrayList<>();
         this.myComments = new ArrayList<>();
+        this.eatenMeals = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -89,5 +93,12 @@ public class User {
 
     public void setMyComments(ArrayList<Comment> myComments) {
         this.myComments = myComments;
+    }
+    public ArrayList<Meal> getEatenMeals() {
+        return eatenMeals;
+    }
+
+    public void setEatenMeals(ArrayList<Meal> eatenMeals) {
+        this.eatenMeals = eatenMeals;
     }
 }

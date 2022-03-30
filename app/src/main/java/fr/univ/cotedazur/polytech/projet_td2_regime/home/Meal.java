@@ -61,6 +61,7 @@ public class Meal {
 
     public void increaseEatIt(){ this.eatIt++;}
     public void increaseLikes(){ this.likes++;}
+    public void decreaseLikes(){ this.likes--;}
 
 
 }
