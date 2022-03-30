@@ -5,7 +5,9 @@ import androidx.navigation.*;
 import androidx.navigation.NavController;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import fr.univ.cotedazur.polytech.projet_td2_regime.create_meal.CreateMealActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar mToolbar;
@@ -36,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_menu, menu);
+        MenuItem addButton = menu.getItem(0);
+        addButton.setOnMenuItemClickListener(menuItem -> {
+            Intent intent = new Intent(MainActivity.this, CreateMealActivity.class);
+            startActivity(intent);
+            return true;
+        });
         return true;
     }
 }

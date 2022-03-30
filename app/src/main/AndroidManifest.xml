@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.MealActivity"></activity>
+        <activity android:name=".create_meal.CreateMealActivity"></activity>
     </application>
 
 </manifest>
