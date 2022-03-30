@@ -43,6 +43,18 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"/>
 
+    <TextView
+        android:id="@+id/mealNameFirebase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calories"
+        android:textColor="#9F0E0E"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"

@@ -6,6 +6,7 @@ public class Meal {
     private String name;
     private float price;
     private int picture;
+    private int calories;
 
     public Meal(String name, float price, int picture) {
         this.name = name;
@@ -26,4 +27,5 @@ public class Meal {
         return price;
     }
     public int getPicture(){ return picture; }
+
 }

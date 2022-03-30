@@ -1,9 +1,13 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.home;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.firebase.Recipe;
 
-public class MealsList{
+public class MealsList {
     private static ArrayList<Meal> mealArrayList = new ArrayList<>();
 
     static {
@@ -29,5 +33,7 @@ public class MealsList{
     public static int size() {
         return mealArrayList.size();
     }
+
+
 
 }
