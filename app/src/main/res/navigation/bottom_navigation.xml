@@ -8,7 +8,7 @@
         android:id="@+id/homeFragment"
         android:name="fr.univ.cotedazur.polytech.projet_td2_regime.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_meal" />
     <fragment
         android:id="@+id/likeFragment"
         android:name="fr.univ.cotedazur.polytech.projet_td2_regime.like.LikeFragment"
