@@ -7,6 +7,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -21,10 +23,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mToolbar = findViewById(R.id.toolbar);
+        mToolbar.setTitle(""); // we cannot set title in the xml file because it does not accept "" value
         setSupportActionBar(mToolbar);
 
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        NavController navController = Navigation.findNavController(this,  R.id.fragmentContainerView);
+        NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView);
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
     }
