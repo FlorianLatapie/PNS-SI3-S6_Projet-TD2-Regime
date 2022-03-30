@@ -1,13 +1,12 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.Interactions;
-
-import fr.univ.cotedazur.polytech.projet_td2_regime.profile.Account;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 
 public class Comment {
     private String text;
-    private Account author;
+    private User author;
     private int time;
 
-    public Comment(String text, Account author, int time){
+    public Comment(String text, User author, int time){
         this.text = text;
         this.author = author;
         this.time = time;
@@ -21,11 +20,11 @@ public class Comment {
         this.text = text;
     }
 
-    public Account getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(Account author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 
