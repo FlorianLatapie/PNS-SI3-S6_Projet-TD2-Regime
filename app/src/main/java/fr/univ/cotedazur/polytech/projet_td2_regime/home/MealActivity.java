@@ -15,12 +15,15 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 //Détail du repas
 public class MealActivity extends AppCompatActivity {
 
+    private User user;
+    private Meal meal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal);
-        User user = UserManager.getInstance().getCurrentUser();
-        Meal meal = MealsList.get(getIntent().getIntExtra("Meal", 0));
+        user = UserManager.getInstance().getCurrentUser();
+        meal = MealsList.get(getIntent().getIntExtra("Meal", 0));
 
         //meal property
         ((TextView)findViewById( R.id.mealName)).setText(meal.getName());
@@ -39,9 +42,7 @@ public class MealActivity extends AppCompatActivity {
 
         //meal like increase
         ((TextView)findViewById(R.id.mealLikes)).setOnClickListener(click -> {
-            meal.increaseLikes();
-            ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
-
+            onLikeClick();
         });
 
         //meal comment section
@@ -55,5 +56,31 @@ public class MealActivity extends AppCompatActivity {
             builder.show();
 
         });
+    }
+
+    private void onLikeClick(){
+        if(isUserConnected()){
+            if(!hasUserLikeTheMeal(meal)){
+                user.getLikeMeals().add(meal);
+                meal.increaseLikes();
+                ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
+                System.out.println(user);
+            }
+        }
+    }
+
+    private boolean isUserConnected(){
+        if(user==null) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Connectez-vous");
+            builder.show();
+            return false;
+        }
+        return true;
+    }
+
+    private boolean hasUserLikeTheMeal(Meal meal){
+        if(user.getLikeMeals().contains(meal)) return true;
+        return false;
     }
 }
