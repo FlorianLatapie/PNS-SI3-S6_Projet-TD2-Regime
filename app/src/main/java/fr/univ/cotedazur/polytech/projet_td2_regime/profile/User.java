@@ -66,4 +66,28 @@ public class User {
     public void setPublishedMeals(List<Meal> publishedMeals) {
         this.publishedMeals = publishedMeals;
     }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public ArrayList<Meal> getLikeMeals() {
+        return likeMeals;
+    }
+
+    public void setLikeMeals(ArrayList<Meal> likeMeals) {
+        this.likeMeals = likeMeals;
+    }
+
+    public ArrayList<Comment> getMyComments() {
+        return myComments;
+    }
+
+    public void setMyComments(ArrayList<Comment> myComments) {
+        this.myComments = myComments;
+    }
 }

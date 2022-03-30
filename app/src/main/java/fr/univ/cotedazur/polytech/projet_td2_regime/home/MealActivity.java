@@ -9,6 +9,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
 //Détail du repas
 public class MealActivity extends AppCompatActivity {
@@ -17,7 +19,7 @@ public class MealActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal);
-
+        User user = UserManager.getInstance().getCurrentUser();
         Meal meal = MealsList.get(getIntent().getIntExtra("Meal", 0));
 
         //meal property
@@ -39,6 +41,7 @@ public class MealActivity extends AppCompatActivity {
         ((TextView)findViewById(R.id.mealLikes)).setOnClickListener(click -> {
             meal.increaseLikes();
             ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
+
         });
 
         //meal comment section
