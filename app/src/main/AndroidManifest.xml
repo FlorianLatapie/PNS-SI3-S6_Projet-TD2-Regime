@@ -22,4 +22,7 @@
         <activity android:name=".create_meal.CreateMealActivity"></activity>
     </application>
 
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+
 </manifest>
