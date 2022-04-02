@@ -47,8 +47,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_menu, menu);
         MenuItem addButton = menu.getItem(0);
+
         addButton.setOnMenuItemClickListener(menuItem -> {
-            if (user == null) {
+            user = UserManager.getInstance().getCurrentUser();
+            if (user != null) {
                 Intent intent = new Intent(MainActivity.this, CreateMealActivity.class);
                 startActivity(intent);
                 return true;

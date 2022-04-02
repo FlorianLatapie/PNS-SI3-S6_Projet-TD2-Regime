@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -18,18 +19,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import java.util.List;
+
+import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.Comment;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
 public class CreateMealActivity extends AppCompatActivity {
     private ImageView imagePreiew;
     private Button addPictureButton;
     private Button publishMealButton;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meal);
+
+        user = UserManager.getInstance().getCurrentUser();
+
         imagePreiew = findViewById(R.id.imagePreview);
 
         addPictureButton = findViewById(R.id.addImageButton);
@@ -48,6 +58,29 @@ public class CreateMealActivity extends AppCompatActivity {
             });
             builder.show();
         });
+
+        publishMealButton = findViewById(R.id.publishButton);
+        publishMealButton.setOnClickListener(v -> {
+            publishMeal();
+        });
+
+    }
+
+    private void publishMeal() {
+        /*
+        meal attributes
+        String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String authorName
+*/
+        String name = ((TextView)findViewById(R.id.mealNameInput)).getText().toString();
+        String ingredients = ((TextView)findViewById(R.id.mealIngredients)).getText().toString();
+        int preparationTime = Integer.parseInt(((TextView)findViewById(R.id.mealTimePreparationInput)).getText().toString());
+        int nbOfPeople = Integer.parseInt(((TextView)findViewById(R.id.mealNumberOfPeopleInput)).getText().toString());
+        String preparation = ((TextView)findViewById(R.id.mealPreparation)).getText().toString();
+        int kcal = Integer.parseInt(((TextView)findViewById(R.id.mealKcalInput)).getText().toString());
+        String authorName = this.user.getFirstName() + " " + this.user.getLastName();
+
+        Meal meal = new Meal(name, imagePreiew.getId(), preparationTime, nbOfPeople, ingredients, preparation, kcal, authorName);
+        System.out.println(meal);
     }
 
     public void callCameraAction() {
@@ -92,6 +125,7 @@ public class CreateMealActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == CAMERA_REQUEST_CODE) {
                 imagePreiew.setImageBitmap((Bitmap) data.getExtras().get("data"));
+                System.out.println(imagePreiew);
             } else if (requestCode == IMAGE_PICK_GALLERY_CODE) {
                 imagePreiew.setImageURI(data.getData());
             }
