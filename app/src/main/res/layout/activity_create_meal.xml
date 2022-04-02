@@ -7,233 +7,247 @@
     android:background="#FFFFFF"
     tools:context=".home.MealActivity">
 
-    <ImageView
-        android:id="@+id/imagePreview"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/black"
-        android:contentDescription="the preview of the meal that has been captured by the user"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/addImageButton"
-        android:layout_width="143dp"
-        android:layout_height="53dp"
-        android:text="Ajouter une image"
-        android:textSize="13dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imagePreview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imagePreview"
-        app:layout_constraintTop_toTopOf="@+id/imagePreview" />
-
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/imagePreview">
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/mealName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nom de la recette"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/mealNameInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:hint="Lasagnes au brocoli"
-                app:layout_constraintBottom_toBottomOf="@+id/mealName"
-                app:layout_constraintStart_toEndOf="@+id/mealName"
-                app:layout_constraintTop_toTopOf="@+id/mealName" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/mealTimePreparation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Temps de préparation"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/mealTimePreparationInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:hint="60"
-                android:inputType="number"
-                app:layout_constraintBottom_toBottomOf="@+id/mealName"
-                app:layout_constraintStart_toEndOf="@+id/mealName"
-                app:layout_constraintTop_toTopOf="@+id/mealName" />
-
-            <TextView
-                android:id="@+id/mealTimePreparationUnit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="min"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/mealNumberOfPeople"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nombre de personnes"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/mealNumberOfPeopleInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:hint="4"
-                android:inputType="number"
-                app:layout_constraintBottom_toBottomOf="@+id/mealName"
-                app:layout_constraintStart_toEndOf="@+id/mealName"
-                app:layout_constraintTop_toTopOf="@+id/mealName" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/mealKcal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nombre de calories"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/mealKcalInput"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:hint="400"
-                android:inputType="number"
-                app:layout_constraintBottom_toBottomOf="@+id/mealName"
-                app:layout_constraintStart_toEndOf="@+id/mealName"
-                app:layout_constraintTop_toTopOf="@+id/mealName" />
-
-            <TextView
-                android:id="@+id/mealKcalUnit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="kcal"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-        </TableRow>
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
 
 
-    </TableLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout">
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutMealIngredients"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
-
-            <EditText
-                android:id="@+id/mealIngredients"
-                android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Ingrédients pour la préparation\n(ex : 1 oeuf, 1 cuillère à soupe de farine, 1 cuillère à café de sel, 1 cuillère à café de levure)"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textIngredients" />
-
-            <TextView
-                android:id="@+id/textIngredients"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ingredients :"
-                android:textColor="@color/black"
-                android:textSize="20dp"
+                android:layout_width="match_parent">
+            <ImageView
+                android:id="@+id/imagePreview"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="8dp"
+                android:background="@color/black"
+                android:contentDescription="the preview of the meal that has been captured by the user"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutMealPreparation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/textPreparation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Preparation :"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/mealPreparation"
+            <Button
+                android:id="@+id/addImageButton"
+                android:layout_width="143dp"
+                android:layout_height="53dp"
+                android:text="Ajouter une image"
+                android:textSize="13dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imagePreview"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imagePreview"
+                app:layout_constraintTop_toTopOf="@+id/imagePreview" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TableLayout
+                android:id="@+id/tableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:hint="Préparation du plat\n(ex : mélanger les ingrédients, faire cuire le poisson, ajouter la farine, le sel et la levure)"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textPreparation" />
+                android:layout_marginTop="8dp"
+                android:gravity="center">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+                <TableRow>
 
-    <Button
-        android:id="@+id/publishButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Publier"
-        android:textSize="13dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+                    <TextView
+                        android:id="@+id/mealName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nom de la recette"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/mealNameInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:hint="Lasagnes au brocoli"
+                        app:layout_constraintBottom_toBottomOf="@+id/mealName"
+                        app:layout_constraintStart_toEndOf="@+id/mealName"
+                        app:layout_constraintTop_toTopOf="@+id/mealName" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/mealTimePreparation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Temps de préparation"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/mealTimePreparationInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:hint="60"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="@+id/mealName"
+                        app:layout_constraintStart_toEndOf="@+id/mealName"
+                        app:layout_constraintTop_toTopOf="@+id/mealName" />
+
+                    <TextView
+                        android:id="@+id/mealTimePreparationUnit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="min"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/mealNumberOfPeople"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre de personnes"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/mealNumberOfPeopleInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:hint="4"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="@+id/mealName"
+                        app:layout_constraintStart_toEndOf="@+id/mealName"
+                        app:layout_constraintTop_toTopOf="@+id/mealName" />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:id="@+id/mealKcal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre de calories"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/mealKcalInput"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:hint="400"
+                        android:inputType="number"
+                        app:layout_constraintBottom_toBottomOf="@+id/mealName"
+                        app:layout_constraintStart_toEndOf="@+id/mealName"
+                        app:layout_constraintTop_toTopOf="@+id/mealName" />
+
+                    <TextView
+                        android:id="@+id/mealKcalUnit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="kcal"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+                </TableRow>
+
+
+            </TableLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutMealIngredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <EditText
+                    android:id="@+id/mealIngredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="Ingrédients pour la préparation\n(ex : 1 oeuf, 1 cuillère à soupe de farine, 1 cuillère à café de sel, 1 cuillère à café de levure)"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textIngredients" />
+
+                <TextView
+                    android:id="@+id/textIngredients"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ingredients :"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutMealPreparation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textPreparation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preparation :"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/mealPreparation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:hint="Préparation du plat\n(ex : mélanger les ingrédients, faire cuire le poisson, ajouter la farine, le sel et la levure)"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textPreparation" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/publishButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Publier"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
