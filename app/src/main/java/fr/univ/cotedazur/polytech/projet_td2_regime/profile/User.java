@@ -72,7 +72,7 @@ public class User {
 
     public void setImageProfile(int imageProfile){ this.imageProfile = imageProfile; }
 
-    public int getImgUrl(){
+    public int getImageProfile(){
         return this.imageProfile;
     }
     public int getWeight() {

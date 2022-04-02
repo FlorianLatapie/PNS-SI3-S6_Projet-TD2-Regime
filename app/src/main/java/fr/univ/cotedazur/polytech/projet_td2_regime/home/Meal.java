@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.Comment;
+import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.Diet;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 
 public class Meal {
     private String name;
@@ -31,6 +34,8 @@ public class Meal {
         this.kcal = 321;
         this.likes= 32;
         this.comments = new ArrayList<>();
+        this.comments.add(new Comment("Hmmm mama la pizza est buena", new User("George", "Butavent","bg et fier de l'être george aime la vie ", Diet.VEGETARIAN,10, R.drawable.bob)));
+        this.comments.add(new Comment("Un pepene un pepite, un pepito", new User("Paul", "Delafuerza","bg et fier de l'être george aime la vie ", Diet.VEGETARIAN,10, R.drawable.bob)));
         this.author = "Pierre";
         this.eatIt = 0;
 
