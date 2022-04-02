@@ -67,20 +67,33 @@ public class CreateMealActivity extends AppCompatActivity {
     }
 
     private void publishMeal() {
-        /*
-        meal attributes
-        String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String authorName
-*/
-        String name = ((TextView)findViewById(R.id.mealNameInput)).getText().toString();
-        String ingredients = ((TextView)findViewById(R.id.mealIngredients)).getText().toString();
-        int preparationTime = Integer.parseInt(((TextView)findViewById(R.id.mealTimePreparationInput)).getText().toString());
-        int nbOfPeople = Integer.parseInt(((TextView)findViewById(R.id.mealNumberOfPeopleInput)).getText().toString());
-        String preparation = ((TextView)findViewById(R.id.mealPreparation)).getText().toString();
-        int kcal = Integer.parseInt(((TextView)findViewById(R.id.mealKcalInput)).getText().toString());
+
+
+        String name = ((TextView) findViewById(R.id.mealNameInput)).getText().toString();
+        String ingredients = ((TextView) findViewById(R.id.mealIngredients)).getText().toString();
+        int preparationTime = Integer.parseInt(((TextView) findViewById(R.id.mealTimePreparationInput)).getText().toString().equals("") ? "0" : ((TextView) findViewById(R.id.mealTimePreparationInput)).getText().toString());
+        int nbOfPeople = Integer.parseInt(((TextView) findViewById(R.id.mealNumberOfPeopleInput)).getText().toString().equals("") ? "0" : ((TextView) findViewById(R.id.mealNumberOfPeopleInput)).getText().toString());
+        String preparation = ((TextView) findViewById(R.id.mealPreparation)).getText().toString();
+        int kcal = Integer.parseInt(((TextView) findViewById(R.id.mealKcalInput)).getText().toString().equals("") ? "0" : ((TextView) findViewById(R.id.mealKcalInput)).getText().toString());
         String authorName = this.user.getFirstName() + " " + this.user.getLastName();
 
         Meal meal = new Meal(name, imagePreiew.getId(), preparationTime, nbOfPeople, ingredients, preparation, kcal, authorName);
-        System.out.println(meal);
+
+        List<String> errors = Meal.validate(meal);
+        if (errors.size() > 0) {
+            StringBuilder sb = new StringBuilder();
+            int nbErrorsToShow = Math.min(errors.size(), 3);
+            for (int i = 0; i < nbErrorsToShow; i++) {
+                String error = errors.get(i);
+                sb.append(error);
+                if (i < nbErrorsToShow - 1) {
+                    sb.append("\n");
+                }
+            }
+            Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG).show();
+        } else {
+            System.out.println(meal);
+        }
     }
 
     public void callCameraAction() {
@@ -125,7 +138,6 @@ public class CreateMealActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             if (requestCode == CAMERA_REQUEST_CODE) {
                 imagePreiew.setImageBitmap((Bitmap) data.getExtras().get("data"));
-                System.out.println(imagePreiew);
             } else if (requestCode == IMAGE_PICK_GALLERY_CODE) {
                 imagePreiew.setImageURI(data.getData());
             }

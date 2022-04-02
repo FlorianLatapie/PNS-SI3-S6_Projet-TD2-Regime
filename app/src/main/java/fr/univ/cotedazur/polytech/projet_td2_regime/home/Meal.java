@@ -56,6 +56,33 @@ public class Meal {
         picture = in.readInt();
     }
 
+    public static List<String> validate(Meal meal) {
+        // fields to validate : String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author
+        List<String> errors = new ArrayList<>();
+        if (meal.getName().isEmpty()) {
+            errors.add("Le nom est requis");
+        }
+        if (meal.getPreparationTime() == 0) {
+            errors.add("Temps de préparation est requis");
+        }
+        if (meal.getNbOfPeople() == 0) {
+            errors.add("Nombre de personnes est requis");
+        }
+        if (meal.getIngredients().isEmpty()) {
+            errors.add("Les ingrédients sont requis");
+        }
+        if (meal.getPreparation().isEmpty()) {
+            errors.add("La préparation est requise");
+        }
+        if (meal.getKcal() == 0) {
+            errors.add("Les calories sont requises");
+        }
+        if (meal.getPicture() == 0) {
+            errors.add("La photo est requise");
+        }
+        return errors;
+    }
+
     public String getName() {
         return name;
     }

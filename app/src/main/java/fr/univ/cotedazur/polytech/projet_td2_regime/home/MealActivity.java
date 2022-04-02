@@ -27,7 +27,6 @@ public class MealActivity extends AppCompatActivity {
         setContentView(R.layout.activity_meal);
         user = UserManager.getInstance().getCurrentUser();
         meal = MealsList.get(getIntent().getIntExtra("Meal", 0));
-        System.out.println("Meal activity ; "+meal.getName());
         initMealActivity();
 
         //meal like increase
