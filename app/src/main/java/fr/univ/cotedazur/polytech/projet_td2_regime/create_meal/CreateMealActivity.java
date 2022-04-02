@@ -13,31 +13,52 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
 
 public class CreateMealActivity extends AppCompatActivity {
-    ImageView imageView;
-    Button prendrePhoto;
+    private ImageView imagePreiew;
+    private Button addPictureButton;
+    private Button publishMealButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meal);
-        imageView = findViewById(R.id.imagePreview);
+        imagePreiew = findViewById(R.id.imagePreview);
 
-        prendrePhoto = findViewById(R.id.addImageButton);
-        prendrePhoto.setOnClickListener(v -> {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST_CODE);
-            } else {
-                openCamera();
-            }
+        addPictureButton = findViewById(R.id.addImageButton);
+        addPictureButton.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(CreateMealActivity.this);
+            builder.setTitle("Choisissez une option");
+            builder.setItems(new CharSequence[]{"Prendre une photo", "Choisir une photo de la galerie"}, (dialog, which) -> {
+                switch (which) {
+                    case 0:
+                        callCameraAction();
+                        break;
+                    case 1:
+                        openGallery();
+                        break;
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
         });
     }
+
+    public void callCameraAction() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST_CODE);
+        } else {
+            openCamera();
+        }
+    }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -45,19 +66,14 @@ public class CreateMealActivity extends AppCompatActivity {
         switch (requestCode) {
             case CAMERA_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Camera permission authorized !", Toast.LENGTH_SHORT).show();
                     openCamera();
                 } else {
                     Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show();
                 }
                 break;
-            case IMAGE_PICK_GALLERY_CODE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    openGallery();
-                } else {
-                    Toast.makeText(this, "Gallery permission denied", Toast.LENGTH_SHORT).show();
-                }
-                break;
         }
+        // apparement il n'y a pas besoin d'autorisations pour la galerie "Manifest.permission.READ_EXTERNAL_STORAGE"
     }
 
     private void openGallery() {
@@ -76,9 +92,9 @@ public class CreateMealActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             if (requestCode == CAMERA_REQUEST_CODE) {
-                imageView.setImageBitmap((Bitmap) data.getExtras().get("data"));
+                imagePreiew.setImageBitmap((Bitmap) data.getExtras().get("data"));
             } else if (requestCode == IMAGE_PICK_GALLERY_CODE) {
-                imageView.setImageURI(data.getData());
+                imagePreiew.setImageURI(data.getData());
             }
         }
     }
