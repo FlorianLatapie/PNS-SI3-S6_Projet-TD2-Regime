@@ -31,7 +31,7 @@ public class ProfileFragment extends Fragment {
 
     public ProfileFragment() {
         // Required empty public constructor
-        currentUser = new User("Bob", "Dylan", "My awesome bio !", Diet.PROTEIN, 10, null);
+        currentUser = new User("Bob", "Dylan", "My awesome bio !", Diet.PROTEIN, 10, R.drawable.bob);
         UserManager.getInstance().setCurrentUser(currentUser);
     }
 

@@ -10,8 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.CommentActivity;
-import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
+import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.CommentsActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
@@ -28,7 +27,7 @@ public class MealActivity extends AppCompatActivity {
         setContentView(R.layout.activity_meal);
         user = UserManager.getInstance().getCurrentUser();
         meal = MealsList.get(getIntent().getIntExtra("Meal", 0));
-
+        System.out.println("Meal activity ; "+meal.getName());
         initMealActivity();
 
         //meal like increase
@@ -58,7 +57,7 @@ public class MealActivity extends AppCompatActivity {
 
         //meal init reactions
         ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
-        ((TextView)findViewById( R.id.mealComments)).setText(meal.getComments()+" comments");
+        ((TextView)findViewById( R.id.mealComments)).setText(meal.getComments().size()+" comments");
         ((TextView)findViewById( R.id.mealAuthor)).setText(meal.getAuthor());
     }
 
@@ -78,8 +77,10 @@ public class MealActivity extends AppCompatActivity {
     }
     private void onCommentsClick(){
         if(isUserConnected()){
-            Intent intent = new Intent(MealActivity.this, CommentActivity.class);
+            Intent intent = new Intent(MealActivity.this, CommentsActivity.class);
+            intent.putExtra("Meal", getIntent().getIntExtra("Meal", 0));
             startActivity(intent);
+
         }
     }
 
