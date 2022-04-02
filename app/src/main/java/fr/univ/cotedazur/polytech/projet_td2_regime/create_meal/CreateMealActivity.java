@@ -46,8 +46,7 @@ public class CreateMealActivity extends AppCompatActivity {
                         break;
                 }
             });
-            AlertDialog dialog = builder.create();
-            dialog.show();
+            builder.show();
         });
     }
 
