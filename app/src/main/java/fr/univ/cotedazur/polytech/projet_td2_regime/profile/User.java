@@ -15,16 +15,21 @@ public class User {
     private List<Meal> publishedMeals;
     private int weight;
     private ArrayList<Meal> likeMeals;
-    private ArrayList<Comment> myComments;
+    private ArrayList<Meal> eatenMeals;
+    private int imageProfile;
 
-    public User(String firstName, String lastName, String bio, Diet diet, int weight, List<Meal> publishedMeals) {
+
+
+    public User(String firstName, String lastName, String bio, Diet diet, int weight, int imageProfile) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.bio = bio;
         this.diet = diet;
+        this.imageProfile = imageProfile;
         this.publishedMeals = publishedMeals;
         this.likeMeals = new ArrayList<>();
-        this.myComments = new ArrayList<>();
+        this.eatenMeals = new ArrayList<>();
+        this.publishedMeals = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -63,7 +68,34 @@ public class User {
         return publishedMeals;
     }
 
-    public void setPublishedMeals(List<Meal> publishedMeals) {
-        this.publishedMeals = publishedMeals;
+    public void setPublishedMeals(List<Meal> publishedMeals) { this.publishedMeals = publishedMeals; }
+
+    public void setImageProfile(int imageProfile){ this.imageProfile = imageProfile; }
+
+    public int getImageProfile(){
+        return this.imageProfile;
+    }
+    public int getWeight() {
+        return weight;
+    }
+
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
+    public ArrayList<Meal> getLikeMeals() {
+        return likeMeals;
+    }
+
+    public void setLikeMeals(ArrayList<Meal> likeMeals) {
+        this.likeMeals = likeMeals;
+    }
+
+    public ArrayList<Meal> getEatenMeals() {
+        return eatenMeals;
+    }
+
+    public void setEatenMeals(ArrayList<Meal> eatenMeals) {
+        this.eatenMeals = eatenMeals;
     }
 }
