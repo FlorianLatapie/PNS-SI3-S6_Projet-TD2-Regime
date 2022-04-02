@@ -15,6 +15,11 @@
         android:label="fragment_like"
         tools:layout="@layout/fragment_like" />
     <fragment
+        android:id="@+id/statsFragment"
+        android:name="fr.univ.cotedazur.polytech.projet_td2_regime.stats.StatsFragment"
+        android:label="fragment_stats"
+        tools:layout="@layout/fragment_stats" />
+    <fragment
         android:id="@+id/notificationFragment"
         android:name="fr.univ.cotedazur.polytech.projet_td2_regime.notification.NotificationFragment"
         android:label="fragment_notification"

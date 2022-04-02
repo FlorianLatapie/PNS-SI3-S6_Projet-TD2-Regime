@@ -3,22 +3,24 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:title="Accueil"
-        android:icon="@drawable/home_24"/>
+        android:icon="@drawable/home_24"
+        android:title="Accueil" />
 
     <item
         android:id="@+id/likeFragment"
-        android:title="Likes"
-        android:icon="@drawable/heart_24"/>
-
+        android:icon="@drawable/heart_24"
+        android:title="Likes" />
+    <item
+        android:id="@+id/statsFragment"
+        android:icon="@drawable/stats_24"
+        android:title="Statistiques" />
     <item
         android:id="@+id/notificationFragment"
-        android:title="Notifications"
-        android:icon="@drawable/bell_24"/>
+        android:icon="@drawable/bell_24"
+        android:title="Notifications" />
 
     <item
         android:id="@+id/profilFragment"
-        android:title="Profil"
-        android:icon="@drawable/user_24"/>
-
+        android:icon="@drawable/user_24"
+        android:title="Profil" />
 </menu>
