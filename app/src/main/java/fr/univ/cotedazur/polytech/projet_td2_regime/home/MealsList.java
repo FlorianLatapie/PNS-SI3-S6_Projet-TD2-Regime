@@ -5,7 +5,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
-import fr.univ.cotedazur.polytech.projet_td2_regime.firebase.Recipe;
 
 public class MealsList {
     private static ArrayList<Meal> mealArrayList = new ArrayList<>();
