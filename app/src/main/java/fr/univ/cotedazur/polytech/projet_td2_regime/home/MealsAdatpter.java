@@ -54,16 +54,13 @@ public class MealsAdatpter extends BaseAdapter {
 
         //(2) : Récupération des TextView de notre layout
         TextView tvName = layoutItem.findViewById(R.id.mealName);
-        TextView tvPrice = layoutItem.findViewById(R.id.mealPrice);
         ImageView mealPicture = layoutItem.findViewById(R.id.mealPicture);
 
         //(3) : Renseignement des valeurs
         tvName.setText(MealsList.get(position).getName());
-        tvPrice.setText(MealsList.get(position).getPrice() + "0 €");  //TODO change uggly text format
         mealPicture.setImageResource(MealsList.get(position).getPicture());
 
         //(4) Changement de la couleur du fond de notre item
-        tvPrice.setTextColor(MealsList.get(position).getPrice() >= 5 ? Color.RED : Color.BLACK);
 
         layoutItem.setOnClickListener(click -> {
             listener.onClickMeal(position);
