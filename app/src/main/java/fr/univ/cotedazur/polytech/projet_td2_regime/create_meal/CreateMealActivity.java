@@ -93,6 +93,8 @@ public class CreateMealActivity extends AppCompatActivity {
             Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG).show();
         } else {
             System.out.println(meal);
+            Toast.makeText(this, "Recette créée", Toast.LENGTH_LONG).show();
+            super.finish();
         }
     }
 
