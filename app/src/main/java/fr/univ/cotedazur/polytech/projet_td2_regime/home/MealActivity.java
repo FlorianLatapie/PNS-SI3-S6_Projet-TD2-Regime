@@ -1,13 +1,17 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.home;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.PluralsRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,8 +30,6 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
 //Détail du repas
 public class MealActivity extends AppCompatActivity {
-    TextView mealNameFirebase;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private User user;
     private Meal meal;
@@ -37,7 +39,7 @@ public class MealActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal);
         user = UserManager.getInstance().getCurrentUser();
-        meal = MealsList.get(getIntent().getIntExtra("Meal", 0));
+        meal = (Meal) getIntent().getSerializableExtra("Meal");
         initMealActivity();
 
         //meal like increase
@@ -58,23 +60,17 @@ public class MealActivity extends AppCompatActivity {
     
     private void initMealActivity(){
         //meal property
+        String prepTime = String.valueOf(meal.getPreparationTime());
+        String calories = String.valueOf(meal.getKcal());
+        String nbPeople = String.valueOf(meal.getNbOfPeople());
+
         ((TextView)findViewById( R.id.mealName)).setText(meal.getName());
         ((ImageView)findViewById( R.id.imageMeal)).setImageResource(meal.getPicture());
-        ((TextView)findViewById( R.id.mealTimePreparation)).setText(meal.getPreparationTime()+ "mn");
-        ((TextView)findViewById( R.id.mealKcal)).setText(meal.getKcal()+" kcal");
-        ((TextView)findViewById( R.id.mealNumberOfPeople)).setText(meal.getNbOfPeople()+" peoples");
+        ((TextView)findViewById( R.id.mealTimePreparation)).setText(prepTime + "mn");
+        ((TextView)findViewById( R.id.mealKcal)).setText(calories + " kcal");
+        ((TextView)findViewById( R.id.mealNumberOfPeople)).setText(nbPeople + " personnes");
         ((TextView)findViewById( R.id.mealIngredients)).setText(meal.getIngredients());
         ((TextView)findViewById( R.id.mealPreparation)).setText(meal.getPreparation());
-
-        mealNameFirebase = findViewById( R.id.mealNameFirebase);
-
-        DocumentReference documentReference = db.collection("recipes").document("recipe");
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                mealNameFirebase.setText(value.getString("name"));
-            }
-        });
 
         //meal init reactions
         ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");

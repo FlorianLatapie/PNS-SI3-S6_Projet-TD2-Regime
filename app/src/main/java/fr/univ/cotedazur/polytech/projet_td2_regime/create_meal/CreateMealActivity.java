@@ -5,6 +5,7 @@ import static fr.univ.cotedazur.polytech.projet_td2_regime.create_meal.IPictureA
 import static fr.univ.cotedazur.polytech.projet_td2_regime.create_meal.IPictureActivity.IMAGE_PICK_GALLERY_CODE;
 
 import android.Manifest;
+import android.app.Fragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -21,6 +22,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,10 +31,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.Comment;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.HomeFragment;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
@@ -86,7 +88,7 @@ public class CreateMealActivity extends AppCompatActivity {
         int kcal = Integer.parseInt(((TextView) findViewById(R.id.mealKcalInput)).getText().toString().equals("") ? "0" : ((TextView) findViewById(R.id.mealKcalInput)).getText().toString());
         String authorName = this.user.getFirstName() + " " + this.user.getLastName();
 
-        Meal meal = new Meal(name, imagePreiew.getId(), preparationTime, nbOfPeople, ingredients, preparation, kcal, authorName);
+        Meal meal = new Meal(name, R.drawable.pizza3, preparationTime, nbOfPeople, ingredients, preparation, kcal, authorName);
 
         List<String> errors = Meal.validate(meal);
         if (errors.size() > 0) {
@@ -133,13 +135,15 @@ public class CreateMealActivity extends AppCompatActivity {
         Map<String, Object> firestoreMeal = new HashMap<>();
 
         firestoreMeal.put("name", meal.getName());
+        firestoreMeal.put("picture", meal.getPicture());
+        firestoreMeal.put("preparationTime", meal.getPreparationTime());
+        firestoreMeal.put("nbOfPeople", meal.getNbOfPeople());
         firestoreMeal.put("ingredients", meal.getIngredients());
-        firestoreMeal.put("prep_time_min", meal.getPreparationTime());
-        firestoreMeal.put("nb_people", meal.getNbOfPeople());
         firestoreMeal.put("preparation", meal.getPreparation());
-        firestoreMeal.put("calories", meal.getKcal());
-        firestoreMeal.put("author", meal.getAuthorName());
-        firestoreMeal.put("img_id", meal.getPicture());
+        firestoreMeal.put("kcal", meal.getKcal());
+        firestoreMeal.put("likes", 0);
+        firestoreMeal.put("comments", meal.getComments());
+        firestoreMeal.put("authorName", meal.getAuthorName());
 
         return firestoreMeal;
     }

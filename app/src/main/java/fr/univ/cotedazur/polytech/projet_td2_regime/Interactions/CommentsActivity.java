@@ -26,6 +26,7 @@ public class CommentsActivity extends AppCompatActivity {
     private User user;
     private Meal meal;
     private List<Comment> comments;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +34,6 @@ public class CommentsActivity extends AppCompatActivity {
         user = UserManager.getInstance().getCurrentUser();
         meal = MealsList.get(getIntent().getIntExtra("Meal", 0));
         comments = meal.getComments();
-
-
 
         ListView commentsListView = findViewById(R.id.listViewComments);
         commentsListView.setAdapter(new CommentsAdapter(this, comments));

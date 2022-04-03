@@ -2,6 +2,7 @@ package fr.univ.cotedazur.polytech.projet_td2_regime.home;
 
 import android.os.Parcel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.Diet;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 
-public class Meal {
+public class Meal implements Serializable {
     private String name;
     private int picture;
     private int preparationTime;
@@ -56,6 +57,11 @@ public class Meal {
         picture = in.readInt();
     }
 
+    //NE PAS ENLEVER CE CONSTRUCTEUR : IMPORTANT POUR FIREBASE
+    public Meal(){
+
+    }
+
     public static List<String> validate(Meal meal) {
         // fields to validate : String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author
         List<String> errors = new ArrayList<>();
@@ -83,28 +89,97 @@ public class Meal {
         return errors;
     }
 
+    public void increaseEatIt(){ this.eatIt++;}
+    public void increaseLikes(){ this.likes++;}
+    public void decreaseLikes(){ this.likes--;}
+
     public String getName() {
         return name;
     }
-    public int getPicture(){ return picture;}
-    public String getIngredients(){ return ingredients;}
-    public String getPreparation(){ return preparation;}
-    public int getKcal(){ return kcal;}
-    public int getEatIt(){ return eatIt;}
-    public int getLikes() { return likes;}
-    public List<Comment> getComments() { return comments;}
-    public String getAuthorName() { return authorName;}
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPicture() {
+        return picture;
+    }
+
+    public void setPicture(int picture) {
+        this.picture = picture;
+    }
+
     public int getPreparationTime() {
         return preparationTime;
+    }
+
+    public void setPreparationTime(int preparationTime) {
+        this.preparationTime = preparationTime;
     }
 
     public int getNbOfPeople() {
         return nbOfPeople;
     }
 
-    public void increaseEatIt(){ this.eatIt++;}
-    public void increaseLikes(){ this.likes++;}
-    public void decreaseLikes(){ this.likes--;}
+    public void setNbOfPeople(int nbOfPeople) {
+        this.nbOfPeople = nbOfPeople;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public String getPreparation() {
+        return preparation;
+    }
+
+    public void setPreparation(String preparation) {
+        this.preparation = preparation;
+    }
+
+    public int getKcal() {
+        return kcal;
+    }
+
+    public void setKcal(int kcal) {
+        this.kcal = kcal;
+    }
+
+    public int getEatIt() {
+        return eatIt;
+    }
+
+    public void setEatIt(int eatIt) {
+        this.eatIt = eatIt;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public String getAuthorName() {
+        return authorName;
+    }
+
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
+    }
 
     @Override
     public String toString() {
