@@ -1,5 +1,6 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.profile;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.CommentsActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,16 +93,15 @@ public class ProfileFragment extends Fragment {
         TextView bio = view.findViewById(R.id.profilBio);
         bio.setText(currentUser.getBio());
 
-        view.findViewById(R.id.seConnecter).setOnClickListener(
-                v -> {
-                    connectUser();
-                }
-        );
+        view.findViewById(R.id.seConnecter).setOnClickListener(v -> connectUser());
 
-        view.findViewById(R.id.seDeconnecter).setOnClickListener(
-                v -> {
-                    disconnectUer();
-                }
+        view.findViewById(R.id.seDeconnecter).setOnClickListener(v -> disconnectUer());
+
+        view.findViewById(R.id.monRegime).setOnClickListener(
+            v -> {
+                Intent intent = new Intent(getActivity().getApplicationContext(), MyDietActivity.class);
+                startActivity(intent);
+            }
         );
         return view;
     }

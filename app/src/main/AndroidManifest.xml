@@ -21,6 +21,7 @@
         <activity android:name=".home.MealActivity"></activity>
         <activity android:name=".create_meal.CreateMealActivity"></activity>
         <activity android:name=".Interactions.CommentsActivity"></activity>
+        <activity android:name=".profile.MyDietActivity"></activity>
     </application>
 
     <uses-feature android:name="android.hardware.camera"/>
