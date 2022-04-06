@@ -32,12 +32,7 @@ public class LikeAdapter extends BaseAdapter {
     public LikeAdapter(Context context){
         this.context= context;
         this.user = UserManager.getInstance().getCurrentUser();
-        if (!isUserConnected()){
-            this.likeMeals = new ArrayList<>();
-        }else{
-            this.likeMeals = user.getLikeMeals();
-        }
-
+        this.likeMeals = user.getLikeMeals();
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -67,11 +62,8 @@ public class LikeAdapter extends BaseAdapter {
 
         ((ImageView)view.findViewById( R.id.mealLikePicture)).setImageResource(currentMeal.getPicture());
 
-        ((TextView)view.findViewById( R.id.mealLikePrice)).setText(""+currentMeal.getPrice());
+        ((TextView)view.findViewById( R.id.mealLikePrice)).setText(""+currentMeal.getLikes());
 
-        view.setOnClickListener(click -> {
-            listener.onClickMeal(i);
-        });
 
         return view;
     }
@@ -79,15 +71,5 @@ public class LikeAdapter extends BaseAdapter {
 
     public void addListener(IListner listener) {
         this.listener = listener;
-    }
-
-    private boolean isUserConnected(){
-        if(user==null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this.context);
-            builder.setMessage("Connectez-vous");
-            builder.show();
-            return false;
-        }
-        return true;
     }
 }

@@ -103,6 +103,7 @@ public class HomeFragment extends Fragment implements IListner {
                 intent.putExtra("Meal", meal);
                 startActivity(intent);
             }
+
         });
 
         return view;

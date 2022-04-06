@@ -63,9 +63,6 @@ public class MealsAdatpter extends BaseAdapter {
         //TODO : ajouter l'image
         mealPicture.setImageResource(meal.getPicture());
 
-        /*layoutItem.setOnClickListener(click -> {
-            listener.onClickMeal(meal);
-        });*/
 
         //On retourne l'item créé.
         return layoutItem;
