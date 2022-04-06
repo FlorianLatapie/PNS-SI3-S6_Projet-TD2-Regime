@@ -1,14 +1,30 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.home;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 
@@ -27,6 +43,10 @@ public class HomeFragment extends Fragment implements IListner {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    ListView listView;
+    ArrayList<Meal> mealsList;
+    FirebaseFirestore db;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -64,26 +84,66 @@ public class HomeFragment extends Fragment implements IListner {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_meal, container, false);
 
-        MealsAdatpter adapter = new MealsAdatpter(getActivity().getApplicationContext());
-
         //Récupération du composant ListView
-        ListView list = view.findViewById(R.id.listView);
+        listView = view.findViewById(R.id.listView);
 
-        //Initialisation de la liste avec les données
+        mealsList = new ArrayList<>();
 
-        list.setAdapter(adapter);
+        db = FirebaseFirestore.getInstance();
 
-        adapter.addListener(this);
+        loadMealsinListview();
 
-        //return inflater.inflate(R.layout.meal_fragment, container, false);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                Object o = listView.getItemAtPosition(position);
+                Meal meal = (Meal) o;
+                Intent intent = new Intent(getActivity().getApplicationContext(), MealActivity.class);
+                intent.putExtra("Meal", meal);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
     @Override
-    public void onClickMeal(int position) {
-        Intent intent = new Intent( getActivity().getApplicationContext(), MealActivity.class);
-        intent.putExtra("Meal", position);
-        startActivity(intent);
-
+    public void onResume() {
+        Log.d(TAG,"onResume of HomeFragment");
+        super.onResume();
     }
+
+    @Override
+    public void onClickMeal(Meal meal) {
+        Intent intent = new Intent(getActivity().getApplicationContext(), MealActivity.class);
+        intent.putExtra("Meal", meal);
+        startActivity(intent);
+    }
+
+    private void loadMealsinListview() {
+        db.collection("recipes").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : list) {
+                                Meal meal = d.toObject(Meal.class);
+                                mealsList.add(meal);
+                            }
+                            MealsAdatpter adapter = new MealsAdatpter(getActivity().getApplicationContext(), mealsList);
+                            listView.setAdapter(adapter);
+                        } else {
+                            Toast.makeText(getActivity().getApplicationContext(), "Pas de données dans la base", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity().getApplicationContext(), "Erreur du chargement des données..", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }

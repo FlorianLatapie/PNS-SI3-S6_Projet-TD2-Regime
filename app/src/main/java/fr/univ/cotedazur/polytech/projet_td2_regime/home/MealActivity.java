@@ -1,16 +1,29 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.home;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.PluralsRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.CommentsActivity;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.util.concurrent.Executor;
+
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
@@ -26,8 +39,7 @@ public class MealActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal);
         user = UserManager.getInstance().getCurrentUser();
-        meal = MealsList.get(getIntent().getIntExtra("Meal", 0));
-        System.out.println("Meal activity ; "+meal.getName());
+        meal = (Meal) getIntent().getSerializableExtra("Meal");
         initMealActivity();
 
         //meal like increase
@@ -45,20 +57,25 @@ public class MealActivity extends AppCompatActivity {
             onEatItClick();
         });
     }
+    
     private void initMealActivity(){
         //meal property
+        String prepTime = String.valueOf(meal.getPreparationTime());
+        String calories = String.valueOf(meal.getKcal());
+        String nbPeople = String.valueOf(meal.getNbOfPeople());
+
         ((TextView)findViewById( R.id.mealName)).setText(meal.getName());
         ((ImageView)findViewById( R.id.imageMeal)).setImageResource(meal.getPicture());
-        ((TextView)findViewById( R.id.mealTimePreparation)).setText(meal.getPreparationTime()+ "mn");
-        ((TextView)findViewById( R.id.mealKcal)).setText(meal.getKcal()+" kcal");
-        ((TextView)findViewById( R.id.mealNumberOfPeople)).setText(meal.getNbOfPeople()+" peoples");
+        ((TextView)findViewById( R.id.mealTimePreparation)).setText(prepTime + "mn");
+        ((TextView)findViewById( R.id.mealKcal)).setText(calories + " kcal");
+        ((TextView)findViewById( R.id.mealNumberOfPeople)).setText(nbPeople + " personnes");
         ((TextView)findViewById( R.id.mealIngredients)).setText(meal.getIngredients());
         ((TextView)findViewById( R.id.mealPreparation)).setText(meal.getPreparation());
 
         //meal init reactions
         ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
         ((TextView)findViewById( R.id.mealComments)).setText(meal.getComments().size()+" comments");
-        ((TextView)findViewById( R.id.mealAuthor)).setText(meal.getAuthor());
+        ((TextView)findViewById( R.id.mealAuthor)).setText(meal.getAuthorName());
     }
 
     private void onLikeClick(){

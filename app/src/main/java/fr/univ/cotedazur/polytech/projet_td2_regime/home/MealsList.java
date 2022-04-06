@@ -1,21 +1,38 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.home;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import static android.content.ContentValues.TAG;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 
-public class MealsList{
+public class MealsList {
     private static ArrayList<Meal> mealArrayList = new ArrayList<>();
 
     static {
-        mealArrayList.add(new Meal("Fromage", 4, R.drawable.pizza3));
-        mealArrayList.add(new Meal("Chorizo", 9, R.drawable.pizza2));
-        mealArrayList.add(new Meal("Poulet", 5, R.drawable.meal1));
-        mealArrayList.add(new Meal("Royale", 7, R.drawable.pizza7));
-        mealArrayList.add(new Meal("Calzone", 2, R.drawable.pizza4));
-        mealArrayList.add(new Meal("Regina", 8, R.drawable.pizza5));
-        mealArrayList.add(new Meal("indienne", 2, R.drawable.pizza6));
-        mealArrayList.add(new Meal("Speciale", 2, R.drawable.pizza8));
-        mealArrayList.add(new Meal("Végetarienne", 7, R.drawable.pizza9));
+        mealArrayList.add(new Meal("Fromage", R.drawable.pizza3));
+        mealArrayList.add(new Meal("Chorizo", R.drawable.pizza2));
+        mealArrayList.add(new Meal("Poulet", R.drawable.meal1));
+        mealArrayList.add(new Meal("Royale", R.drawable.pizza7));
+        mealArrayList.add(new Meal("Calzone", R.drawable.pizza4));
+        mealArrayList.add(new Meal("Regina", R.drawable.pizza5));
+        mealArrayList.add(new Meal("indienne", R.drawable.pizza6));
+        mealArrayList.add(new Meal("Speciale", R.drawable.pizza8));
+        mealArrayList.add(new Meal("Végetarienne", R.drawable.pizza9));
     }
 
     public static Meal get(int index) {
