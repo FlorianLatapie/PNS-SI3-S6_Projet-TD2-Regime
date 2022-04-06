@@ -35,5 +35,7 @@ public class MyDietActivity extends AppCompatActivity {
                         Diet.getNames()
                 )
         );
+        
+        // todo faire le suiviDeSante.setOnItemSelectedListener(new SpinnerHealthListener(this));
     }
 }

@@ -24,6 +24,8 @@ public class SpinnerDietListener extends Activity implements AdapterView.OnItemS
 
             TextView dietDescription = myDietActivity.findViewById(R.id.regimeDescription);
             dietDescription.setText(HealthMonitoring.getHealthMonitoring(parent.getItemAtPosition(pos).toString()).getDescription());
+
+            // todo : set the diet in the user and database
         }
 
         public void onNothingSelected(AdapterView<?> parent) {
