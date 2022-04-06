@@ -7,13 +7,14 @@
     tools:context=".profile.ProfileFragment">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/seConnecter"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:layout_width="110dp"
@@ -37,32 +38,100 @@
                 android:id="@+id/profilFirstName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:text="First Name"
+                />
 
             <TextView
                 android:id="@+id/profilLastName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="32sp" />
+                android:textSize="32sp"
+                android:text="Last Name"
+                />
         </LinearLayout>
 
     </LinearLayout>
 
-    <!--<TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/monRegime"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/profil_fragment"
-        android:textSize="24sp"
+        android:layout_margin="10dp"
+        android:text="Mon régine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profilBio" />
+
+    <Button
+        android:layout_margin="10dp"
+        android:id="@+id/seConnecter"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Se connecter"
+        app:layout_constraintEnd_toStartOf="@+id/seDeconnecter"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:layout_margin="10dp"
+
+        android:id="@+id/seDeconnecter"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:text="Se déconnecter"
+        app:layout_constraintBottom_toBottomOf="@+id/seConnecter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/seConnecter"
+        app:layout_constraintTop_toTopOf="@+id/seConnecter" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
+        app:layout_constraintTop_toBottomOf="@+id/monRegime">
 
-    <!--<GridView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/publisedMeals"
-        android:numColumns="2"/>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ma bio"
+        android:textSize="22sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <TextView
+        android:id="@+id/profilBio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="contenu de ma bio"
+        android:textSize="15sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

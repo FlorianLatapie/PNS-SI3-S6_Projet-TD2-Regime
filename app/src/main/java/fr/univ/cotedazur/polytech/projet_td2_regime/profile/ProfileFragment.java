@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 
@@ -32,7 +33,19 @@ public class ProfileFragment extends Fragment {
     public ProfileFragment() {
         // Required empty public constructor
         currentUser = new User("Bob", "Dylan", "My awesome bio !", Diet.PROTEIN, 10, R.drawable.bob);
+
+    }
+
+    private void connectUser() {
         UserManager.getInstance().setCurrentUser(currentUser);
+        Toast.makeText(getContext(), "Vous êtes à présent connecté !", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void disconnectUer() {
+        UserManager.getInstance().setCurrentUser(null);
+        Toast.makeText(getContext(), "Vous êtes à présent déconnecté !", Toast.LENGTH_SHORT).show();
+
     }
 
     /**
@@ -69,13 +82,29 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         TextView firstName = view.findViewById(R.id.profilFirstName);
-        TextView lastName = view.findViewById(R.id.profilLastName);
         firstName.setText(currentUser.getFirstName());
+
+        TextView lastName = view.findViewById(R.id.profilLastName);
         lastName.setText(currentUser.getLastName());
+
+        TextView bio = view.findViewById(R.id.profilBio);
+        bio.setText(currentUser.getBio());
+
+        view.findViewById(R.id.seConnecter).setOnClickListener(
+                v -> {
+                    connectUser();
+                }
+        );
+
+        view.findViewById(R.id.seDeconnecter).setOnClickListener(
+                v -> {
+                    disconnectUer();
+                }
+        );
         return view;
     }
 
-    public User getCurrentUser(){
+    public User getCurrentUser() {
         return currentUser;
     }
 }
