@@ -45,4 +45,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-firestore'
 
+    //GRAPHIQUES
+    implementation 'com.jjoe64:graphview:4.2.1'
+
 }

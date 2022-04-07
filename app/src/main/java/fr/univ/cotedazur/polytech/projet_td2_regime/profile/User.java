@@ -14,17 +14,20 @@ public class User {
     private Diet diet;
     private List<Meal> publishedMeals;
     private int weight;
+    private int weightGoal;
     private ArrayList<Meal> likeMeals;
     private ArrayList<Meal> eatenMeals;
     private int imageProfile;
 
 
 
-    public User(String firstName, String lastName, String bio, Diet diet, int weight, int imageProfile) {
+    public User(String firstName, String lastName, String bio, Diet diet, int weight, int weightGoal, int imageProfile) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.bio = bio;
         this.diet = diet;
+        this.weight = weight;
+        this.weightGoal = weightGoal;
         this.imageProfile = imageProfile;
         this.publishedMeals = publishedMeals;
         this.likeMeals = new ArrayList<>();
@@ -79,8 +82,16 @@ public class User {
         return weight;
     }
 
+    public int getWeightGoal() {
+        return weightGoal;
+    }
+
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    public void setWeightGoal(int weight) {
+        this.weightGoal = weight;
     }
 
     public ArrayList<Meal> getLikeMeals() {

@@ -1,13 +1,18 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.stats;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.Diet;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,7 +64,19 @@ public class StatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_stats, container, false);
+
+        User currentUser = UserManager.getInstance().getCurrentUser();
+
+        if(currentUser!=null){
+            TextView tv = view.findViewById(R.id.textView7);
+            tv.setText(currentUser.getWeight() + " kg");
+
+            tv = view.findViewById(R.id.textView6);
+            tv.setText(currentUser.getWeightGoal() + " kg");
+        }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stats, container, false);
+        return view;
     }
 }
