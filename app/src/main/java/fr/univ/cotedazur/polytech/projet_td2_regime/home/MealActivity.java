@@ -19,7 +19,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.appcompat.app.AlertDialog;
@@ -30,14 +32,23 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.CommentsActivity;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.core.QueryListener;
 
 import java.util.concurrent.Executor;
 
@@ -48,7 +59,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
 //Détail du repas
 public class MealActivity extends AppCompatActivity {
-
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private User user;
     private Meal meal;
 
@@ -61,9 +72,9 @@ public class MealActivity extends AppCompatActivity {
 
         user = UserManager.getInstance().getCurrentUser();
         meal = (Meal) getIntent().getSerializableExtra("Meal");
-        initMealActivity();
-
+        loadMealinListview(meal);
         //meal like increase
+
         ((LinearLayout)findViewById(R.id.likeLayout)).setOnClickListener(click -> {
             onLikeClick();
         });
@@ -79,7 +90,7 @@ public class MealActivity extends AppCompatActivity {
         });
     }
     
-    private void initMealActivity(){
+    private void initMealActivity(Meal meal){
         //meal property
         String prepTime = String.valueOf(meal.getPreparationTime());
         String calories = String.valueOf(meal.getKcal());
@@ -112,6 +123,7 @@ public class MealActivity extends AppCompatActivity {
                 meal.decreaseLikes();
                 ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
             }
+            updateMealToFirestore(meal);
         }
     }
 
@@ -229,4 +241,53 @@ public class MealActivity extends AppCompatActivity {
         }
 
     }
+
+    public void updateMealToFirestore(Meal meal){
+        String mealNameCorrectFormat;
+        mealNameCorrectFormat = meal.getName().replaceAll("[^a-zA-Z]+","");
+        mealNameCorrectFormat = mealNameCorrectFormat.replaceAll(" ", "_").toLowerCase();
+        db.collection("recipes").document(mealNameCorrectFormat)
+                .update(convertToFirestoreFormat(meal))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
+    public Map convertToFirestoreFormat(Meal meal){
+        Map<String, Object> firestoreMeal = new HashMap<>();
+        firestoreMeal.put("likes", meal.getLikes());
+        firestoreMeal.put("comments", meal.getComments());
+
+        return firestoreMeal;
+    }
+
+    private void loadMealinListview(Meal meal) {
+        String mealNameCorrectFormat;
+        mealNameCorrectFormat = meal.getName().replaceAll("[^a-zA-Z]+","");
+        mealNameCorrectFormat = mealNameCorrectFormat.replaceAll(" ", "_").toLowerCase();
+
+        db.collection("recipes").document(mealNameCorrectFormat)
+                .get()
+                .addOnSuccessListener(s -> {
+                    Meal mealInit = s.toObject(Meal.class);
+                    initMealActivity(mealInit);
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
+
 }
