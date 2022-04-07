@@ -6,11 +6,15 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.IListner;
@@ -77,7 +81,7 @@ public class LikeFragment extends Fragment implements IListner{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_like, container, false);
-        if(UserManager.getInstance().getCurrentUser()!=null){
+        if(this.user!=null){
             LikeAdapter adapter = new LikeAdapter(getActivity().getApplicationContext());
 
             //Récupération du composant ListView
@@ -114,14 +118,6 @@ public class LikeFragment extends Fragment implements IListner{
         startActivity(intent);
     }
 
-    private boolean isUserConnected(){
-        if(user==null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext().getApplicationContext());
-            builder.setMessage("Connectez-vous");
-            builder.show();
-            return false;
-        }
-        return true;
-    }
+  
 
 }

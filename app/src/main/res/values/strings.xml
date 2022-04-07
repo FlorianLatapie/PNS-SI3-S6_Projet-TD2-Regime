@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Projet - TD2 - Regime</string>
-
     <string name="home_fragment">HOME fragment</string>
     <string name="like_fragment">LIKE fragment</string>
     <string name="notification_fragment">NOTIFICATION fragment</string>
@@ -8,4 +7,5 @@
     <string name="nullString"></string>
     <string name="stats_fragment">STATS fragment</string>
 
+    <string name="from_notification">from_notifcation</string>
 </resources>
