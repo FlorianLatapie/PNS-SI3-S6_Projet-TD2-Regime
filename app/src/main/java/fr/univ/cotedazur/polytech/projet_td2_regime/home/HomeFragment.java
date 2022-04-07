@@ -26,7 +26,11 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -103,6 +107,7 @@ public class HomeFragment extends Fragment implements IListner {
                 intent.putExtra("Meal", meal);
                 startActivity(intent);
             }
+
         });
 
         return view;
