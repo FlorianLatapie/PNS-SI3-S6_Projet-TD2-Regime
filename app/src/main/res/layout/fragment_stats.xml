@@ -164,7 +164,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="Saisir mon poids de la semaine"
-                android:textSize="14dp"/>
+                android:textSize="12dp"/>
 
             <EditText
                 android:id="@+id/editText"
@@ -172,6 +172,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:hint="Entrez votre poids"
+                android:inputType="numberDecimal"
                 android:textSize="10dp"/>
 
             <Button

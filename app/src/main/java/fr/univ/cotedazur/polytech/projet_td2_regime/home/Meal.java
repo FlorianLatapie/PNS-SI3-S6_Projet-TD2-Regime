@@ -9,6 +9,7 @@ import java.util.List;
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.Comment;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.Diet;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.Genre;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 
 public class Meal implements Serializable {
@@ -33,8 +34,8 @@ public class Meal implements Serializable {
         this.kcal = 321;
         this.likes= 32;
         this.comments = new ArrayList<>();
-        this.comments.add(new Comment("Hmmm mama la pizza est buena", new User("George", "Butavent","bg et fier de l'être george aime la vie ", Diet.VEGETARIAN,10, 7, R.drawable.bob)));
-        this.comments.add(new Comment("Un pepene un pepite, un pepito", new User("Paul", "Delafuerza","bg et fier de l'être george aime la vie ", Diet.VEGETARIAN,10, 2, R.drawable.bob)));
+        this.comments.add(new Comment("Hmmm mama la pizza est buena", new User("George", "Butavent", Genre.HOMME, 23, 180, "bg et fier de l'être george aime la vie ", Diet.VEGETARIAN,10.0, 7.0, R.drawable.bob)));
+        this.comments.add(new Comment("Un pepene un pepite, un pepito", new User("Paul", "Delafuerza", Genre.HOMME, 46, 156,"bg et fier de l'être george aime la vie ", Diet.VEGETARIAN,10.0, 2.0, R.drawable.bob)));
         this.authorName = "Pierre";
         this.eatIt = 0;
     }
