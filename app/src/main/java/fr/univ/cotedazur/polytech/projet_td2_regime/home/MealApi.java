@@ -139,7 +139,7 @@ public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
             }
         }
         reader.endObject();
-        Meal meal = new Meal(name, R.drawable.pizza6, prepTime, nbOfPeople, ingredients, ingredients, (int) calories, author);
+        Meal meal = new Meal(name, image, prepTime, nbOfPeople, ingredients, ingredients, (int) calories, author);
         return meal;
     }
 

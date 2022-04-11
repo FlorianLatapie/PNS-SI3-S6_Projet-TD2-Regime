@@ -14,6 +14,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 public class Meal implements Serializable {
     private String name;
     private int picture;
+    private String imageLink;
     private int preparationTime;
     private int nbOfPeople;
     private String ingredients;
@@ -42,6 +43,19 @@ public class Meal implements Serializable {
     public Meal(String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author) {
         this.name = name;
         this.picture = picture;
+        this.preparationTime = preparationTime;
+        this.nbOfPeople = nbOfPeople;
+        this.ingredients = ingredients;
+        this.preparation = preparation;
+        this.kcal = kcal;
+        this.likes = 0;
+        this.comments = new ArrayList<>();
+        this.authorName = author;
+    }
+
+    public Meal(String name, String imageLink, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author) {
+        this.name = name;
+        this.imageLink = imageLink;
         this.preparationTime = preparationTime;
         this.nbOfPeople = nbOfPeople;
         this.ingredients = ingredients;
@@ -107,6 +121,14 @@ public class Meal implements Serializable {
 
     public void setPicture(int picture) {
         this.picture = picture;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
     public int getPreparationTime() {

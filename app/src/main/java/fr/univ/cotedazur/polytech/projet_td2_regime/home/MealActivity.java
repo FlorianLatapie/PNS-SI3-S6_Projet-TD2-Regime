@@ -27,6 +27,7 @@ import java.util.concurrent.Executor;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
+import fr.univ.cotedazur.polytech.projet_td2_regime.util.DownloadImageTask;
 
 //Détail du repas
 public class MealActivity extends AppCompatActivity {
@@ -65,7 +66,14 @@ public class MealActivity extends AppCompatActivity {
         String nbPeople = String.valueOf(meal.getNbOfPeople());
 
         ((TextView)findViewById( R.id.mealName)).setText(meal.getName());
-        ((ImageView)findViewById( R.id.imageMeal)).setImageResource(meal.getPicture());
+
+        ImageView mealPicture = findViewById( R.id.imageMeal);
+        if(meal.getImageLink() == null){
+            mealPicture.setImageResource(meal.getPicture());
+        } else {
+            new DownloadImageTask(mealPicture, meal.getImageLink()).execute();
+        }
+
         ((TextView)findViewById( R.id.mealTimePreparation)).setText(prepTime + "mn");
         ((TextView)findViewById( R.id.mealKcal)).setText(calories + " kcal");
         ((TextView)findViewById( R.id.mealNumberOfPeople)).setText(nbPeople + " personnes");
