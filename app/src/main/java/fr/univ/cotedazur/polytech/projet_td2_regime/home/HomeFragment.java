@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 
@@ -45,6 +46,7 @@ public class HomeFragment extends Fragment implements IListner {
     private String mParam2;
 
     ListView listView;
+    //ListView listViewApi;
     ArrayList<Meal> mealsList;
     FirebaseFirestore db;
 
@@ -86,11 +88,13 @@ public class HomeFragment extends Fragment implements IListner {
 
         //Récupération du composant ListView
         listView = view.findViewById(R.id.listView);
+        //listViewApi = view.findViewById(R.id.listViewApi);
 
         mealsList = new ArrayList<>();
 
         db = FirebaseFirestore.getInstance();
 
+        loadMealsFromApi();
         loadMealsinListview();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -121,6 +125,17 @@ public class HomeFragment extends Fragment implements IListner {
         startActivity(intent);
     }
 
+    private void loadMealsFromApi(){
+        MealApi mealApi = new MealApi("chicken", getActivity(), listView);
+        try {
+            mealsList.addAll(mealApi.execute().get());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void loadMealsinListview() {
         db.collection("recipes").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -146,4 +161,7 @@ public class HomeFragment extends Fragment implements IListner {
         });
     }
 
+    public void setMealsList(ArrayList<Meal> mealsList) {
+        this.mealsList = mealsList;
+    }
 }
