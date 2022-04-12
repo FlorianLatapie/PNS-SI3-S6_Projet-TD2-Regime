@@ -135,6 +135,8 @@ public class HomeFragment extends Fragment implements IListner {
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot d : list) {
                                 Meal meal = d.toObject(Meal.class);
+                                System.out.println("Meal : " + d);
+
                                 mealsList.add(meal);
                             }
                             MealsAdatpter adapter = new MealsAdatpter(getActivity().getApplicationContext(), mealsList);

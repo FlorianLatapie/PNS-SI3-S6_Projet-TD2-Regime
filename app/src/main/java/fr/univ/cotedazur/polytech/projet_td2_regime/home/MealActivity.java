@@ -112,7 +112,7 @@ public class MealActivity extends AppCompatActivity {
 
     private void onLikeClick(){
         if(isUserConnected()){
-            showNotificationWithImage();
+            //showNotificationWithImage();
             if(!hasUserLikeTheMeal(meal)){
                 user.getLikeMeals().add(meal);
                 meal.increaseLikes();
@@ -127,12 +127,11 @@ public class MealActivity extends AppCompatActivity {
         }
     }
 
-
-
     private void onCommentsClick(){
+
         if(isUserConnected()){
             Intent intent = new Intent(MealActivity.this, CommentsActivity.class);
-            intent.putExtra("Meal", getIntent().getIntExtra("Meal", 0));
+            intent.putExtra("Meal", meal);
             startActivity(intent);
 
         }
@@ -288,6 +287,8 @@ public class MealActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    private void updateMeal(Meal mealUpdated){ this.meal = mealUpdated;}
 
 
 }

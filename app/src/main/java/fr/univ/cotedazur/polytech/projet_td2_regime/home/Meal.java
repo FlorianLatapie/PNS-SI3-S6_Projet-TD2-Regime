@@ -33,8 +33,6 @@ public class Meal implements Serializable {
         this.kcal = 321;
         this.likes= 32;
         this.comments = new ArrayList<>();
-        this.comments.add(new Comment("Hmmm mama la pizza est buena", new User("George", "Butavent","bg et fier de l'être george aime la vie ", Diet.VEGETARIAN,10, R.drawable.bob)));
-        this.comments.add(new Comment("Un pepene un pepite, un pepito", new User("Paul", "Delafuerza","bg et fier de l'être george aime la vie ", Diet.VEGETARIAN,10, R.drawable.bob)));
         this.authorName = "Pierre";
         this.eatIt = 0;
     }
