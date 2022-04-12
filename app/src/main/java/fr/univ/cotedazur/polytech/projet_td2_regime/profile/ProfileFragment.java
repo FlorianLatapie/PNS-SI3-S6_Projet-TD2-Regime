@@ -5,13 +5,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.CommentsActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
 
@@ -35,7 +35,7 @@ public class ProfileFragment extends Fragment {
 
     public ProfileFragment() {
         // Required empty public constructor
-        currentUser = new User("Bob", "Dylan", "My awesome bio !", Diet.PROTEIN, 10, R.drawable.bob);
+        currentUser = new User("Bob", "Dylan", Genre.HOMME, 20, 181,"My awesome bio !", Diet.PROTEIN, 82.0, 75.0, R.drawable.bob);
 
     }
 

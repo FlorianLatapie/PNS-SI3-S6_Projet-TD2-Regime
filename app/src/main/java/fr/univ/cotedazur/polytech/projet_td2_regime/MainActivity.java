@@ -17,6 +17,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import fr.univ.cotedazur.polytech.projet_td2_regime.create_meal.CreateMealActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
