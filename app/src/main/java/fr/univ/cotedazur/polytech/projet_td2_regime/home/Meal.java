@@ -4,6 +4,7 @@ import android.os.Parcel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.Comment;
@@ -47,6 +48,32 @@ public class Meal implements Serializable {
         this.kcal = kcal;
         this.likes = 0;
         this.comments = new ArrayList<>();
+        this.authorName = author;
+    }
+
+    public Meal(String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author, List<Comment> comments) {
+        this.name = name;
+        this.picture = picture;
+        this.preparationTime = preparationTime;
+        this.nbOfPeople = nbOfPeople;
+        this.ingredients = ingredients;
+        this.preparation = preparation;
+        this.kcal = kcal;
+        this.likes = 0;
+        this.comments = comments;
+        this.authorName = author;
+    }
+
+    public Meal(String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author, Comment[] comments) {
+        this.name = name;
+        this.picture = picture;
+        this.preparationTime = preparationTime;
+        this.nbOfPeople = nbOfPeople;
+        this.ingredients = ingredients;
+        this.preparation = preparation;
+        this.kcal = kcal;
+        this.likes = 0;
+        this.comments = Arrays.asList(comments);
         this.authorName = author;
     }
 

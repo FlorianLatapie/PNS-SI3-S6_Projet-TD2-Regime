@@ -123,6 +123,7 @@ public class MealActivity extends AppCompatActivity {
                 meal.decreaseLikes();
                 ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
             }
+            updateUserToFirestore(user);
             updateMealToFirestore(meal);
         }
     }
@@ -261,12 +262,36 @@ public class MealActivity extends AppCompatActivity {
                 });
     }
 
+    public void updateUserToFirestore(User user){
+        String userNameCorrectFormat = user.getFirstName()+user.getLastName().replaceAll("[^a-zA-Z]+","").replaceAll(" ", "_").toLowerCase();
+        db.collection("users").document(userNameCorrectFormat)
+                .update(convertToFirestoreFormat(user))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
     public Map convertToFirestoreFormat(Meal meal){
         Map<String, Object> firestoreMeal = new HashMap<>();
         firestoreMeal.put("likes", meal.getLikes());
         firestoreMeal.put("comments", meal.getComments());
 
         return firestoreMeal;
+    }
+
+    public Map convertToFirestoreFormat(User user){
+        Map<String, Object> firestoreUser = new HashMap<>();
+        firestoreUser.put("likeMeals", user.getLikeMeals());
+        return firestoreUser;
     }
 
     private void loadMealinListview(Meal meal) {

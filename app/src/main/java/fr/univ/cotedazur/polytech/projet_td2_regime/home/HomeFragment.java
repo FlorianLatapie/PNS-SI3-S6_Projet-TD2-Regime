@@ -105,6 +105,7 @@ public class HomeFragment extends Fragment implements IListner {
                 Meal meal = (Meal) o;
                 Intent intent = new Intent(getActivity().getApplicationContext(), MealActivity.class);
                 intent.putExtra("Meal", meal);
+                System.out.println(meal);
                 startActivity(intent);
             }
 

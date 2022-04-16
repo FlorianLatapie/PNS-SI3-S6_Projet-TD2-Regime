@@ -1,13 +1,15 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.profile;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.Comment;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
 
-public class User {
+public class User implements Serializable {
 
     private String firstName;
     private String lastName;
@@ -15,23 +17,25 @@ public class User {
     private Diet diet;
     private List<Meal> publishedMeals;
     private int weight;
-    private ArrayList<Meal> likeMeals;
-    private ArrayList<Meal> eatenMeals;
+    private List<Meal> likeMeals;
+    private List<Meal> eatenMeals;
     private int imageProfile;
 
-
+    public User(){
+    }
 
     public User(String firstName, String lastName, String bio, Diet diet, int weight, int imageProfile) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.bio = bio;
         this.diet = diet;
+        this.weight = weight;
         this.imageProfile = imageProfile;
-        this.publishedMeals = publishedMeals;
         this.likeMeals = new ArrayList<>();
         this.eatenMeals = new ArrayList<>();
         this.publishedMeals = new ArrayList<>();
     }
+
 
     public String getFirstName() {
         return firstName;
@@ -84,19 +88,19 @@ public class User {
         this.weight = weight;
     }
 
-    public ArrayList<Meal> getLikeMeals() {
+    public List<Meal> getLikeMeals() {
         return likeMeals;
     }
 
-    public void setLikeMeals(ArrayList<Meal> likeMeals) {
+    public void setLikeMeals(List<Meal> likeMeals) {
         this.likeMeals = likeMeals;
     }
 
-    public ArrayList<Meal> getEatenMeals() {
+    public List<Meal> getEatenMeals() {
         return eatenMeals;
     }
 
-    public void setEatenMeals(ArrayList<Meal> eatenMeals) {
+    public void setEatenMeals(List<Meal> eatenMeals) {
         this.eatenMeals = eatenMeals;
     }
 }

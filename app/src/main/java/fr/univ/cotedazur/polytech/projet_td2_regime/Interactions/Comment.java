@@ -1,9 +1,15 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.Interactions;
+import java.io.Serializable;
+
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 
-public class Comment {
+public class Comment implements Serializable {
     private String text;
     private User author;
+
+    public Comment(){
+
+    }
 
     public Comment(String text, User author){
         this.text = text;

@@ -57,12 +57,11 @@ public class LikeFragment extends Fragment implements IListner{
     // TODO: Rename and change types and number of parameters
     public LikeFragment newInstance(String param1, String param2) {
         LikeFragment fragment = new LikeFragment();
-        this.user = UserManager.getInstance().getCurrentUser();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
-
+        this.user = UserManager.getInstance().getCurrentUser();
         return fragment;
     }
 
@@ -80,7 +79,10 @@ public class LikeFragment extends Fragment implements IListner{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        this.user = UserManager.getInstance().getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_like, container, false);
+
+
         if(this.user!=null){
             LikeAdapter adapter = new LikeAdapter(getActivity().getApplicationContext());
 
