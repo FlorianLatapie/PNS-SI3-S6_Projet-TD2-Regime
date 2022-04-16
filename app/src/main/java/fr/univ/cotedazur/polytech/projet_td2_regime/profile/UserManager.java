@@ -1,35 +1,26 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.profile;
 
-import android.nfc.Tag;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
 import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdatpter;
 
 public class UserManager {
     private static UserManager instance = null;
 
     private User currentUser;
+    private User userFromFirestore;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -45,17 +36,18 @@ public class UserManager {
     }
 
     public User getCurrentUser() {
-        if(currentUser!=null) {getUserFromFirestore(); System.out.println("user likeMeals: "+currentUser.getLikeMeals());}
+        if(currentUser!=null) {currentUser = getUserFromFirestore(currentUser);}
 
         return currentUser;
     }
 
-    public void setCurrentUser(User currentUser) {
+    public void setCurrentUser(User currentUser) { //set current user if exists
         this.currentUser = currentUser;
         if(currentUser!=null) {
-            getUserFromFirestore();
-            addUserToFirestore(currentUser);
-        }
+           this.currentUser =  getUserFromFirestore(currentUser);
+           //addUserToFirestore(currentUser);
+
+        } else this.currentUser = null;
 
     }
 
@@ -77,17 +69,23 @@ public class UserManager {
                 });
     }
 
-    public void getUserFromFirestore() {
-
+    public User getUserFromFirestore(User currentUser) {
         String userNameCorrectFormat = currentUser.getFirstName() + currentUser.getLastName().replaceAll("[^a-zA-Z]+", "").replaceAll(" ", "_").toLowerCase();
         DocumentReference docRef = db.collection("users").document(userNameCorrectFormat);
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                currentUser = documentSnapshot.toObject(User.class);
-            }
-        });
-
+        docRef.get()
+            .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    userFromFirestore =  documentSnapshot.toObject(User.class);
+                }
+             })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    userFromFirestore = null;
+                }
+            });
+        return userFromFirestore;
     }
 
     public Map convertToFirestoreFormat(User user){

@@ -64,19 +64,6 @@ public class Meal implements Serializable {
         this.authorName = author;
     }
 
-    public Meal(String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author, Comment[] comments) {
-        this.name = name;
-        this.picture = picture;
-        this.preparationTime = preparationTime;
-        this.nbOfPeople = nbOfPeople;
-        this.ingredients = ingredients;
-        this.preparation = preparation;
-        this.kcal = kcal;
-        this.likes = 0;
-        this.comments = Arrays.asList(comments);
-        this.authorName = author;
-    }
-
     protected Meal(Parcel in) {
         name = in.readString();
         picture = in.readInt();

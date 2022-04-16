@@ -11,9 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.CommentsActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,7 +43,7 @@ public class ProfileFragment extends Fragment {
 
     }
 
-    private void disconnectUer() {
+    private void disconnectUser() {
         UserManager.getInstance().setCurrentUser(null);
         Toast.makeText(getContext(), "Vous êtes à présent déconnecté !", Toast.LENGTH_SHORT).show();
 
@@ -95,7 +93,7 @@ public class ProfileFragment extends Fragment {
 
         view.findViewById(R.id.seConnecter).setOnClickListener(v -> connectUser());
 
-        view.findViewById(R.id.seDeconnecter).setOnClickListener(v -> disconnectUer());
+        view.findViewById(R.id.seDeconnecter).setOnClickListener(v -> disconnectUser());
 
         view.findViewById(R.id.monRegime).setOnClickListener(
             v -> {
