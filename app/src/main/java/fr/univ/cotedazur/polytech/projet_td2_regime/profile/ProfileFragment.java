@@ -2,18 +2,15 @@ package fr.univ.cotedazur.polytech.projet_td2_regime.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +23,7 @@ public class ProfileFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    User currentUser;
+    private User currentUser;
 
 
     // TODO: Rename and change types of parameters
@@ -35,19 +32,7 @@ public class ProfileFragment extends Fragment {
 
     public ProfileFragment() {
         // Required empty public constructor
-        currentUser = new User("Bob", "Dylan", Genre.HOMME, 20, 181,"My awesome bio !", Diet.PROTEIN, 82.0, 75.0, R.drawable.bob);
-
-    }
-
-    private void connectUser() {
-        UserManager.getInstance().setCurrentUser(currentUser);
-        Toast.makeText(getContext(), "Vous êtes à présent connecté !", Toast.LENGTH_SHORT).show();
-
-    }
-
-    private void disconnectUer() {
-        UserManager.getInstance().setCurrentUser(null);
-        Toast.makeText(getContext(), "Vous êtes à présent déconnecté !", Toast.LENGTH_SHORT).show();
+        currentUser = new User("Bob", "Dylan", Genre.HOMME, 20, 181, "My awesome bio !", Diet.PROTEIN, 82.0, 75.0, R.drawable.bob);
 
     }
 
@@ -67,6 +52,18 @@ public class ProfileFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    private void connectUser() {
+        UserManager.getInstance().setCurrentUser(currentUser);
+        Toast.makeText(getContext(), "Vous êtes à présent connecté !", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void disconnectUer() {
+        UserManager.getInstance().setCurrentUser(null);
+        Toast.makeText(getContext(), "Vous êtes à présent déconnecté !", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -98,10 +95,10 @@ public class ProfileFragment extends Fragment {
         view.findViewById(R.id.seDeconnecter).setOnClickListener(v -> disconnectUer());
 
         view.findViewById(R.id.monRegime).setOnClickListener(
-            v -> {
-                Intent intent = new Intent(getActivity().getApplicationContext(), MyDietActivity.class);
-                startActivity(intent);
-            }
+                v -> {
+                    Intent intent = new Intent(getActivity().getApplicationContext(), MyDietActivity.class);
+                    startActivity(intent);
+                }
         );
         return view;
     }

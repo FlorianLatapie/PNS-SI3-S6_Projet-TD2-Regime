@@ -1,10 +1,7 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.stats;
 
-import static java.lang.Double.isNaN;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +24,6 @@ import java.util.Map;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
@@ -87,11 +83,11 @@ public class StatsFragment extends Fragment {
 
         this.currentUser = UserManager.getInstance().getCurrentUser();
 
-        if(currentUser!=null){
+        if (currentUser != null) {
 
             weightDisplay(view);
 
-            caloryDisplay(view);
+            calorieDisplay(view);
 
             TextView tv = view.findViewById(R.id.textView6);
             tv.setText(currentUser.getWeightGoal() + " kg");
@@ -99,7 +95,7 @@ public class StatsFragment extends Fragment {
             createGraph(view);
 
 
-        } else{
+        } else {
             GraphView graph = view.findViewById(R.id.graphView);
             graph.getViewport().setYAxisBoundsManual(true);
             graph.getViewport().setXAxisBoundsManual(true);
@@ -120,22 +116,22 @@ public class StatsFragment extends Fragment {
     }
 
     private void openEatenMeals(View view) {
-        if(isUserConnected()) {
+        if (isUserConnected()) {
             Intent intent = new Intent(getActivity().getApplicationContext(), EatenMealsActivity.class);
             startActivity(intent);
         }
     }
 
-    private void caloryDisplay(View view) {
+    private void calorieDisplay(View view) {
 
         TextView tv = view.findViewById(R.id.textView10);
-        tv.setText(currentUser.getCaloryGoal()+ " kCal");
+        tv.setText(currentUser.getCalorieGoal() + " kCal");
 
         List<Meal> eatenMeals = currentUser.getEatenMeals();
         int eatenCalories = 0;
 
-        for(Meal meal: eatenMeals){
-            eatenCalories+=meal.getKcal();
+        for (Meal meal : eatenMeals) {
+            eatenCalories += meal.getKcal();
         }
 
         tv = view.findViewById(R.id.textView11);
@@ -153,11 +149,11 @@ public class StatsFragment extends Fragment {
         graph.removeAllSeries();
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>();
 
-        this.weightHistorical = currentUser.getWeightHistorical();
+        this.weightHistorical = currentUser.getWeightHistory();
         int i = 0;
 
-        for (Map.Entry<LocalDate, Double> entry: this.weightHistorical.entrySet()) {
-            series.appendData(new DataPoint(i, entry.getValue().intValue()),false,this.weightHistorical.size(), false);
+        for (Map.Entry<LocalDate, Double> entry : this.weightHistorical.entrySet()) {
+            series.appendData(new DataPoint(i, entry.getValue().intValue()), false, this.weightHistorical.size(), false);
             i++;
         }
         series.setDrawDataPoints(true);
@@ -175,9 +171,9 @@ public class StatsFragment extends Fragment {
     }
 
     private void onClick(View view) {
-        if(isUserConnected()) {
+        if (isUserConnected()) {
             EditText editText = view.findViewById(R.id.editText);
-            if(!editText.getText().toString().equals("")) {
+            if (!editText.getText().toString().equals("")) {
                 Double newWeight = Double.parseDouble(editText.getText().toString());
                 LocalDate lastDate = this.currentUser.getLastWeightDate();
                 LocalDate sunday = lastDate.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));
@@ -188,7 +184,7 @@ public class StatsFragment extends Fragment {
                 }
 
                 weightHistorical.put(newDate, newWeight);
-                currentUser.setWeightHistorical(weightHistorical);
+                currentUser.setWeightHistory(weightHistorical);
                 currentUser.setWeight(newWeight);
             }
             createGraph(view);
@@ -197,8 +193,8 @@ public class StatsFragment extends Fragment {
 
     }
 
-    private boolean isUserConnected(){
-        if(this.currentUser==null) {
+    private boolean isUserConnected() {
+        if (this.currentUser == null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext());
             builder.setMessage("Connectez-vous");
             builder.show();

@@ -2,26 +2,18 @@ package fr.univ.cotedazur.polytech.projet_td2_regime.Interactions;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import androidx.fragment.app.Fragment;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.IListner;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdatpter;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsList;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
@@ -30,7 +22,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
  * Use the {@link LikeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LikeFragment extends Fragment implements IListner{
+public class LikeFragment extends Fragment implements IListner {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -81,7 +73,7 @@ public class LikeFragment extends Fragment implements IListner{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_like, container, false);
-        if(this.user!=null){
+        if (this.user != null) {
             LikeAdapter adapter = new LikeAdapter(getActivity().getApplicationContext());
 
             //Récupération du composant ListView
@@ -109,15 +101,10 @@ public class LikeFragment extends Fragment implements IListner{
         return view;
     }
 
-
-
     @Override
     public void onClickMeal(Meal meal) {
-        Intent intent = new Intent( getActivity().getApplicationContext(), MealActivity.class);
+        Intent intent = new Intent(getActivity().getApplicationContext(), MealActivity.class);
         intent.putExtra("Meal", meal);
         startActivity(intent);
     }
-
-  
-
 }

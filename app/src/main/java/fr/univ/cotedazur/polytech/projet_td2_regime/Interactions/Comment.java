@@ -1,11 +1,16 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.Interactions;
+
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 
 public class Comment {
     private String text;
     private User author;
 
-    public Comment(String text, User author){
+    // Public empty constructor for Firebase
+    public Comment() {
+    }
+
+    public Comment(String text, User author) {
         this.text = text;
         this.author = author;
     }
