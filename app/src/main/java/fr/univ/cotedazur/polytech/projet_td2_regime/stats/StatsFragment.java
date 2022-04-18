@@ -19,6 +19,8 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -111,6 +113,10 @@ public class StatsFragment extends Fragment {
         Button eatenMeals = view.findViewById(R.id.button);
         eatenMeals.setOnClickListener(click -> openEatenMeals(view));
 
+        Button addToCalendar = view.findViewById(R.id.reminderButton);
+        addToCalendar.setOnClickListener(click -> onClickAddEventCalendar(view));
+
+
         // Inflate the layout for this fragment
         return view;
     }
@@ -201,5 +207,24 @@ public class StatsFragment extends Fragment {
             return false;
         }
         return true;
+    }
+
+    private void onClickAddEventCalendar(View view){
+        Calendar cal = Calendar.getInstance();
+        Intent intent = new Intent(Intent.ACTION_EDIT);
+        // adds a new calendar event for the next day at 7:00 am
+        Date date = new Date();
+        date.setHours(7);
+        date.setMinutes(0);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DATE, 1);
+
+        intent.setType("vnd.android.cursor.item/event");
+        intent.putExtra("beginTime", calendar.getTimeInMillis());
+        intent.putExtra("allDay", false);
+        intent.putExtra("endTime", calendar.getTimeInMillis() + 60 * 60 * 1000);
+        intent.putExtra("title", "Renseignez votre poids dans l'application");
+        startActivity(intent);
     }
 }
