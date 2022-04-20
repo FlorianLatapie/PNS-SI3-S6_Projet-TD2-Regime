@@ -1,11 +1,10 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.create_meal;
 
 import static android.content.ContentValues.TAG;
-import static fr.univ.cotedazur.polytech.projet_td2_regime.create_meal.IPictureActivity.CAMERA_REQUEST_CODE;
-import static fr.univ.cotedazur.polytech.projet_td2_regime.create_meal.IPictureActivity.IMAGE_PICK_GALLERY_CODE;
+import static fr.univ.cotedazur.polytech.projet_td2_regime.create_meal.PermissionFactory.CAMERA_REQUEST_CODE;
+import static fr.univ.cotedazur.polytech.projet_td2_regime.create_meal.PermissionFactory.IMAGE_PICK_GALLERY_CODE;
 
 import android.Manifest;
-import android.app.Fragment;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -22,7 +21,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,9 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.Comment;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.HomeFragment;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
