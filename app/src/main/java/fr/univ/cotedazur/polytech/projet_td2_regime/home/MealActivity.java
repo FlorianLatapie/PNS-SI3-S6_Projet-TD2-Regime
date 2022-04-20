@@ -111,6 +111,7 @@ public class MealActivity extends AppCompatActivity {
     }
 
     private void onLikeClick(){
+        showNotificationWithImage();
         if(isUserConnected()){
             //showNotificationWithImage();
             if(!hasUserLikeTheMeal(meal)){
@@ -129,12 +130,10 @@ public class MealActivity extends AppCompatActivity {
     }
 
     private void onCommentsClick(){
-
         if(isUserConnected()){
             Intent intent = new Intent(MealActivity.this, CommentsActivity.class);
             intent.putExtra("Meal", meal);
             startActivity(intent);
-
         }
     }
 
@@ -213,8 +212,8 @@ public class MealActivity extends AppCompatActivity {
         );
         builder.setSmallIcon(R.drawable.ic_baseline_notifications_24);
         builder.setDefaults(NotificationCompat.DEFAULT_ALL);
-        builder.setContentTitle("What is Lorem Ipsum?");
-        builder.setContentText("Lorem ipsum is simply dummy text.");
+        builder.setContentTitle("Votre plat du jour");
+        builder.setContentText("Voila une petite recette à cuisiner");
         // builder.setStyle(new NotificationCompat.BigTextStyle().bigText("Le langage est la capacité d'exprimer une pensée et de communiquer au moyen d'un système de signes (vocaux, gestuel, graphiques, tactiles, olfactifs, etc.) doté d'une sémantique, et le plus souvent d'une syntaxe — mais ce n'est pas systématique (la cartographie est un exemple de langage non syntaxique). Fruit d'une acquisition, la langue est une des nombreuses manifestations du langage."));
         builder.setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap));
         builder.setContentIntent(pendingIntent);
@@ -314,6 +313,5 @@ public class MealActivity extends AppCompatActivity {
     }
 
     private void updateMeal(Meal mealUpdated){ this.meal = mealUpdated;}
-
 
 }
