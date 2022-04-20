@@ -1,5 +1,6 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.home;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 
 import java.io.Serializable;
@@ -15,6 +16,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 public class Meal implements Serializable {
     private String name;
     private int picture;
+    private Bitmap pictureBitmap;
     private String imageLink;
     private int preparationTime;
     private int nbOfPeople;
@@ -40,9 +42,9 @@ public class Meal implements Serializable {
         this.eatIt = 0;
     }
 
-    public Meal(String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author) {
+    public Meal(String name, Bitmap picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author) {
         this.name = name;
-        this.picture = picture;
+        this.pictureBitmap = picture;
         this.preparationTime = preparationTime;
         this.nbOfPeople = nbOfPeople;
         this.ingredients = ingredients;
@@ -79,6 +81,11 @@ public class Meal implements Serializable {
     public static List<String> validate(Meal meal) {
         // fields to validate : String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author
         List<String> errors = new ArrayList<>();
+        String cleanedName = meal.getName().replaceAll("[^a-zA-Z]+","");
+
+        if (cleanedName.isEmpty()) {
+            errors.add("Le nom de la recette est incorrect");
+        }
         if (meal.getName().isEmpty()) {
             errors.add("Le nom est requis");
         }
@@ -97,7 +104,7 @@ public class Meal implements Serializable {
         if (meal.getKcal() == 0) {
             errors.add("Les calories sont requises");
         }
-        if (meal.getPicture() == 0) {
+        if (meal.getPictureBitmap() == null) {
             errors.add("La photo est requise");
         }
         return errors;
@@ -226,5 +233,13 @@ public class Meal implements Serializable {
                 ", comments=" + comments +
                 ", authorName='" + authorName + '\'' +
                 '}';
+    }
+
+    public Bitmap getPictureBitmap() {
+        return pictureBitmap;
+    }
+
+    public void setPictureBitmap(Bitmap pictureBitmap) {
+        this.pictureBitmap = pictureBitmap;
     }
 }

@@ -38,6 +38,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 public class CreateMealActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private ImageView imagePreiew;
+    private Bitmap image;
     private Button addPictureButton;
     private Button publishMealButton;
     private User user;
@@ -84,8 +85,10 @@ public class CreateMealActivity extends AppCompatActivity {
         int kcal = Integer.parseInt(((TextView) findViewById(R.id.mealKcalInput)).getText().toString().equals("") ? "0" : ((TextView) findViewById(R.id.mealKcalInput)).getText().toString());
         String authorName = this.user.getFirstName() + " " + this.user.getLastName();
 
-        Meal meal = new Meal(name, R.drawable.pizza3, preparationTime, nbOfPeople, ingredients, preparation, kcal, authorName);
-
+        Meal meal = new Meal(name, image, preparationTime, nbOfPeople, ingredients, preparation, kcal, authorName);
+        if (image == null){
+            throw new RuntimeException("Image is null");
+        }
         List<String> errors = Meal.validate(meal);
         if (errors.size() > 0) {
             StringBuilder sb = new StringBuilder();
@@ -131,7 +134,6 @@ public class CreateMealActivity extends AppCompatActivity {
         Map<String, Object> firestoreMeal = new HashMap<>();
 
         firestoreMeal.put("name", meal.getName());
-        firestoreMeal.put("picture", meal.getPicture());
         firestoreMeal.put("preparationTime", meal.getPreparationTime());
         firestoreMeal.put("nbOfPeople", meal.getNbOfPeople());
         firestoreMeal.put("ingredients", meal.getIngredients());
@@ -189,6 +191,7 @@ public class CreateMealActivity extends AppCompatActivity {
             } else if (requestCode == IMAGE_PICK_GALLERY_CODE) {
                 imagePreiew.setImageURI(data.getData());
             }
+            image = (Bitmap) data.getExtras().get("data");
         }
     }
 }
