@@ -25,7 +25,11 @@ import androidx.core.content.ContextCompat;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,11 +46,15 @@ public class CreateMealActivity extends AppCompatActivity {
     private Button addPictureButton;
     private Button publishMealButton;
     private User user;
+    private StorageReference mStorageRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meal);
+
+        mStorageRef = FirebaseStorage.getInstance().getReference();
 
         user = UserManager.getInstance().getCurrentUser();
 
@@ -86,9 +94,7 @@ public class CreateMealActivity extends AppCompatActivity {
         String authorName = this.user.getFirstName() + " " + this.user.getLastName();
 
         Meal meal = new Meal(name, image, preparationTime, nbOfPeople, ingredients, preparation, kcal, authorName);
-        if (image == null){
-            throw new RuntimeException("Image is null");
-        }
+
         List<String> errors = Meal.validate(meal);
         if (errors.size() > 0) {
             StringBuilder sb = new StringBuilder();
@@ -109,10 +115,29 @@ public class CreateMealActivity extends AppCompatActivity {
         }
     }
 
-    public void addMealToFirestore(Meal meal){
+    public void addMealToFirestore(Meal meal) {
         String mealNameCorrectFormat;
-        mealNameCorrectFormat = meal.getName().replaceAll("[^a-zA-Z]+","");
+        mealNameCorrectFormat = meal.getName().replaceAll("[^a-zA-Z]+", "");
         mealNameCorrectFormat = mealNameCorrectFormat.replaceAll(" ", "_").toLowerCase();
+
+        StorageReference mountainsRef = mStorageRef.child(mealNameCorrectFormat + ".jpg");
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        meal.getPictureBitmap().compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = mountainsRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getApplicationContext(), "Upload failed : " + exception.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(getApplicationContext(), "Upload successful", Toast.LENGTH_LONG).show();
+            }
+        });
 
         db.collection("recipes").document(mealNameCorrectFormat)
                 .set(convertToFirestoreFormat(meal))
@@ -130,7 +155,7 @@ public class CreateMealActivity extends AppCompatActivity {
                 });
     }
 
-    public Map convertToFirestoreFormat(Meal meal){
+    public Map convertToFirestoreFormat(Meal meal) {
         Map<String, Object> firestoreMeal = new HashMap<>();
 
         firestoreMeal.put("name", meal.getName());
