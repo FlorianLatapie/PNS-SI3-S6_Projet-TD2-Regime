@@ -1,7 +1,5 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.home;
 
-import static android.content.ContentValues.TAG;
-
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -14,14 +12,11 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.PluralsRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
@@ -29,20 +24,12 @@ import androidx.core.app.NotificationCompat;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Random;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.CommentsActivity;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-
-import java.util.concurrent.Executor;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
-import fr.univ.cotedazur.polytech.projet_td2_regime.notification.NoticationActivity;
+import fr.univ.cotedazur.polytech.projet_td2_regime.notification.NotificationActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 import fr.univ.cotedazur.polytech.projet_td2_regime.util.DownloadImageTask;
@@ -192,7 +179,7 @@ public class MealActivity extends AppCompatActivity {
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Intent intent = new Intent(getApplicationContext(), NoticationActivity.class);
+        Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(

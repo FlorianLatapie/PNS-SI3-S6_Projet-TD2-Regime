@@ -26,6 +26,8 @@
         <activity android:name=".create_meal.CreateMealActivity"></activity>
         <activity android:name=".Interactions.CommentsActivity"></activity>
         <activity android:name=".profile.MyDietActivity"></activity>
+        <activity android:name=".notification.NotificationActivity"></activity>
+        <receiver android:name=".notification.ReminderBroadcast"></receiver>
     </application>
 
     <!-- Permissions -->

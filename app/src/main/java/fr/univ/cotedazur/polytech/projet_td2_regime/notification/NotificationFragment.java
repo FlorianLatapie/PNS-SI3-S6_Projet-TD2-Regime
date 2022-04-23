@@ -1,5 +1,7 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.notification;
 
+import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,7 +66,14 @@ public class NotificationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_notification, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification, container, false);
+        Button reminderButton = view.findViewById(R.id.reminderButton);
+        reminderButton.setOnClickListener(click -> {
+            Intent intent = new Intent(getActivity().getApplicationContext(), NotificationActivity.class);
+            startActivity(intent);
+        });
+
+        return view;
     }
 }

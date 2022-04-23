@@ -5,14 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TextView
-        android:id="@+id/textView"
+    <Button
+        android:id="@+id/remindMeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/from_notification"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:text="Rappel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+
+    <EditText
+        android:id="@+id/editTextTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
