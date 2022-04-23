@@ -68,11 +68,6 @@ public class NotificationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
         // Inflate the layout for this fragment
-        Button reminderButton = view.findViewById(R.id.reminderButton);
-        reminderButton.setOnClickListener(click -> {
-            Intent intent = new Intent(getActivity().getApplicationContext(), NotificationActivity.class);
-            startActivity(intent);
-        });
 
         return view;
     }

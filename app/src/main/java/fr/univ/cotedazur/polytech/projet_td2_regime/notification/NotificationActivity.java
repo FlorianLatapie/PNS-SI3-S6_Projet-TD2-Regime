@@ -1,6 +1,5 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.notification;
 
-import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -23,6 +22,7 @@ import java.util.Calendar;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
 
 public class NotificationActivity extends AppCompatActivity {
 
@@ -30,16 +30,22 @@ public class NotificationActivity extends AppCompatActivity {
     private Calendar calendar;
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
-
+    private Meal meal;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-
+        meal = (Meal) getIntent().getSerializableExtra("Meal");
         setContentView(R.layout.activity_notification);
         createNotificationChannel();
         Button remindMeButton = findViewById(R.id.remindMeButton);
         Button cancelButton = findViewById(R.id.cancelButton);
         Button horaireButton = findViewById(R.id.horaireButton);
+        Calendar cal = Calendar.getInstance();
+        int minute = cal.get(Calendar.MINUTE);
+        int hour = cal.get(Calendar.HOUR);
+        updateTime(hour, minute);
+        TextView mealName = findViewById(R.id.timerDescriptionNameMeal);
+        mealName.setText(meal.getName());
 
         cancelButton.setOnClickListener(v->{
             cancelAlarm();
@@ -50,9 +56,20 @@ public class NotificationActivity extends AppCompatActivity {
         });
 
         remindMeButton.setOnClickListener(v -> {
-            setAlarm();
+            meal = (Meal) getIntent().getSerializableExtra("Meal");
+            System.out.println("Meal " + meal);
+            setAlarm(meal);
 
         });
+    }
+
+    private void updateTime(int hour, int minute){
+        TextView timeDisplay = findViewById(R.id.timeDisplay);
+        if (hour > 12){
+            timeDisplay.setText(String.format("%02d",(hour-12)+"")+" : "+String.format("%02d",minute+" PM"));
+        }else {
+            timeDisplay.setText(hour+" : " + minute + " AM");
+        }
     }
 
     private void cancelAlarm() {
@@ -62,17 +79,25 @@ public class NotificationActivity extends AppCompatActivity {
             alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         }
         alarmManager.cancel(pendingIntent);
-        Toast.makeText(this, "Alarme supprimée !", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Rappel supprimé !", Toast.LENGTH_SHORT).show();
     }
 
 
-    private void setAlarm(){
-        Intent intent = new Intent(NotificationActivity.this, ReminderBroadcast.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(NotificationActivity.this, 0 , intent, 0);
+    private void setAlarm(Meal meal){
+        Intent intent = new Intent(this, ReminderBroadcast.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("meal", meal);
+        intent.putExtra("bundle", bundle);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0 , intent, 0);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY,pendingIntent);
+        if(calendar==null) {
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,0, 0,pendingIntent);
+        }else {
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 0,pendingIntent);
+        }
         Toast.makeText(this, "Rappel placé !", Toast.LENGTH_SHORT).show();
     }
+
 
     private void createNotificationChannel(){
         if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
@@ -88,25 +113,20 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     private void showTimePicker() {
-
+        Calendar cal = Calendar.getInstance();
         picker = new MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(12)
-                .setMinute(0)
+                .setHour(cal.get(Calendar.HOUR))
+                .setMinute(cal.get(Calendar.MINUTE))
                 .setTitleText("Select Alarm Time")
                 .build();
 
-        picker.show(getSupportFragmentManager(),"foxandroid");
+        picker.show(getSupportFragmentManager(),"kure");
 
         picker.addOnPositiveButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView timeDisplay = findViewById(R.id.timeDisplay);
-                if (picker.getHour() > 12){
-                    timeDisplay.setText(String.format("%02d",(picker.getHour()-12))+" : "+String.format("%02d",picker.getMinute())+" PM");
-                }else {
-                    timeDisplay.setText(picker.getHour()+" : " + picker.getMinute() + " AM");
-                }
+                updateTime(picker.getHour(),picker.getMinute());
 
                 calendar = Calendar.getInstance();
                 calendar.set(Calendar.HOUR_OF_DAY,picker.getHour());

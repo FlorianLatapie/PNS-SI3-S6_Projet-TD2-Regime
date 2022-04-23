@@ -26,16 +26,20 @@ import java.net.URL;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
 
 public class ReminderBroadcast extends BroadcastReceiver {
     Bitmap bmp = null;
+    Meal meal;
+
     @Override
     public void onReceive(Context context, Intent intent){
-
+        meal = (Meal) intent.getBundleExtra("bundle").getSerializable("meal");
+        System.out.println("Meal "+meal.getName());
        Thread thread = new Thread(new Runnable() {
            @Override
            public void run() {
-               bmp = getBitmapFromURL("https://m1.quebecormedia.com/emp/cdp_prod/coup_de_pouce-_-e9aecfbf44f902f1d9b611393e8a3aac67a1b3bb-_-bol-repas.jpg");
+               bmp = getBitmapFromURL(meal.getImageLink());
            }
        });
 
@@ -43,8 +47,8 @@ public class ReminderBroadcast extends BroadcastReceiver {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notifyMeal")
                 .setSmallIcon(R.drawable.ic_baseline_food_bank_24)
-                .setContentTitle("Meal")
-                .setContentText("Je suis un repas que tu dois cuisiner")
+                .setContentTitle(meal.getName())
+                .setContentText("Il est l'heure de cuisiner ! Cliquez pour plus d'informations sur la recette")
                 .setAutoCancel(true)
                 .setLargeIcon(bmp)
                 .setStyle(new NotificationCompat.BigPictureStyle()
@@ -53,7 +57,6 @@ public class ReminderBroadcast extends BroadcastReceiver {
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-
         notificationManagerCompat.notify(200,builder.build());
     }
 

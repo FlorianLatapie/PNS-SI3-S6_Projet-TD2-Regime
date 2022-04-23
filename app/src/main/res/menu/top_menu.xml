@@ -4,11 +4,14 @@
 
     <item
         android:id="@+id/create_meal"
+        android:icon="@android:drawable/ic_input_add"
+        android:iconTint="#FFFFFF"
         android:title="+"
         app:showAsAction="always" />
     <item
         android:id="@+id/app_bar_search"
-        android:icon="@drawable/search_24"
+        android:icon="?android:attr/actionModeWebSearchDrawable"
+        android:iconTint="#FFFFFF"
         android:title="Search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />

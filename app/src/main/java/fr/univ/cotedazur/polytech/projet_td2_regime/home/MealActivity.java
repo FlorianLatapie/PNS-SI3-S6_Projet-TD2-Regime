@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -65,8 +66,14 @@ public class MealActivity extends AppCompatActivity {
         ((Button)findViewById(R.id.eatIt)).setOnClickListener(click -> {
             onEatItClick();
         });
+
+        ((ImageButton) findViewById(R.id.imageClockButton)).setOnClickListener(click -> {
+            onTimerNotification();
+        });
     }
-    
+
+
+
     private void initMealActivity(){
         //meal property
         String prepTime = String.valueOf(meal.getPreparationTime());
@@ -110,6 +117,11 @@ public class MealActivity extends AppCompatActivity {
         }
     }
 
+    private void onTimerNotification() {
+        Intent intent = new Intent(getApplicationContext(), NotificationActivity.class);
+        intent.putExtra("Meal", meal);
+        startActivity(intent);
+    }
 
 
     private void onCommentsClick(){

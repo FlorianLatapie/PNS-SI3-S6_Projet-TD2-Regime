@@ -10,9 +10,11 @@
         android:id="@+id/remindMeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="Rappel"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#157A19"
+        android:text="Lancer le rappel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horaireButton" />
 
@@ -20,34 +22,75 @@
         android:id="@+id/horaireButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choisir heure de rappel"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="132dp"
+        android:text="Modifier l'heure de rappel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.191" />
+        app:layout_constraintTop_toBottomOf="@+id/timerDescription" />
+
+    <TextView
+        android:id="@+id/timeDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="08:12"
+        app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Heure de rappel :"
+        app:layout_constraintBottom_toTopOf="@+id/horaireButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerDescription"
+        app:layout_constraintVertical_bias="0.854" />
 
     <Button
         android:id="@+id/cancelButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="120dp"
-        android:text="Annuler Rappel"
+        android:backgroundTint="#7E0505"
+        android:text="Annuler le rappel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/remindMeButton" />
 
     <TextView
-        android:id="@+id/timeDisplay"
+        android:id="@+id/timerDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="08:12"
-        app:layout_constraintBottom_toTopOf="@+id/horaireButton"
+        android:layout_marginTop="36dp"
+        android:soundEffectsEnabled="false"
+        android:text="Création d'un rappel pour cuisiner :"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/timerDescriptionNameMeal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:soundEffectsEnabled="false"
+        android:text="Repas"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/timerDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>
