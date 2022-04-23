@@ -31,7 +31,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
+import fr.univ.cotedazur.polytech.projet_td2_regime.util.Util;
 
 
 public class HomeFragment extends Fragment implements IListner {
@@ -96,7 +98,15 @@ public class HomeFragment extends Fragment implements IListner {
     }
 
     private void loadMealsFromApi(){
-        MealApi mealApi = new MealApi("chicken", getActivity(), listView);
+        User currentUser = UserManager.getInstance().getCurrentUser();
+        String userDiet;
+        if (currentUser == null){
+            userDiet = "healthy";
+        } else {
+            userDiet = Util.replaceSpace(currentUser.getDiet().getEnglishName());
+        }
+
+        MealApi mealApi = new MealApi(userDiet, getActivity(), listView);
         try {
             mealsList.addAll(mealApi.execute().get());
         } catch (ExecutionException e) {
