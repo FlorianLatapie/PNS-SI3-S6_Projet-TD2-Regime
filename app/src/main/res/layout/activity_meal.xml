@@ -57,7 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#F8F8F8"
-        android:elevation="8dp"
+        android:elevation="6dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -183,11 +183,11 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="20dp">
+                android:padding="15dp">
 
                 <ImageView
                     android:id="@+id/imageMeal"
-                    android:layout_width="243dp"
+                    android:layout_width="fill_parent"
                     android:layout_height="166dp"
                     android:layout_marginTop="4dp"
                     app:layout_constraintHorizontal_bias="0.503"
@@ -200,11 +200,13 @@
                     android:id="@+id/mealName"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
                     android:text="Name"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="40sp"
+                    android:textSize="30sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/imageMeal" />
@@ -275,8 +277,10 @@
                     android:id="@+id/textPreparation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Preparation :"
+                    android:text="Preparation"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
+
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -310,6 +314,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:text="mealIngredients"
                     android:textColor="@color/black"
@@ -323,7 +328,8 @@
                     android:id="@+id/textIngredients"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ingredients :"
+                    android:textStyle="bold"
+                    android:text="Ingredients"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
