@@ -8,12 +8,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
@@ -36,7 +39,6 @@ public class NotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         meal = (Meal) getIntent().getSerializableExtra("Meal");
         setContentView(R.layout.activity_notification);
-        createNotificationChannel();
         Button remindMeButton = findViewById(R.id.remindMeButton);
         Button cancelButton = findViewById(R.id.cancelButton);
         Button horaireButton = findViewById(R.id.horaireButton);
@@ -58,7 +60,7 @@ public class NotificationActivity extends AppCompatActivity {
         remindMeButton.setOnClickListener(v -> {
             meal = (Meal) getIntent().getSerializableExtra("Meal");
             System.out.println("Meal " + meal);
-            setAlarm(meal);
+            setAlarm();
 
         });
     }
@@ -83,34 +85,36 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
 
-    private void setAlarm(Meal meal){
-        Intent intent = new Intent(this, ReminderBroadcast.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("meal", meal);
-        intent.putExtra("bundle", bundle);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0 , intent, 0);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+    private void setAlarm( ){
+        System.out.println("Meal set Alarm "+meal.getName());
+        ReminderBroadcast reminderBroadcast = new ReminderBroadcast();
         if(calendar==null) {
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,0, 0,pendingIntent);
+            delayNotification(0);
         }else {
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(), 0,pendingIntent);
+            Calendar cal = Calendar.getInstance();
+
+            Calendar cale = Calendar.getInstance();
+            cale.set(Calendar.YEAR, Calendar.MONTH, Calendar.DATE, cale.HOUR, cale.MINUTE);
+            delayNotification(cale.getTimeInMillis() - calendar.getTimeInMillis());
         }
+
         Toast.makeText(this, "Rappel placé !", Toast.LENGTH_SHORT).show();
     }
 
+    private void delayNotification(long timeInMillis){
+        final Handler handler = new Handler();
+        ReminderBroadcast reminderBroadcast = new ReminderBroadcast();
+        Context context = this;
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                reminderBroadcast.sendNotification(context,meal);
+                return;
 
-    private void createNotificationChannel(){
-        if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
-            CharSequence name = "notifyMealChannel";
-            String description = "Channel for meal reminder";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("notifyMeal", name, importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+            }
+        }, timeInMillis); //first run after 2 minutes
     }
+
 
     private void showTimePicker() {
         Calendar cal = Calendar.getInstance();

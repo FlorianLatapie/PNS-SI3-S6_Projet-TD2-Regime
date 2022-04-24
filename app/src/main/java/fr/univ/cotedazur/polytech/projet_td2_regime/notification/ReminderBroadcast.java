@@ -28,24 +28,12 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
 
-public class ReminderBroadcast extends BroadcastReceiver {
+public class ReminderBroadcast{
     Bitmap bmp = null;
-    Meal meal;
 
-    @Override
-    public void onReceive(Context context, Intent intent){
-        meal = (Meal) intent.getBundleExtra("bundle").getSerializable("meal");
-        System.out.println("Meal "+meal.getName());
-       Thread thread = new Thread(new Runnable() {
-           @Override
-           public void run() {
-               bmp = getBitmapFromURL(meal.getImageLink());
-           }
-       });
-
-        thread.start();
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notifyMeal")
+    public void sendNotification(Context context, Meal meal){
+        //bmp = getBitmapFromURL(meal.getImageLink());
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, myApplication.CHANNEL_HIGH)
                 .setSmallIcon(R.drawable.ic_baseline_food_bank_24)
                 .setContentTitle(meal.getName())
                 .setContentText("Il est l'heure de cuisiner ! Cliquez pour plus d'informations sur la recette")
@@ -54,7 +42,7 @@ public class ReminderBroadcast extends BroadcastReceiver {
                 .setStyle(new NotificationCompat.BigPictureStyle()
                         .bigPicture(bmp)
                         .bigLargeIcon(null))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                .setPriority(NotificationCompat.PRIORITY_HIGH);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(200,builder.build());
