@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:text="Ma bio"
         android:textSize="22sp"
-
+        android:layout_marginLeft="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
