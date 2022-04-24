@@ -12,8 +12,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="68dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seConnecter"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp">
 
         <ImageView
@@ -38,17 +39,15 @@
                 android:id="@+id/profilFirstName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="32sp"
                 android:text="First Name"
-                />
+                android:textSize="32sp" />
 
             <TextView
                 android:id="@+id/profilLastName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="32sp"
                 android:text="Last Name"
-                />
+                android:textSize="32sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -58,35 +57,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Mon régine"
+        android:text="Mon régime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profilBio" />
 
     <Button
-        android:layout_margin="10dp"
-        android:id="@+id/seConnecter"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:text="Se connecter"
-        app:layout_constraintEnd_toStartOf="@+id/seDeconnecter"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:layout_margin="10dp"
-
         android:id="@+id/seDeconnecter"
+
         android:layout_width="180dp"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="Se déconnecter"
-        app:layout_constraintBottom_toBottomOf="@+id/seConnecter"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/seConnecter"
-        app:layout_constraintTop_toTopOf="@+id/seConnecter" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
