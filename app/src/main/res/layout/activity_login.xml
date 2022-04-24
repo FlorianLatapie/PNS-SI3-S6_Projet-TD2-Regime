@@ -19,7 +19,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#80000000" />
+            android:background="@color/black_80_percent_opacity" />
 
     </RelativeLayout>
 
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:backgroundTint="#E20A62"
+                android:backgroundTint="@color/purple_700"
                 android:onClick="onClickSignUpUser"
                 android:paddingLeft="29dp"
                 android:paddingRight="29dp"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
-                android:backgroundTint="#E20A62"
+                android:backgroundTint="@color/purple_700"
                 android:onClick="onClickConnectUser"
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"

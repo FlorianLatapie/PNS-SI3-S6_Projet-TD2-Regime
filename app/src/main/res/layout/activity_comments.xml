@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
 
-        android:backgroundTint="#000000"
+        android:backgroundTint="@color/black"
         android:hint="Commentez ici ..."
         android:minWidth="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
