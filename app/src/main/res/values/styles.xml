@@ -7,5 +7,5 @@
     </style>
 
 
-    <color name="colorPrimary">#E20A62</color>
+    <color name="colorPrimary">@color/primary_color</color>
 </resources>
