@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fr.univ.cotedazur.polytech.projet_td2_regime">
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ProjetTD2Regime">
+        android:theme="@style/Theme.ProjetTD2Regime"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".stats.EatenMealsActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,20 +30,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.MealActivity"></activity>
-        <activity android:name=".create_meal.CreateMealActivity"></activity>
-        <activity android:name=".Interactions.CommentsActivity"></activity>
-        <activity android:name=".profile.MyDietActivity"></activity>
-        <activity android:name=".notification.NotificationActivity"></activity>
-        <receiver android:name=".notification.ReminderBroadcast"></receiver>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".home.MealActivity" />
+        <activity android:name=".create_meal.CreateMealActivity" />
+        <activity android:name=".Interactions.CommentsActivity" />
+        <activity android:name=".profile.MyDietActivity" />
+        <activity android:name=".notification.NotificationActivity" />
+
+        <receiver android:name=".notification.ReminderBroadcast" />
     </application>
 
-    <!-- Permissions -->
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-
-    <uses-permission android:name="android.permission.READ_CALENDAR" />
-    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 </manifest>

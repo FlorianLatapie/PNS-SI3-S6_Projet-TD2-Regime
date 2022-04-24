@@ -8,4 +8,5 @@
     <string name="stats_fragment">STATS fragment</string>
 
     <string name="from_notification">from_notifcation</string>
+    <string name="welcome">Bienvenue sur Kure ! L\'application adaptée à votre alimentation. Découvrez, dégustez et suivez votre alimentation pour garder la forme.</string>
 </resources>

@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         mToolbar.setTitle(""); // we cannot set title in the xml file because it does not accept "" value
         setSupportActionBar(mToolbar);
 
-
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView);
 
