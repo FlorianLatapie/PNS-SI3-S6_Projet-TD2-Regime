@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.MyAwesomeApp.Base" parent="Theme.AppCompat">
+        <!--   Primary Color -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+    </style>
+
+
+    <color name="colorPrimary">#E20A62</color>
+</resources>
