@@ -31,6 +31,7 @@ public class NotificationActivity extends AppCompatActivity {
 
     private MaterialTimePicker picker;
     private Calendar calendar;
+    private Calendar cale;
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
     private Meal meal;
@@ -91,11 +92,11 @@ public class NotificationActivity extends AppCompatActivity {
         if(calendar==null) {
             delayNotification(0);
         }else {
-            Calendar cal = Calendar.getInstance();
 
-            Calendar cale = Calendar.getInstance();
-            cale.set(Calendar.YEAR, Calendar.MONTH, Calendar.DATE, cale.HOUR, cale.MINUTE);
-            delayNotification(cale.getTimeInMillis() - calendar.getTimeInMillis());
+            long currentTime = cale.getTime().getHours()*3600*1000+cale.getTime().getMinutes()*60*1000+cale.getTime().getSeconds()*1000;
+            long selectedTime = calendar.getTime().getHours()*3600*1000 + calendar.getTime().getMinutes()*60*1000;
+            long delayTime = selectedTime-currentTime;
+            delayNotification(delayTime);
         }
 
         Toast.makeText(this, "Rappel placé !", Toast.LENGTH_SHORT).show();
@@ -117,13 +118,14 @@ public class NotificationActivity extends AppCompatActivity {
 
 
     private void showTimePicker() {
-        Calendar cal = Calendar.getInstance();
+        cale = Calendar.getInstance();
         picker = new MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(cal.get(Calendar.HOUR))
-                .setMinute(cal.get(Calendar.MINUTE))
+                .setHour(cale.get(Calendar.HOUR))
+                .setMinute(cale.get(Calendar.MINUTE))
                 .setTitleText("Select Alarm Time")
                 .build();
+
 
         picker.show(getSupportFragmentManager(),"kure");
 
