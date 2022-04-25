@@ -35,6 +35,8 @@ public class NotificationActivity extends AppCompatActivity {
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
     private Meal meal;
+    final Handler handler= new Handler();
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -43,9 +45,10 @@ public class NotificationActivity extends AppCompatActivity {
         Button remindMeButton = findViewById(R.id.remindMeButton);
         Button cancelButton = findViewById(R.id.cancelButton);
         Button horaireButton = findViewById(R.id.horaireButton);
-        Calendar cal = Calendar.getInstance();
-        int minute = cal.get(Calendar.MINUTE);
-        int hour = cal.get(Calendar.HOUR);
+
+        cale = Calendar.getInstance();
+        int minute = cale.get(Calendar.MINUTE);
+        int hour = cale.get(Calendar.HOUR);
         updateTime(hour, minute);
         TextView mealName = findViewById(R.id.timerDescriptionNameMeal);
         mealName.setText(meal.getName());
@@ -76,12 +79,7 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     private void cancelAlarm() {
-        Intent intent = new Intent(this,ReminderBroadcast.class);
-        pendingIntent = PendingIntent.getBroadcast(this,0,intent,0);
-        if (alarmManager == null){
-            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        }
-        alarmManager.cancel(pendingIntent);
+        handler.removeCallbacksAndMessages(null);
         Toast.makeText(this, "Rappel supprimé !", Toast.LENGTH_SHORT).show();
     }
 
@@ -92,8 +90,7 @@ public class NotificationActivity extends AppCompatActivity {
         if(calendar==null) {
             delayNotification(0);
         }else {
-
-            long currentTime = cale.getTime().getHours()*3600*1000+cale.getTime().getMinutes()*60*1000+cale.getTime().getSeconds()*1000;
+            long currentTime = cale.getTime().getHours()*3600*1000+cale.getTime().getMinutes()*60*1000+calendar.getTime().getSeconds()*1000;
             long selectedTime = calendar.getTime().getHours()*3600*1000 + calendar.getTime().getMinutes()*60*1000;
             long delayTime = selectedTime-currentTime;
             delayNotification(delayTime);
@@ -103,7 +100,6 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     private void delayNotification(long timeInMillis){
-        final Handler handler = new Handler();
         ReminderBroadcast reminderBroadcast = new ReminderBroadcast();
         Context context = this;
         handler.postDelayed(new Runnable() {
