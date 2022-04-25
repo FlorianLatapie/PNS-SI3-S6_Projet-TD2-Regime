@@ -83,13 +83,17 @@ public class NotificationActivity extends AppCompatActivity {
         if(calendar==null) {
             delayNotification(0);
         }else {
-            long currentTime = cale.getTime().getHours()*3600*1000+cale.getTime().getMinutes()*60*1000+calendar.getTime().getSeconds()*1000;
+            long currentTime = cale.getTime().getHours()*3600*1000+cale.getTime().getMinutes()*60*1000+cale.getTime().getSeconds()*1000;
             long selectedTime = calendar.getTime().getHours()*3600*1000 + calendar.getTime().getMinutes()*60*1000;
             long delayTime = selectedTime-currentTime;
-            delayNotification(delayTime);
+            if(delayTime<=0)  Toast.makeText(this, "Date sélectionnée invalide !", Toast.LENGTH_SHORT).show();
+            else{
+                delayNotification(delayTime);
+                Toast.makeText(this, "Rappel placé !", Toast.LENGTH_SHORT).show();
+
+            }
         }
 
-        Toast.makeText(this, "Rappel placé !", Toast.LENGTH_SHORT).show();
     }
 
     private void delayNotification(long timeInMillis){
