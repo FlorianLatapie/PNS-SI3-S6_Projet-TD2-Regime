@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/create_meal"
-        android:icon="@android:drawable/ic_input_add"
+        android:icon="@drawable/add_24"
         android:iconTint="#FFFFFF"
         android:title="+"
         app:showAsAction="always" />
