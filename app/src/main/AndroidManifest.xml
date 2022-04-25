@@ -38,7 +38,7 @@
         <activity android:name=".profile.MyDietActivity" />
         <activity android:name=".notification.NotificationActivity" />
 
-        <receiver android:name=".notification.ReminderBroadcast" />
+        <receiver android:name=".notification.Notif" />
     </application>
 
 </manifest>

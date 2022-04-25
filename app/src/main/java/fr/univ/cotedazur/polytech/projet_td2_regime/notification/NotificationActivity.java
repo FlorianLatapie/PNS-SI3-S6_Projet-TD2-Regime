@@ -1,12 +1,9 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.notification;
 
 import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -15,15 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
 import java.util.Calendar;
 
-import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
 
@@ -86,7 +80,6 @@ public class NotificationActivity extends AppCompatActivity {
 
     private void setAlarm( ){
         System.out.println("Meal set Alarm "+meal.getName());
-        ReminderBroadcast reminderBroadcast = new ReminderBroadcast();
         if(calendar==null) {
             delayNotification(0);
         }else {
@@ -100,12 +93,13 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     private void delayNotification(long timeInMillis){
-        ReminderBroadcast reminderBroadcast = new ReminderBroadcast();
+        final Handler handler = new Handler();
         Context context = this;
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                reminderBroadcast.sendNotification(context,meal);
+                Notif notif = new Notif(meal.getName(), "Il est l'heure de cuisiner ! Cliquez pour plus d'informations sur la recette", "", meal);
+                notif.sendNotification(context);
                 return;
 
             }

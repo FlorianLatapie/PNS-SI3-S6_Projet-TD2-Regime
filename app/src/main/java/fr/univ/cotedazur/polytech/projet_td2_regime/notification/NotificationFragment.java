@@ -11,10 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
+
+import com.google.firebase.firestore.DocumentSnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdatpter;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,6 +76,23 @@ public class NotificationFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
         // Inflate the layout for this fragment
+
+        ListView listView = view.findViewById(R.id.listView);
+        NotificationAdapter adapter = new NotificationAdapter(getActivity().getApplicationContext());
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                Notif notif = (Notif) listView.getItemAtPosition(position);
+                Meal meal = notif.getMeal();
+                Intent intent = new Intent(getActivity().getApplicationContext(), MealActivity.class);
+                intent.putExtra("Meal", meal);
+                startActivity(intent);
+            }
+
+        });
 
         return view;
     }

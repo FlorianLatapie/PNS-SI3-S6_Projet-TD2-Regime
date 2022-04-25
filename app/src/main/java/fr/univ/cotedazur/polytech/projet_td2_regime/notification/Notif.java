@@ -23,20 +23,36 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
-public class ReminderBroadcast{
+public class Notif {
     Bitmap bmp = null;
+    private String title;
+    private String description;
+    private Date date;
+    private String image;
+    private Meal meal;
 
-    public void sendNotification(Context context, Meal meal){
+    public Notif(String title, String description, String image, Meal meal){
+        this.title = title;
+        this.description = description;
+        this.date = new Date();
+        this.image = image;
+        this.meal = meal;
+        UserManager.getInstance().getCurrentUser().addNotification(this);
+    }
+
+    public void sendNotification(Context context){
         //bmp = getBitmapFromURL(meal.getImageLink());
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, myApplication.CHANNEL_HIGH)
                 .setSmallIcon(R.drawable.ic_baseline_food_bank_24)
-                .setContentTitle(meal.getName())
-                .setContentText("Il est l'heure de cuisiner ! Cliquez pour plus d'informations sur la recette")
+                .setContentTitle(title)
+                .setContentText(description)
                 .setAutoCancel(true)
                 .setLargeIcon(bmp)
                 .setStyle(new NotificationCompat.BigPictureStyle()
@@ -61,5 +77,25 @@ public class ReminderBroadcast{
             e.printStackTrace();
             return null;
         }
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public Meal getMeal(){
+        return this.meal;
     }
 }

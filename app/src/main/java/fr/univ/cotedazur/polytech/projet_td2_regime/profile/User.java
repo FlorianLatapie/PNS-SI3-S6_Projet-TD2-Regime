@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.notification.Notif;
 
 public class User {
     private String firstName;
@@ -23,6 +24,7 @@ public class User {
     private ArrayList<Meal> eatenMeals;
     private Map<LocalDate, Double> weightHistory;
     private int imageProfile;
+    private List<Notif> notificationList;
 
     public User() {
     }
@@ -43,6 +45,12 @@ public class User {
         this.publishedMeals = new ArrayList<>();
         this.weightHistory = new TreeMap<>();
         this.weightHistory.put(LocalDate.now(), weight);
+        this.loadNotifications();
+    }
+
+    private void loadNotifications() {
+        List<Notif> notifications = new ArrayList<>();
+        this.notificationList = notifications;
     }
 
     public String getFirstName() {
@@ -171,5 +179,13 @@ public class User {
         } else {
             return (int) ((9.740 * this.weight) + (172.9 * (this.size / 100)) - (4.737 * this.age) + 667.051);
         }
+    }
+
+    public List<Notif> getNotifications() {
+        return this.notificationList;
+    }
+
+    public void addNotification(Notif notif) {
+        this.notificationList.add(notif);
     }
 }
