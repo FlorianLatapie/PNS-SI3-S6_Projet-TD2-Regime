@@ -38,8 +38,7 @@ public class Notif {
     }
 
     public void sendNotification(Context context){
-        this.bmp= BitmapFactory.decodeResource(context.getResources(), R.drawable.meal1);
-
+        this.bmp= BitmapFactory.decodeResource(context.getResources(), R.drawable.pizza2);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, myApplication.CHANNEL_HIGH)
                 .setSmallIcon(R.drawable.ic_baseline_food_bank_24)
                 .setContentTitle(title)

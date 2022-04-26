@@ -21,12 +21,11 @@ public class LikeAdapter extends BaseAdapter {
     private List<Meal> likeMeals;
     private LayoutInflater inflater;
     private IListner listener;
-    private User user;
 
-    public LikeAdapter(Context context){
+
+    public LikeAdapter(Context context, List<Meal>LikeMeals){
         this.context= context;
-        this.user = UserManager.getInstance().getCurrentUser();
-        this.likeMeals = user.getLikeMeals();
+        this.likeMeals = LikeMeals;
         this.inflater = LayoutInflater.from(context);
     }
 
@@ -50,7 +49,6 @@ public class LikeAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.likemeal_layout, null);
 
         Meal currentMeal = getItem(i);
-        System.out.println(currentMeal+"\n meals: "+ user.getLikeMeals());
 
         ((TextView)view.findViewById( R.id.mealLikeName)).setText(currentMeal.getName());
 

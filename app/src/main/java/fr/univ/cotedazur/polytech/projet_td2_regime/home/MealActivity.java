@@ -99,6 +99,7 @@ public class MealActivity extends AppCompatActivity {
                 meal.decreaseLikes();
                 ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
             }
+            UserManager.getInstance().updateUserToFirestore(user);
         }
     }
 

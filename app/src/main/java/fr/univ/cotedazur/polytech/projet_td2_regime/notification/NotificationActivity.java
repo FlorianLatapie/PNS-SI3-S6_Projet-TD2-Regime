@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,14 +81,25 @@ public class NotificationActivity extends AppCompatActivity {
     private void setAlarm( ){
         System.out.println("Meal set Alarm "+meal.getName());
         if(calendar==null) {
-            delayNotification(0);
+            delayNotification(0,0);
         }else {
             long currentTime = (cale.getTime().getHours()%12)*3600*1000+cale.getTime().getMinutes()*60*1000+cale.getTime().getSeconds()*1000;
             long selectedTime = calendar.getTime().getHours()*3600*1000 + calendar.getTime().getMinutes()*60*1000;
             long delayTime = selectedTime-currentTime;
             if(delayTime<=0)  Toast.makeText(this, "Date sélectionnée invalide !", Toast.LENGTH_SHORT).show();
             else{
-                delayNotification(delayTime);
+                EditText intervalle = findViewById(R.id.intervalleBox);
+                if(!intervalle.getText().toString().isEmpty()){
+                    int valueIntervalle = Integer.parseInt(intervalle.getText().toString());
+                    if(valueIntervalle>0)
+                        delayNotification(delayTime,valueIntervalle*3600*24*1000);
+                    else{
+                        delayNotification(delayTime,0);
+                    }
+                }else{
+                    delayNotification(delayTime,0);
+                }
+
                 Toast.makeText(this, "Rappel placé !", Toast.LENGTH_SHORT).show();
 
             }
@@ -95,12 +107,14 @@ public class NotificationActivity extends AppCompatActivity {
 
     }
 
-    private void delayNotification(long timeInMillis){
+    private void delayNotification(long timeInMillis, long repeat){
         final Handler handler = new Handler();
         Context context = this;
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if(repeat>0) handler.postDelayed(this, repeat);
+
                 Notif notif = new Notif(meal.getName(), "Il est l'heure de cuisiner ! Cliquez pour plus d'informations sur la recette", "", meal);
                 notif.sendNotification(context);
                 return;

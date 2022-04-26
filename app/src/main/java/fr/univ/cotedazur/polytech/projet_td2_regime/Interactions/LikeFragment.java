@@ -72,9 +72,10 @@ public class LikeFragment extends Fragment implements IListner {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        this.user = UserManager.getInstance().getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_like, container, false);
         if (this.user != null) {
-            LikeAdapter adapter = new LikeAdapter(getActivity().getApplicationContext());
+            LikeAdapter adapter = new LikeAdapter(getActivity().getApplicationContext(), this.user.getLikeMeals());
 
             //Récupération du composant ListView
             ListView list = view.findViewById(R.id.listLikeView);
