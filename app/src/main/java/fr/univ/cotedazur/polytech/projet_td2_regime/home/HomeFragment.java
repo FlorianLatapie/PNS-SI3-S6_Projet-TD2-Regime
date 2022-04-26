@@ -65,7 +65,6 @@ public class HomeFragment extends Fragment implements IListner {
         loadMealsinListview();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
             @Override
             public void onItemClick(AdapterView<?> a, View v, int position, long id) {
                 Object o = listView.getItemAtPosition(position);
@@ -74,7 +73,6 @@ public class HomeFragment extends Fragment implements IListner {
                 intent.putExtra("Meal", meal);
                 getActivity().startActivity(intent);
             }
-
         });
 
         return view;

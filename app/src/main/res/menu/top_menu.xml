@@ -15,5 +15,4 @@
         android:title="Search"
         app:actionViewClass="android.widget.SearchView"
         app:showAsAction="always" />
-
 </menu>
