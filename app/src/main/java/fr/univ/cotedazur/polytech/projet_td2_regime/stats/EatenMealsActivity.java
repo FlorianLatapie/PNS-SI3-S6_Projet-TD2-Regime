@@ -3,11 +3,22 @@ package fr.univ.cotedazur.polytech.projet_td2_regime.stats;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
+import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdatpter;
@@ -17,6 +28,11 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 public class EatenMealsActivity extends AppCompatActivity {
 
     User user;
+    private EditText editText;
+    private DatePicker datePicker;
+    private Calendar calendar;
+    private DatePickerDialog.OnDateSetListener date;
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +41,37 @@ public class EatenMealsActivity extends AppCompatActivity {
 
         user = UserManager.getInstance().getCurrentUser();
 
+        calendar = Calendar.getInstance();
+        date =new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH,month);
+                calendar.set(Calendar.DAY_OF_MONTH,day);
+                updateLabel();
+            }
+        };
+
+        this.editText = findViewById(R.id.spinner);
+
+        editText.setText(dateFormat.format(calendar.getTime()));
+        editText.setOnClickListener(click -> showCalendar());
+
+        ((TextView)findViewById(R.id.poids)).setText("Poids de la semaine : " + user.getWeight());
+
         List<Meal> eatenMeals = user.getEatenMeals();
 
         ListView listView = findViewById(R.id.listView);
 
         MealsAdatpter adapter = new MealsAdatpter(getApplicationContext(), eatenMeals);
         listView.setAdapter(adapter);
+    }
+
+    private void updateLabel() {
+        editText.setText(dateFormat.format(calendar.getTime()));
+    }
+
+    private void showCalendar() {
+        new DatePickerDialog(EatenMealsActivity.this,date,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 }

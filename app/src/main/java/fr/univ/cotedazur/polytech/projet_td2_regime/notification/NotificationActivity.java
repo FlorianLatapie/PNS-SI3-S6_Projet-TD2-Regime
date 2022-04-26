@@ -115,7 +115,7 @@ public class NotificationActivity extends AppCompatActivity {
             public void run() {
                 if(repeat>0) handler.postDelayed(this, repeat);
 
-                Notif notif = new Notif(meal.getName(), "Il est l'heure de cuisiner ! Cliquez pour plus d'informations sur la recette", "", meal);
+                Notif notif = new Notif(meal.getName(), "Il est l'heure de cuisiner ! Cliquez pour plus d'informations sur la recette", meal.getImageLink(), meal);
                 notif.sendNotification(context);
                 return;
 

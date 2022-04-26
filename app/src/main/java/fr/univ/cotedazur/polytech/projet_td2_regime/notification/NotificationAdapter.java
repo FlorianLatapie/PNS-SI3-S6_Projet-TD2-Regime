@@ -20,6 +20,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.IListner;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
+import fr.univ.cotedazur.polytech.projet_td2_regime.util.DownloadImageTask;
 
 public class NotificationAdapter extends BaseAdapter {
     private Context context;
@@ -64,6 +65,9 @@ public class NotificationAdapter extends BaseAdapter {
 
         ((TextView)view.findViewById( R.id.title)).setText(currentNotification.getTitle());
         ((TextView)view.findViewById( R.id.description)).setText(currentNotification.getDescription());
+
+        ImageView notificationPicture = view.findViewById(R.id.imageView);
+        new DownloadImageTask(notificationPicture, currentNotification.getImage()).execute();
 
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
         ((TextView)view.findViewById( R.id.date)).setText(dateFormat.format(currentNotification.getDate()));
