@@ -12,7 +12,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.notification.Notif;
 public class User {
     private String firstName;
     private String lastName;
-    private Genre gender;
+    private Gender gender;
     private int age;
     private int size;
     private String bio;
@@ -29,7 +29,7 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, Genre gender, int age, int size, String bio, Diet diet, Double weight, Double weightGoal, int imageProfile) {
+    public User(String firstName, String lastName, Gender gender, int age, int size, String bio, Diet diet, Double weight, Double weightGoal, int imageProfile) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
@@ -69,11 +69,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Genre getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(Genre gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -174,7 +174,7 @@ public class User {
     }
 
     public int getCalorieGoal() {
-        if (gender.equals(Genre.HOMME)) {
+        if (gender.equals(Gender.HOMME)) {
             return (int) ((13.707 * this.weight) + (492.3 * this.size / 100) - (6.673 * this.age) + 77.607);
         } else {
             return (int) ((9.740 * this.weight) + (172.9 * (this.size / 100)) - (4.737 * this.age) + 667.051);
