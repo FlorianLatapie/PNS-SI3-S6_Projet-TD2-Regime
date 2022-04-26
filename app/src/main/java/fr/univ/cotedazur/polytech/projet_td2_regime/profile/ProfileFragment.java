@@ -87,13 +87,13 @@ public class ProfileFragment extends Fragment {
         view.findViewById(R.id.seDeconnecter).setOnClickListener(v -> {
             disconnectUer();
             Intent intent = new Intent(getActivity().getApplicationContext(), LoginActivity.class);
-            startActivity(intent);
+            getActivity().startActivity(intent);
         });
 
         view.findViewById(R.id.monRegime).setOnClickListener(
                 v -> {
                     Intent intent = new Intent(getActivity().getApplicationContext(), MyDietActivity.class);
-                    startActivity(intent);
+                    getActivity().startActivity(intent);
                 }
         );
         return view;

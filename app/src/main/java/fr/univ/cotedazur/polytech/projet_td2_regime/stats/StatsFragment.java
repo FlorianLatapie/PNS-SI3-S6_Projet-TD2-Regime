@@ -124,7 +124,7 @@ public class StatsFragment extends Fragment {
     private void openEatenMeals(View view) {
         if (isUserConnected()) {
             Intent intent = new Intent(getActivity().getApplicationContext(), EatenMealsActivity.class);
-            startActivity(intent);
+            getActivity().startActivity(intent);
         }
     }
 
@@ -225,6 +225,6 @@ public class StatsFragment extends Fragment {
         intent.putExtra("allDay", false);
         intent.putExtra("endTime", calendar.getTimeInMillis() + 60 * 60 * 1000);
         intent.putExtra("title", "Renseignez votre poids dans l'application");
-        startActivity(intent);
+        getActivity().startActivity(intent);
     }
 }

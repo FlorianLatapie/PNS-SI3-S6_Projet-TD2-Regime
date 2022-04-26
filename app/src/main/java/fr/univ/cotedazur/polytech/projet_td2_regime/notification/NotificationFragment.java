@@ -90,7 +90,7 @@ public class NotificationFragment extends Fragment {
                 Meal meal = notif.getMeal();
                 Intent intent = new Intent(getActivity().getApplicationContext(), MealActivity.class);
                 intent.putExtra("Meal", meal);
-                startActivity(intent);
+                getActivity().startActivity(intent);
             }
 
         });

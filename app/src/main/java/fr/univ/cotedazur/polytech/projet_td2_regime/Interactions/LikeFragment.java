@@ -94,7 +94,7 @@ public class LikeFragment extends Fragment implements IListner {
                     Meal meal = (Meal) o;
                     Intent intent = new Intent(getActivity().getApplicationContext(), MealActivity.class);
                     intent.putExtra("Meal", meal);
-                    startActivity(intent);
+                    getActivity().startActivity(intent);
                 }
             });
         }
@@ -105,6 +105,6 @@ public class LikeFragment extends Fragment implements IListner {
     public void onClickMeal(Meal meal) {
         Intent intent = new Intent(getActivity().getApplicationContext(), MealActivity.class);
         intent.putExtra("Meal", meal);
-        startActivity(intent);
+        getActivity().startActivity(intent);
     }
 }
