@@ -2,6 +2,7 @@ package fr.univ.cotedazur.polytech.projet_td2_regime.notification;
 
 import android.app.Notification;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +64,15 @@ public class NotificationAdapter extends BaseAdapter {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
         ((TextView)view.findViewById( R.id.date)).setText(dateFormat.format(currentNotification.getDate()));
 
+        ((ImageView)view.findViewById(R.id.delete)).setImageResource(R.drawable.delete);
+
+        ((ImageView)view.findViewById(R.id.delete)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                notificationList.remove(currentNotification);
+                notifyDataSetChanged();
+            }
+        });
 
         return view;
     }
