@@ -15,7 +15,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
 public class LoginActivity extends AppCompatActivity {
-    public User currentUser = new User("Bob", "Dylan",Genre.HOMME, 20, 181, "My awesome bio !",Diet.PROTEIN, 82.0, 75.0,R.drawable.bob);
+    public User currentUser = new User("Bob", "Dylan",Genre.HOMME, 20, 181, "My awesome bio !",Diet.PROTEIN, 82.0, 75.0,R.drawable.userdefault);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

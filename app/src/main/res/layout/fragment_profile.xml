@@ -23,7 +23,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="15dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/bob" />
+            android:src="@drawable/userdefault" />
 
         <LinearLayout
             android:layout_width="match_parent"
