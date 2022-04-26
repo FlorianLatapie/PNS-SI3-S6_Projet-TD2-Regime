@@ -3,7 +3,6 @@ package fr.univ.cotedazur.polytech.projet_td2_regime.notification;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -19,7 +18,7 @@ import com.google.android.material.timepicker.TimeFormat;
 import java.util.Calendar;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 
 public class NotificationActivity extends AppCompatActivity {
 

@@ -1,12 +1,8 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.Interactions;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -16,9 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdatpter;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsList;
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.MealsList;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 

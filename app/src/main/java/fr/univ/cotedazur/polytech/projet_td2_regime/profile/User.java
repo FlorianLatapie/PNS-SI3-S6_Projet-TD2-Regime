@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.notification.Notif;
 
 public class User {

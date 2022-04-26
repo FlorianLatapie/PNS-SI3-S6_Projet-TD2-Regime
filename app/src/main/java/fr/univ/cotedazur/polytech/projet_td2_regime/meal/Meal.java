@@ -1,4 +1,4 @@
-package fr.univ.cotedazur.polytech.projet_td2_regime.home;
+package fr.univ.cotedazur.polytech.projet_td2_regime.meal;
 
 import android.graphics.Bitmap;
 import android.os.Parcel;

@@ -1,4 +1,4 @@
-package fr.univ.cotedazur.polytech.projet_td2_regime.home;
+package fr.univ.cotedazur.polytech.projet_td2_regime.meal;
 
 import android.app.Activity;
 import android.os.AsyncTask;
@@ -16,8 +16,6 @@ import java.util.List;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import fr.univ.cotedazur.polytech.projet_td2_regime.R;
-
 public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
     private static final String app_id = "52744ee2";
     private static final String app_key = "3567d66bc3e1eddcd42d76e0804cf57a";
@@ -26,7 +24,7 @@ public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
     Activity activity;
     ListView listView;
 
-    MealApi(String query, Activity activity, ListView listView){
+    public MealApi(String query, Activity activity, ListView listView){
         this.query = query;
         this.activity = activity;
         this.listView = listView;

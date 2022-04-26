@@ -1,6 +1,5 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.notification;
 
-import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,20 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.google.firebase.firestore.DocumentSnapshot;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdatpter;
-import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
 /**
  * A simple {@link Fragment} subclass.

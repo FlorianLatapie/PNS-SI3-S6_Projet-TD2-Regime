@@ -1,25 +1,12 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.notification;
 
 
-import static android.provider.Settings.System.getString;
-
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.media.RingtoneManager;
-import android.net.Uri;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
-import com.google.protobuf.Any;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,9 +14,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
 
-import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
 public class Notif {
