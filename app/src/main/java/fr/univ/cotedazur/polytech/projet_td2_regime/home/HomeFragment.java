@@ -36,7 +36,6 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.util.Util;
 
 public class HomeFragment extends Fragment implements IListner {
     ListView listView;
-    //ListView listViewApi;
     ArrayList<Meal> mealsList;
     FirebaseFirestore db;
 
@@ -57,7 +56,6 @@ public class HomeFragment extends Fragment implements IListner {
 
         //Récupération du composant ListView
         listView = view.findViewById(R.id.listView);
-        //listViewApi = view.findViewById(R.id.listViewApi);
 
         mealsList = new ArrayList<>();
 
