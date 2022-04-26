@@ -31,7 +31,11 @@ public class NotificationAdapter extends BaseAdapter {
     public NotificationAdapter(Context context){
         this.context= context;
         this.user = UserManager.getInstance().getCurrentUser();
-        this.notificationList = user.getNotifications();
+        if (user != null) {
+            this.notificationList = user.getNotifications();
+        } else {
+            this.notificationList = Collections.emptyList();
+        }
         Collections.reverse(this.notificationList);
         this.inflater = LayoutInflater.from(context);
     }
