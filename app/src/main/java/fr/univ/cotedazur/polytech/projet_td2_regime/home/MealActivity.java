@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.CommentsActivity;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
@@ -121,6 +124,8 @@ public class MealActivity extends AppCompatActivity {
     private void onEatItClick(){
         if(isUserConnected()){
             meal.increaseEatIt();
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            meal.setDateAte(format.format(new Date()));
             user.getEatenMeals().add(meal);
             UserManager.getInstance().updateUserToFirestore(user);
             int nbOfTimeThisMealHasBeenAte = user.getEatenMeals().stream().filter(m-> m.equals(meal)).toArray().length;

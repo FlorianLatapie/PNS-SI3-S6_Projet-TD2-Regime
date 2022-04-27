@@ -5,6 +5,7 @@ import android.os.Parcel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.Comment;
@@ -26,6 +27,7 @@ public class Meal implements Serializable {
     private int kcal;
     private int eatIt;
     private int likes;
+    private String dateAte;
     private List<Comment> comments;
     private String authorName;
 
@@ -242,5 +244,13 @@ public class Meal implements Serializable {
 
     public void setPictureBitmap(Bitmap pictureBitmap) {
         this.pictureBitmap = pictureBitmap;
+    }
+
+    public void setDateAte(String date){
+        this.dateAte = date;
+    }
+
+    public String getDateAte() {
+        return dateAte;
     }
 }

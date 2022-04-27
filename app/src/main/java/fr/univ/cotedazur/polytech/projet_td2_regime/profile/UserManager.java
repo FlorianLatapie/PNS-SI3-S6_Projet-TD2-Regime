@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,6 +86,7 @@ public class UserManager {
                         } catch (Throwable throwable) {
                             throwable.printStackTrace();
                         }
+                        meal.setDateAte((String)doc.get("dateAte"));
                         eatenMeals.add(meal);
                         System.out.println(meal.getImageLink());
                     });
@@ -130,7 +132,7 @@ public class UserManager {
         firestoreUser.put("lastName", user.getLastName());
         firestoreUser.put("gender", user.getGender());
         firestoreUser.put("age", user.getAge());
-        firestoreUser.put("age", user.getSize());
+        firestoreUser.put("size", user.getSize());
         firestoreUser.put("bio", user.getBio());
         firestoreUser.put("diet", user.getDiet());
         firestoreUser.put("weight", user.getWeight());
