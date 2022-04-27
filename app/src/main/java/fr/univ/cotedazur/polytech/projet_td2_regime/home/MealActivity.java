@@ -123,6 +123,7 @@ public class MealActivity extends AppCompatActivity {
         if(isUserConnected()){
             meal.increaseEatIt();
             user.getEatenMeals().add(meal);
+            UserManager.getInstance().updateUserToFirestore(user);
             int nbOfTimeThisMealHasBeenAte = user.getEatenMeals().stream().filter(m-> m.equals(meal)).toArray().length;
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(meal.getName()+" mangé " + nbOfTimeThisMealHasBeenAte +" fois");

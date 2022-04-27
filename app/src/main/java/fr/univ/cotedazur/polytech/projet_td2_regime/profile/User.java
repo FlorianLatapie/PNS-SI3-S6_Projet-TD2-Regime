@@ -29,6 +29,25 @@ public class User {
     public User() {
     }
 
+    public User(User user){
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+        this.gender = user.gender;
+        this.age = user.age;
+        this.size = user.size;
+        this.bio = user.bio;
+        this.diet = user.diet;
+        this.weight = user.weight;
+        this.weightGoal = user.weightGoal;
+        this.imageProfile = user.imageProfile;
+        this.likeMeals = new ArrayList<>();
+        this.eatenMeals = new ArrayList<>();
+        this.publishedMeals = new ArrayList<>();
+        this.weightHistory = new TreeMap<>();
+        this.weightHistory.put(LocalDate.now(), weight);
+        this.loadNotifications();
+    }
+
     public User(String firstName, String lastName, Gender gender, int age, int size, String bio, Diet diet, Double weight, Double weightGoal, int imageProfile) {
         this.firstName = firstName;
         this.lastName = lastName;
