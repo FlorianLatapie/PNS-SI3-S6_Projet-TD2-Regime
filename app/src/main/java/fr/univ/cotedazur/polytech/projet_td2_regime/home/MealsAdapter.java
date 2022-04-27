@@ -15,7 +15,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.util.DownloadImageTask;
 
-public class MealsAdatpter extends BaseAdapter {
+public class MealsAdapter extends BaseAdapter {
     private IListner listener;
 
     //Le contexte dans lequel est présent notre adapter
@@ -26,7 +26,7 @@ public class MealsAdatpter extends BaseAdapter {
 
     private List<Meal> mealsList;
 
-    public MealsAdatpter(Context context, List<Meal> mealsList) {
+    public MealsAdapter(Context context, List<Meal> mealsList) {
         this.context = context;
         this.mealsList = mealsList;
         inflater = LayoutInflater.from(this.context);

@@ -2,13 +2,10 @@ package fr.univ.cotedazur.polytech.projet_td2_regime.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +23,6 @@ import java.util.List;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdatpter;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MyMealsAdapter;
 import fr.univ.cotedazur.polytech.projet_td2_regime.login.LoginActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;

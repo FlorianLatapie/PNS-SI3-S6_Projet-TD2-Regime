@@ -1,6 +1,5 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.search;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,25 +8,17 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdatpter;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdapter;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.MealApi;
-import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
-import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 import fr.univ.cotedazur.polytech.projet_td2_regime.util.Util;
 
 public class SearchActivity extends AppCompatActivity {
@@ -52,7 +43,7 @@ public class SearchActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         loadMealsFromApi(query);
 
-        MealsAdatpter adapter = new MealsAdatpter(getApplicationContext(), mealsList);
+        MealsAdapter adapter = new MealsAdapter(getApplicationContext(), mealsList);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

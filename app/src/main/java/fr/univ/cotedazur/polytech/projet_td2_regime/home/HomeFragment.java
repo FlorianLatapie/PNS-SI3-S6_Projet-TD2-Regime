@@ -120,7 +120,7 @@ public class HomeFragment extends Fragment implements IListner {
                                 Meal meal = d.toObject(Meal.class);
                                 mealsList.add(meal);
                             }
-                            MealsAdatpter adapter = new MealsAdatpter(getActivity().getApplicationContext(), mealsList);
+                            MealsAdapter adapter = new MealsAdapter(getActivity().getApplicationContext(), mealsList);
                             listView.setAdapter(adapter);
                         } else {
                             Toast.makeText(getActivity().getApplicationContext(), "Pas de données dans la base", Toast.LENGTH_SHORT).show();

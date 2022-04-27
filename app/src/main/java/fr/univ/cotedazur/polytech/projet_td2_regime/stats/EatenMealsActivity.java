@@ -5,12 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -18,10 +15,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdatpter;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdapter;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
@@ -63,7 +59,7 @@ public class EatenMealsActivity extends AppCompatActivity {
 
         ListView listView = findViewById(R.id.listView);
 
-        MealsAdatpter adapter = new MealsAdatpter(getApplicationContext(), eatenMeals);
+        MealsAdapter adapter = new MealsAdapter(getApplicationContext(), eatenMeals);
         listView.setAdapter(adapter);
     }
 
