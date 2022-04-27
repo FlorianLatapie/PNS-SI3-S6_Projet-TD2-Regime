@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.MealFactory;
 
 public class UserManager {
     private static UserManager instance = null;
@@ -78,7 +79,12 @@ public class UserManager {
                         int nbOfPeople = Integer.parseInt(String.valueOf((Long) doc.get("nbOfPeople")));
                         int kcal = Integer.parseInt(String.valueOf((Long) doc.get("kcal")));
                         System.out.println("prepar " + preparationTime + " nbPeople " + nbOfPeople + " kcal "+ kcal);
-                        Meal meal = new Meal((String) doc.get("name"), (String) doc.get("imageLink"), preparationTime, nbOfPeople, (String) doc.get("ingredients"), (String) doc.get("preparation"), kcal, (String) doc.get("authorName"));
+                        Meal meal = null;
+                        try {
+                            meal = MealFactory.build(1,(String) doc.get("name"), (String) doc.get("imageLink"), preparationTime, nbOfPeople, (String) doc.get("ingredients"), (String) doc.get("preparation"), kcal, (String) doc.get("authorName"));
+                        } catch (Throwable throwable) {
+                            throwable.printStackTrace();
+                        }
                         eatenMeals.add(meal);
                         System.out.println(meal.getImageLink());
                     });
@@ -90,7 +96,12 @@ public class UserManager {
                         int nbOfPeople = Integer.parseInt(String.valueOf((Long) doc.get("nbOfPeople")));
                         int kcal = Integer.parseInt(String.valueOf((Long) doc.get("kcal")));
                         System.out.println("prepar " + preparationTime + " nbPeople " + nbOfPeople + " kcal "+ kcal);
-                        Meal meal = new Meal((String) doc.get("name"), (String) doc.get("imageLink"), preparationTime, nbOfPeople, (String) doc.get("ingredients"), (String) doc.get("preparation"), kcal, (String) doc.get("authorName"));
+                        Meal meal = null;
+                        try {
+                            meal = MealFactory.build(1,(String) doc.get("name"), (String) doc.get("imageLink"), preparationTime, nbOfPeople, (String) doc.get("ingredients"), (String) doc.get("preparation"), kcal, (String) doc.get("authorName"));
+                        } catch (Throwable throwable) {
+                            throwable.printStackTrace();
+                        }
                         likeMeals.add(meal);
                         System.out.println(meal.getImageLink());
                     });

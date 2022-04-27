@@ -60,12 +60,14 @@ public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
         }
 
         return meals;
     }
 
-    public List<Meal> readJson(JsonReader jsonReader) throws IOException{
+    public List<Meal> readJson(JsonReader jsonReader) throws Throwable {
         List<Meal> mealList = new ArrayList<>();
         jsonReader.beginObject();
         while (jsonReader.hasNext()) {
@@ -81,7 +83,7 @@ public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
         return mealList;
     }
 
-    public List<Meal> readRecipes(JsonReader reader) throws IOException{
+    public List<Meal> readRecipes(JsonReader reader) throws Throwable {
         List<Meal> mealList = new ArrayList<>();
         reader.beginArray();
         while (reader.hasNext()) {
@@ -91,7 +93,7 @@ public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
         return mealList;
     }
 
-    public Meal readRecipe(JsonReader reader) throws IOException {
+    public Meal readRecipe(JsonReader reader) throws Throwable {
         Meal meal = null;
         reader.beginObject();
         while (reader.hasNext()) {
@@ -106,7 +108,7 @@ public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
         return meal;
     }
 
-    public Meal readInsideRecipe(JsonReader reader) throws IOException {
+    public Meal readInsideRecipe(JsonReader reader) throws Throwable {
         String name = "";
         String image = "";
         String ingredients = "";
@@ -137,7 +139,7 @@ public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
             }
         }
         reader.endObject();
-        Meal meal = new Meal(name, image, prepTime, nbOfPeople, ingredients, ingredients, (int) calories, author);
+        Meal meal =  MealFactory.build(1, name, image, prepTime, nbOfPeople, ingredients, ingredients, (int) calories, author);
         return meal;
     }
 

@@ -36,6 +36,7 @@ import java.util.Map;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.MealFactory;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
@@ -79,12 +80,16 @@ public class CreateMealActivity extends AppCompatActivity {
 
         publishMealButton = findViewById(R.id.publishButton);
         publishMealButton.setOnClickListener(v -> {
-            publishMeal();
+            try {
+                publishMeal();
+            } catch (Throwable throwable) {
+                throwable.printStackTrace();
+            }
         });
 
     }
 
-    private void publishMeal() {
+    private void publishMeal() throws Throwable {
         String name = ((TextView) findViewById(R.id.mealNameInput)).getText().toString();
         String ingredients = ((TextView) findViewById(R.id.mealIngredients)).getText().toString();
         int preparationTime = Integer.parseInt(((TextView) findViewById(R.id.mealTimePreparationInput)).getText().toString().equals("") ? "0" : ((TextView) findViewById(R.id.mealTimePreparationInput)).getText().toString());
@@ -93,7 +98,7 @@ public class CreateMealActivity extends AppCompatActivity {
         int kcal = Integer.parseInt(((TextView) findViewById(R.id.mealKcalInput)).getText().toString().equals("") ? "0" : ((TextView) findViewById(R.id.mealKcalInput)).getText().toString());
         String authorName = this.user.getFirstName() + " " + this.user.getLastName();
 
-        Meal meal = new Meal(name, image, preparationTime, nbOfPeople, ingredients, preparation, kcal, authorName);
+        Meal meal = MealFactory.build(1, name, image, preparationTime, nbOfPeople, ingredients, preparation, kcal, authorName);
 
         List<String> errors = Meal.validate(meal);
         if (errors.size() > 0) {
