@@ -23,6 +23,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.concurrent.ExecutionException;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
@@ -30,13 +32,16 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.MealApi;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
+import fr.univ.cotedazur.polytech.projet_td2_regime.set_meals.Controller;
+import fr.univ.cotedazur.polytech.projet_td2_regime.set_meals.Model;
 import fr.univ.cotedazur.polytech.projet_td2_regime.util.Util;
 
 
-public class HomeFragment extends Fragment implements IListner {
+public class HomeFragment extends Fragment implements IListner, Observer {
     ListView listView;
     ArrayList<Meal> mealsList;
     FirebaseFirestore db;
+    Model model;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -58,6 +63,9 @@ public class HomeFragment extends Fragment implements IListner {
         mealsList = new ArrayList<>();
 
         db = FirebaseFirestore.getInstance();
+
+        /*model = new Model(getActivity());
+        model.addObserver(this);*/
 
         loadMealsFromApi();
         loadMealsinListview();
@@ -135,5 +143,11 @@ public class HomeFragment extends Fragment implements IListner {
 
     public void setMealsList(ArrayList<Meal> mealsList) {
         this.mealsList = mealsList;
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        MealsAdatpter adapter = new MealsAdatpter(getActivity().getApplicationContext(), model.getMealsList());
+        listView.setAdapter(adapter);
     }
 }
