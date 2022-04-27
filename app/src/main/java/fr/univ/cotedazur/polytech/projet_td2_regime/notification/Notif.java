@@ -1,7 +1,9 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.notification;
 
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -14,7 +16,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
 
+import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
@@ -38,6 +42,9 @@ public class Notif {
     }
 
     public void sendNotification(Context context){
+        Intent resultIntent = new Intent(context, MealActivity.class);
+        resultIntent.putExtra("Meal", meal);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 1, resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         this.bmp= BitmapFactory.decodeResource(context.getResources(), R.drawable.pizza2);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, myApplication.CHANNEL_HIGH)
                 .setSmallIcon(R.drawable.ic_baseline_food_bank_24)
@@ -47,7 +54,9 @@ public class Notif {
                 .setStyle(new NotificationCompat.BigPictureStyle()
                         .bigPicture(bmp)
                         .bigLargeIcon(null))
-                .setPriority(NotificationCompat.PRIORITY_HIGH);
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .setContentIntent(resultPendingIntent);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(200,builder.build());

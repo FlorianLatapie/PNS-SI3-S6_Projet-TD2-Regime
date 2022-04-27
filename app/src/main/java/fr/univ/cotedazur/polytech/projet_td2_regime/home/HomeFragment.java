@@ -46,7 +46,6 @@ public class HomeFragment extends Fragment implements IListner {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
