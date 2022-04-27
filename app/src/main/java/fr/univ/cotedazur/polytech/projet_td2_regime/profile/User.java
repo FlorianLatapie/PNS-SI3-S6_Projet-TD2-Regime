@@ -207,4 +207,12 @@ public class User {
     public void addNotification(Notif notif) {
         this.notificationList.add(notif);
     }
+
+    public boolean hasCompleteCaloryGoal() {
+        int cal = 0;
+        for(Meal m : eatenMeals){
+            cal+=m.getKcal();
+        }
+        return cal>getCalorieGoal();
+    }
 }

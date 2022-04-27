@@ -18,6 +18,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.CommentsActivit
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.notification.Notif;
 import fr.univ.cotedazur.polytech.projet_td2_regime.notification.NotificationActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
@@ -128,6 +129,10 @@ public class MealActivity extends AppCompatActivity {
             meal.setDateAte(format.format(new Date()));
             user.getEatenMeals().add(meal);
             UserManager.getInstance().updateUserToFirestore(user);
+            if(user.hasCompleteCaloryGoal()){
+                Notif notif = new Notif("Objectif atteint !", "Vous avez atteint votre objectif de la journée !", "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/%C3%89toile_d%27or.svg/2048px-%C3%89toile_d%27or.svg.png", meal);
+                notif.sendNotification(getApplicationContext());
+            }
             int nbOfTimeThisMealHasBeenAte = user.getEatenMeals().stream().filter(m-> m.equals(meal)).toArray().length;
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(meal.getName()+" mangé " + nbOfTimeThisMealHasBeenAte +" fois");
