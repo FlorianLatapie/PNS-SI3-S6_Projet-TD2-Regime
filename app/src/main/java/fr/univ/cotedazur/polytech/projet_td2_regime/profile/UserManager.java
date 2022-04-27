@@ -67,6 +67,7 @@ public class UserManager {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     ArrayList<Meal> eatenMeals = new ArrayList<>();
+                    ArrayList<Meal> likeMeals = new ArrayList<>();
                     HashMap datamap = (HashMap) documentSnapshot.getData();
                     System.out.println(datamap);
                     ArrayList eatenMealsDoc = ((ArrayList)datamap.get("eatenMeals"));
@@ -81,9 +82,22 @@ public class UserManager {
                         eatenMeals.add(meal);
                         System.out.println(meal.getImageLink());
                     });
+                    ArrayList likeMealsDoc = ((ArrayList)datamap.get("likeMeals"));
+                    likeMealsDoc.forEach(d -> {
+                        Map<String,Object> doc;
+                        doc = (Map<String,Object>) d;
+                        int preparationTime = Integer.parseInt(String.valueOf((Long)doc.get("preparationTime")));
+                        int nbOfPeople = Integer.parseInt(String.valueOf((Long) doc.get("nbOfPeople")));
+                        int kcal = Integer.parseInt(String.valueOf((Long) doc.get("kcal")));
+                        System.out.println("prepar " + preparationTime + " nbPeople " + nbOfPeople + " kcal "+ kcal);
+                        Meal meal = new Meal((String) doc.get("name"), (String) doc.get("imageLink"), preparationTime, nbOfPeople, (String) doc.get("ingredients"), (String) doc.get("preparation"), kcal, (String) doc.get("authorName"));
+                        likeMeals.add(meal);
+                        System.out.println(meal.getImageLink());
+                    });
                     userFromFirestore = documentSnapshot.toObject(User.class);
                     User newUser = new User(userFromFirestore);
                     newUser.setEatenMeals(eatenMeals);
+                    newUser.setLikeMeals(likeMeals);
                     currentUser = newUser;
                 }
             }).addOnFailureListener(new OnFailureListener() {

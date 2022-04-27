@@ -88,7 +88,6 @@ public class MealActivity extends AppCompatActivity {
 
     private void onLikeClick(){
         if(isUserConnected()){
-
             if(!hasUserLikeTheMeal(meal)){
                 user.getLikeMeals().add(meal);
                 meal.increaseLikes();
