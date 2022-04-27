@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.IListner;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdapter;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
@@ -75,7 +76,7 @@ public class LikeFragment extends Fragment implements IListner {
         this.user = UserManager.getInstance().getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_like, container, false);
         if (this.user != null) {
-            LikeAdapter adapter = new LikeAdapter(getActivity().getApplicationContext(), this.user.getLikeMeals());
+            MealsAdapter adapter = new MealsAdapter(getActivity().getApplicationContext(), this.user.getLikeMeals());
 
             //Récupération du composant ListView
             ListView list = view.findViewById(R.id.listLikeView);
