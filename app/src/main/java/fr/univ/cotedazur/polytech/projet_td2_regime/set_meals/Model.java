@@ -26,10 +26,10 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 import fr.univ.cotedazur.polytech.projet_td2_regime.util.Util;
 
 public class Model extends Observable {
-    ListView listView;
-    ArrayList<Meal> mealsList;
-    FirebaseFirestore db;
-    Activity activity;
+    private ListView listView;
+    private ArrayList<Meal> mealsList;
+    private FirebaseFirestore db;
+    private Activity activity;
 
     public Model(Activity activity){
         this.activity = activity;
@@ -83,5 +83,14 @@ public class Model extends Observable {
 
     public ArrayList<Meal> getMealsList() {
         return mealsList;
+    }
+
+    public void addItemToList(int i){
+        this.getMealsList().add(i,new Meal());
+        notifyObservers();
+    }
+
+    public void addNewMeal(){
+        controler.addItemToList(new Meal());
     }
 }

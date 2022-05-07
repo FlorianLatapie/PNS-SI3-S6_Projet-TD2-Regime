@@ -12,64 +12,30 @@ import android.widget.TextView;
 import java.util.List;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.HomeFragment;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.IListner;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.util.DownloadImageTask;
 
-public class Controller extends BaseAdapter {
+public class Controller {
 
     private IListner listener;
 
-    private Context context;
+    private Model model;
+    private HomeFragment view;
 
-    private LayoutInflater inflater;
-
-    private List<Meal> mealsList;
-
-    public Controller(Context context, List<Meal> mealsList) {
-        this.context = context;
-        this.mealsList = mealsList;
-        inflater = LayoutInflater.from(this.context);
+    public Controller(Model model, HomeFragment view) {
+        this.model = model;
+        this.view = view;
     }
 
-    @Override
-    public int getCount() {
-        return mealsList.size();
+    public List<Meal> getMeals(){
+        return this.model.getMealsList();
     }
 
-    @Override
-    public Object getItem(int position) {
-        return mealsList.get(position);
-    }
 
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public android.view.View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout layoutItem;
-
-        //(1) : Réutilisation des layouts
-        layoutItem = (LinearLayout) (convertView == null ? inflater.inflate(R.layout.meal_layout, parent, false) : convertView);
-
-        //(2) : Récupération des TextView de notre layout
-        TextView tvName = layoutItem.findViewById(R.id.mealName);
-        ImageView mealPicture = layoutItem.findViewById(R.id.mealPicture);
-
-        //(3) : Renseignement des valeurs
-        Meal meal = this.mealsList.get(position);
-        tvName.setText(meal.getName());
-
-        if(meal.getImageLink() == null){
-            mealPicture.setImageResource(meal.getPicture());
-        } else {
-            new DownloadImageTask(mealPicture, meal.getImageLink()).execute();
-        }
-
-        //On retourne l'item créé.
-        return layoutItem;
+    public void viewItemUpdated(int position){
+        this.model.addItemToList(position);
     }
 
     public void addListener(IListner listener) {

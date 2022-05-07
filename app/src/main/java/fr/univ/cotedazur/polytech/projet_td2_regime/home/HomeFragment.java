@@ -147,7 +147,11 @@ public class HomeFragment extends Fragment implements IListner, Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        MealsAdatpter adapter = new MealsAdatpter(getActivity().getApplicationContext(), model.getMealsList());
+        MealsAdapter adapter = new MealsAdapter(getActivity().getApplicationContext(), model.getMealsList());
         listView.setAdapter(adapter);
+    }
+
+    public void setButtonColor() {
+
     }
 }

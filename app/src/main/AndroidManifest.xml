@@ -20,6 +20,9 @@
         android:theme="@style/Theme.ProjetTD2Regime"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".set_meals.LaunchMealActivity"
+            android:exported="false" />
+        <activity
             android:name=".search.SearchActivity"
             android:exported="false" />
         <activity
