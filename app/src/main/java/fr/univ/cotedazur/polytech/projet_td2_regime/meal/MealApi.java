@@ -116,7 +116,7 @@ public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
         double calories = 0.0;
         int prepTime = 0;
         String author = "API";
-        int nbOfPeople = 2;
+        int nbOfPeople = 4;
 
         reader.beginObject();
         while (reader.hasNext()) {
