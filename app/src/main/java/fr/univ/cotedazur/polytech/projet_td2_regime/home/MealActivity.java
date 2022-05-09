@@ -11,8 +11,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.CommentsActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
@@ -28,6 +33,8 @@ public class MealActivity extends AppCompatActivity {
 
     private User user;
     private Meal meal;
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,12 +100,22 @@ public class MealActivity extends AppCompatActivity {
             if (!hasUserLikeTheMeal(meal)) {
                 user.getLikeMeals().add(meal);
                 meal.increaseLikes();
-                ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes() + " likes");
-            } else {
-                user.getLikeMeals().remove(meal);
-                meal.decreaseLikes();
-                ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes() + " likes");
+                ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes()+" likes");
             }
+            else{
+                if(meal.getLikes()>0) {
+                    user.getLikeMeals().forEach(m -> {
+                        if(m.getName().equals(meal.getName())) user.getLikeMeals().remove(m);
+                    });
+                    meal.decreaseLikes();
+                    ((TextView) findViewById(R.id.mealLikes)).setText(meal.getLikes() + " likes");
+                }
+            }
+            System.out.println("Meal Like push : " + meal.getLikes());
+            System.out.println("User Likes push : ");
+            user.getLikeMeals().forEach(m -> System.out.println("Meal : "+meal.getName()));
+
+            updateMealToFirestore(meal);
             UserManager.getInstance().updateUserToFirestore(user);
         }
     }
@@ -147,9 +164,34 @@ public class MealActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean hasUserLikeTheMeal(Meal meal) {
-        if (user.getLikeMeals().contains(meal)) return true;
+    private boolean hasUserLikeTheMeal(Meal meal){
+        if(user.getLikeMeals().stream().filter(m -> m.getName().equals(meal.getName())).collect(Collectors.toList()).size()!=0) {
+            return true;
+        }
         return false;
     }
 
+
+    public void updateMealToFirestore(Meal meal) {
+        String mealNameCorrectFormat;
+        mealNameCorrectFormat = meal.getName().replaceAll("[^a-zA-Z]+", "");
+        mealNameCorrectFormat = mealNameCorrectFormat.replaceAll(" ", "_").toLowerCase();
+        db.collection("recipesApi").document(mealNameCorrectFormat).set(convertToFirestoreFormat(meal));
+    }
+
+    public Map convertToFirestoreFormat(Meal meal) {
+        Map<String, Object> firestoreMeal = new HashMap<>();
+
+        firestoreMeal.put("name", meal.getName());
+        firestoreMeal.put("preparationTime", meal.getPreparationTime());
+        firestoreMeal.put("nbOfPeople", meal.getNbOfPeople());
+        firestoreMeal.put("ingredients", meal.getIngredients());
+        firestoreMeal.put("preparation", meal.getPreparation());
+        firestoreMeal.put("kcal", meal.getKcal());
+        firestoreMeal.put("likes", meal.getLikes());
+        firestoreMeal.put("comments", meal.getComments());
+        firestoreMeal.put("authorName", meal.getAuthorName());
+
+        return firestoreMeal;
+    }
 }
