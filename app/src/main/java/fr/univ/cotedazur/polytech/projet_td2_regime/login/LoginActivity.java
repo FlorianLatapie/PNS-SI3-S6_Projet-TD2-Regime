@@ -3,6 +3,7 @@ package fr.univ.cotedazur.polytech.projet_td2_regime.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +14,17 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
 public class LoginActivity extends AppCompatActivity {
     public String username = "Bobdylan";
+    private Button skipLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        skipLogin = findViewById(R.id.button_skip);
+        skipLogin.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        });
     }
 
     public void onClickSignUpUser(View view) {
