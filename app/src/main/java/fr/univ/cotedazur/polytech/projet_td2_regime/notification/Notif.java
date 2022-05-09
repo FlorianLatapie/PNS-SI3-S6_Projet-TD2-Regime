@@ -43,8 +43,8 @@ public class Notif {
     public void sendNotification(Context context) {
         Intent resultIntent = new Intent(context, MealActivity.class);
         resultIntent.putExtra("Meal", meal);
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        this.bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.pizza2);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 1, resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+        this.bmp= BitmapFactory.decodeResource(context.getResources(), R.drawable.pancake);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, myApplication.CHANNEL_HIGH)
                 .setSmallIcon(R.drawable.ic_baseline_food_bank_24)
                 .setContentTitle(title)
