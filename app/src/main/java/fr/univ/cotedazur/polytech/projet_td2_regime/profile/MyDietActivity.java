@@ -1,7 +1,6 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.profile;
 
 import android.os.Bundle;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -35,7 +34,7 @@ public class MyDietActivity extends AppCompatActivity {
                         Diet.getNames()
                 )
         );
-        
+
         // todo faire le suiviDeSante.setOnItemSelectedListener(new SpinnerHealthListener(this));
     }
 }

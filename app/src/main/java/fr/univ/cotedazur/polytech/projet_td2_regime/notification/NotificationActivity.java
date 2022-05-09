@@ -29,10 +29,10 @@ public class NotificationActivity extends AppCompatActivity {
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
     private Meal meal;
-    final Handler handler= new Handler();
+    final Handler handler = new Handler();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         meal = (Meal) getIntent().getSerializableExtra("Meal");
         setContentView(R.layout.activity_notification);
@@ -47,11 +47,11 @@ public class NotificationActivity extends AppCompatActivity {
         TextView mealName = findViewById(R.id.timerDescriptionNameMeal);
         mealName.setText(meal.getName());
 
-        cancelButton.setOnClickListener(v->{
+        cancelButton.setOnClickListener(v -> {
             cancelAlarm();
         });
 
-        horaireButton.setOnClickListener(v->{
+        horaireButton.setOnClickListener(v -> {
             showTimePicker();
         });
 
@@ -63,12 +63,12 @@ public class NotificationActivity extends AppCompatActivity {
         });
     }
 
-    private void updateTime(int hour, int minute){
+    private void updateTime(int hour, int minute) {
         TextView timeDisplay = findViewById(R.id.timeDisplay);
-        if (hour > 12){
-            timeDisplay.setText(String.format("%02d",(hour-12)+"")+" : "+String.format("%02d",minute+" PM"));
-        }else {
-            timeDisplay.setText(hour+" : " + minute + " AM");
+        if (hour > 12) {
+            timeDisplay.setText(String.format("%02d", (hour - 12) + "") + " : " + String.format("%02d", minute + " PM"));
+        } else {
+            timeDisplay.setText(hour + " : " + minute + " AM");
         }
     }
 
@@ -78,26 +78,27 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
 
-    private void setAlarm( ){
-        System.out.println("Meal set Alarm "+meal.getName());
-        if(calendar==null) {
-            delayNotification(0,0);
-        }else {
-            long currentTime = (cale.getTime().getHours()%12)*3600*1000+cale.getTime().getMinutes()*60*1000+cale.getTime().getSeconds()*1000;
-            long selectedTime = calendar.getTime().getHours()*3600*1000 + calendar.getTime().getMinutes()*60*1000;
-            long delayTime = selectedTime-currentTime;
-            if(delayTime<=0)  Toast.makeText(this, "Date sélectionnée invalide !", Toast.LENGTH_SHORT).show();
-            else{
+    private void setAlarm() {
+        System.out.println("Meal set Alarm " + meal.getName());
+        if (calendar == null) {
+            delayNotification(0, 0);
+        } else {
+            long currentTime = (cale.getTime().getHours() % 12) * 3600 * 1000 + cale.getTime().getMinutes() * 60 * 1000 + cale.getTime().getSeconds() * 1000;
+            long selectedTime = calendar.getTime().getHours() * 3600 * 1000 + calendar.getTime().getMinutes() * 60 * 1000;
+            long delayTime = selectedTime - currentTime;
+            if (delayTime <= 0)
+                Toast.makeText(this, "Date sélectionnée invalide !", Toast.LENGTH_SHORT).show();
+            else {
                 EditText intervalle = findViewById(R.id.intervalleBox);
-                if(!intervalle.getText().toString().isEmpty()){
+                if (!intervalle.getText().toString().isEmpty()) {
                     int valueIntervalle = Integer.parseInt(intervalle.getText().toString());
-                    if(valueIntervalle>0)
-                        delayNotification(delayTime,valueIntervalle*3600*24*1000);
-                    else{
-                        delayNotification(delayTime,0);
+                    if (valueIntervalle > 0)
+                        delayNotification(delayTime, valueIntervalle * 3600 * 24 * 1000);
+                    else {
+                        delayNotification(delayTime, 0);
                     }
-                }else{
-                    delayNotification(delayTime,0);
+                } else {
+                    delayNotification(delayTime, 0);
                 }
 
                 Toast.makeText(this, "Rappel placé !", Toast.LENGTH_SHORT).show();
@@ -107,13 +108,13 @@ public class NotificationActivity extends AppCompatActivity {
 
     }
 
-    private void delayNotification(long timeInMillis, long repeat){
+    private void delayNotification(long timeInMillis, long repeat) {
         final Handler handler = new Handler();
         Context context = this;
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(repeat>0) handler.postDelayed(this, repeat);
+                if (repeat > 0) handler.postDelayed(this, repeat);
 
                 Notif notif = new Notif(meal.getName(), "Il est l'heure de cuisiner ! Cliquez pour plus d'informations sur la recette", meal.getImageLink(), meal);
                 notif.sendNotification(context);
@@ -134,18 +135,18 @@ public class NotificationActivity extends AppCompatActivity {
                 .build();
 
 
-        picker.show(getSupportFragmentManager(),"kure");
+        picker.show(getSupportFragmentManager(), "kure");
 
         picker.addOnPositiveButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateTime(picker.getHour(),picker.getMinute());
+                updateTime(picker.getHour(), picker.getMinute());
 
                 calendar = Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY,picker.getHour());
-                calendar.set(Calendar.MINUTE,picker.getMinute());
-                calendar.set(Calendar.SECOND,0);
-                calendar.set(Calendar.MILLISECOND,0);
+                calendar.set(Calendar.HOUR_OF_DAY, picker.getHour());
+                calendar.set(Calendar.MINUTE, picker.getMinute());
+                calendar.set(Calendar.SECOND, 0);
+                calendar.set(Calendar.MILLISECOND, 0);
 
             }
         });

@@ -3,7 +3,6 @@ package fr.univ.cotedazur.polytech.projet_td2_regime.meal;
 import android.graphics.Bitmap;
 import android.os.Parcel;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +80,7 @@ public class MealLunch extends Meal {
     public static List<String> validate(MealLunch meal) {
         // fields to validate : String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author
         List<String> errors = new ArrayList<>();
-        String cleanedName = meal.getName().replaceAll("[^a-zA-Z]+","");
+        String cleanedName = meal.getName().replaceAll("[^a-zA-Z]+", "");
 
         if (cleanedName.isEmpty()) {
             errors.add("Le nom de la recette est incorrect");

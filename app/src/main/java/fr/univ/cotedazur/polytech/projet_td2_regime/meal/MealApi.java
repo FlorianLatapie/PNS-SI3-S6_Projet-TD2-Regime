@@ -24,7 +24,7 @@ public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
     Activity activity;
     ListView listView;
 
-    public MealApi(String query, Activity activity, ListView listView){
+    public MealApi(String query, Activity activity, ListView listView) {
         this.query = query;
         this.activity = activity;
         this.listView = listView;
@@ -123,23 +123,22 @@ public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
             String value = reader.nextName();
             if (value.equals("label")) {
                 name += reader.nextString();
-            } else if(value.equals("image")){
+            } else if (value.equals("image")) {
                 image += reader.nextString();
-            } else if(value.equals("ingredientLines")){
+            } else if (value.equals("ingredientLines")) {
                 ingredients += readStringArray(reader);
-            } else if(value.equals("dietLabels")){
+            } else if (value.equals("dietLabels")) {
                 dietLabels += readStringArray(reader);
-            } else if(value.equals("calories")){
+            } else if (value.equals("calories")) {
                 calories = reader.nextDouble();
-            } else if(value.equals("totalTime")){
+            } else if (value.equals("totalTime")) {
                 prepTime = reader.nextInt();
-            }
-            else {
+            } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        Meal meal =  MealFactory.build(1, name, image, prepTime, nbOfPeople, ingredients, ingredients, (int) calories, author);
+        Meal meal = MealFactory.build(1, name, image, prepTime, nbOfPeople, ingredients, ingredients, (int) calories, author);
         return meal;
     }
 

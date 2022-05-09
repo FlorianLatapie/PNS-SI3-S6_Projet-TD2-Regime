@@ -5,7 +5,6 @@ import android.os.Parcel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.Interactions.Comment;
@@ -84,7 +83,7 @@ public class Meal implements Serializable {
     public static List<String> validate(Meal meal) {
         // fields to validate : String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author
         List<String> errors = new ArrayList<>();
-        String cleanedName = meal.getName().replaceAll("[^a-zA-Z]+","");
+        String cleanedName = meal.getName().replaceAll("[^a-zA-Z]+", "");
 
         if (cleanedName.isEmpty()) {
             errors.add("Le nom de la recette est incorrect");
@@ -246,7 +245,7 @@ public class Meal implements Serializable {
         this.pictureBitmap = pictureBitmap;
     }
 
-    public void setDateAte(String date){
+    public void setDateAte(String date) {
         this.dateAte = date;
     }
 

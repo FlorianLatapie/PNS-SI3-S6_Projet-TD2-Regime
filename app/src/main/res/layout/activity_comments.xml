@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".home.MealActivity">
-    
+
     <TextView
         android:id="@+id/mealCommentsName"
         android:layout_width="wrap_content"

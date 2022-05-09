@@ -1,7 +1,6 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.home;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +62,7 @@ public class MyMealsAdapter extends BaseAdapter {
         Meal meal = this.mealsList.get(position);
         tvName.setText(meal.getName());
 
-        if(meal.getImageLink() == null){
+        if (meal.getImageLink() == null) {
             mealPicture.setImageResource(meal.getPicture());
         } else {
             new DownloadImageTask(mealPicture, meal.getImageLink()).execute();
