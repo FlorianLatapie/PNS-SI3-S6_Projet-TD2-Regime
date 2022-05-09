@@ -16,7 +16,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
 
-import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
@@ -30,7 +29,7 @@ public class Notif {
     private String image;
     private Meal meal;
 
-    public Notif(String title, String description, String image, Meal meal){
+    public Notif(String title, String description, String image, Meal meal) {
         this.title = title;
         this.description = description;
         this.date = new Date();
@@ -41,11 +40,11 @@ public class Notif {
         UserManager.getInstance().getCurrentUser().addNotification(this);
     }
 
-    public void sendNotification(Context context){
+    public void sendNotification(Context context) {
         Intent resultIntent = new Intent(context, MealActivity.class);
         resultIntent.putExtra("Meal", meal);
-        PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 1, resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-        this.bmp= BitmapFactory.decodeResource(context.getResources(), R.drawable.pizza2);
+        PendingIntent resultPendingIntent = PendingIntent.getActivity(context, 1, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        this.bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.pizza2);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, myApplication.CHANNEL_HIGH)
                 .setSmallIcon(R.drawable.ic_baseline_food_bank_24)
                 .setContentTitle(title)
@@ -59,7 +58,7 @@ public class Notif {
                 .setContentIntent(resultPendingIntent);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-        notificationManagerCompat.notify(200,builder.build());
+        notificationManagerCompat.notify(200, builder.build());
     }
 
     public static Bitmap getBitmapFromURL(String src) {
@@ -93,7 +92,7 @@ public class Notif {
         return image;
     }
 
-    public Meal getMeal(){
+    public Meal getMeal() {
         return this.meal;
     }
 }

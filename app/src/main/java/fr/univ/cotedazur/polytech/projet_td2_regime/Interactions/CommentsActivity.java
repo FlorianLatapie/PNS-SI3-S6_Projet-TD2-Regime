@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import java.util.List;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
@@ -33,8 +32,8 @@ public class CommentsActivity extends AppCompatActivity {
         ListView commentsListView = findViewById(R.id.listViewComments);
         commentsListView.setAdapter(new CommentsAdapter(this, comments));
 
-        ((ImageView)findViewById(R.id.ImgPublishComments)).setOnClickListener(click -> {
-            String commentaryText = ((EditText)findViewById(R.id.textInputEditText)).getText().toString();
+        ((ImageView) findViewById(R.id.ImgPublishComments)).setOnClickListener(click -> {
+            String commentaryText = ((EditText) findViewById(R.id.textInputEditText)).getText().toString();
             comments.add(new Comment(commentaryText, user));
             commentsListView.setAdapter(new CommentsAdapter(this, comments));
         });
@@ -42,11 +41,11 @@ public class CommentsActivity extends AppCompatActivity {
         this.initCommentActivity();
     }
 
-    private void initCommentActivity(){
+    private void initCommentActivity() {
         //meal property
         /**ImageView imageView =  ((ImageView)findViewById( R.id.authorCommentPicture));
-        Picasso.with(this).load(user.getImgUrl()).into(imageView);**/
-        ((TextView)findViewById( R.id.mealCommentsName)).setText(meal.getName());
+         Picasso.with(this).load(user.getImgUrl()).into(imageView);**/
+        ((TextView) findViewById(R.id.mealCommentsName)).setText(meal.getName());
 
     }
 }

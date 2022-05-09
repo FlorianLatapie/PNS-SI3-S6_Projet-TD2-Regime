@@ -1,8 +1,6 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.stats;
 
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +11,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
-import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdapter;
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 
@@ -63,12 +63,12 @@ public class EatenMealsActivity extends AppCompatActivity {
         });
 
         calendar = Calendar.getInstance();
-        date =new DatePickerDialog.OnDateSetListener() {
+        date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
                 calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH,month);
-                calendar.set(Calendar.DAY_OF_MONTH,day);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, day);
                 updateEatenMeals();
                 updateLabel();
             }
@@ -79,7 +79,7 @@ public class EatenMealsActivity extends AppCompatActivity {
         editText.setText(dateFormat.format(calendar.getTime()));
         editText.setOnClickListener(click -> showCalendar());
 
-        ((TextView)findViewById(R.id.poids)).setText("Poids de la semaine : " + user.getWeight());
+        ((TextView) findViewById(R.id.poids)).setText("Poids de la semaine : " + user.getWeight());
     }
 
     private void updateEatenMeals() {
@@ -93,6 +93,6 @@ public class EatenMealsActivity extends AppCompatActivity {
     }
 
     private void showCalendar() {
-        new DatePickerDialog(EatenMealsActivity.this,date,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+        new DatePickerDialog(EatenMealsActivity.this, date, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 }

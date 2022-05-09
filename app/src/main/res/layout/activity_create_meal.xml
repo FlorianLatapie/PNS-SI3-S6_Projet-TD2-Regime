@@ -23,32 +23,35 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="vertical">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent">
-            <ImageView
-                android:id="@+id/imagePreview"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="8dp"
-                android:background="@color/black"
-                android:contentDescription="the preview of the meal that has been captured by the user"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/addImageButton"
-                android:layout_width="143dp"
-                android:layout_height="53dp"
-                android:text="Ajouter une image"
-                android:textSize="13dp"
-                app:layout_constraintBottom_toBottomOf="@+id/imagePreview"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imagePreview"
-                app:layout_constraintTop_toTopOf="@+id/imagePreview" />
+                <ImageView
+                    android:id="@+id/imagePreview"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@color/black"
+                    android:contentDescription="the preview of the meal that has been captured by the user"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/addImageButton"
+                    android:layout_width="143dp"
+                    android:layout_height="53dp"
+                    android:text="Ajouter une image"
+                    android:textSize="13dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imagePreview"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imagePreview"
+                    app:layout_constraintTop_toTopOf="@+id/imagePreview" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <TableLayout
                 android:id="@+id/tableLayout"
                 android:layout_width="match_parent"

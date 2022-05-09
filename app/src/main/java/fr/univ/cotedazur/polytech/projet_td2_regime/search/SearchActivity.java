@@ -1,13 +1,13 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.search;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -58,7 +58,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    private void loadMealsFromApi(String query){
+    private void loadMealsFromApi(String query) {
         query = Util.replaceSpace(query);
 
         MealApi mealApi = new MealApi(query, this, listView);

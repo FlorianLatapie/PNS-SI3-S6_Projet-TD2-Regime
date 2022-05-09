@@ -1,5 +1,4 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -9,7 +8,7 @@
         android:id="@+id/myMealPicture"
         android:layout_gravity="center_horizontal"
         android:layout_width="100dp"
-        android:layout_height="90dp"/>
+        android:layout_height="90dp" />
 
     <TextView
         android:id="@+id/myMealName"
@@ -18,5 +17,5 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:textSize="15sp"
-        android:maxWidth="100dp"/>
+        android:maxWidth="100dp" />
 </LinearLayout>

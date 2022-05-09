@@ -80,7 +80,7 @@ public class MealStarter extends Meal {
     public static List<String> validate(MealStarter meal) {
         // fields to validate : String name, int picture, int preparationTime, int nbOfPeople, String ingredients, String preparation, int kcal, String author
         List<String> errors = new ArrayList<>();
-        String cleanedName = meal.getName().replaceAll("[^a-zA-Z]+","");
+        String cleanedName = meal.getName().replaceAll("[^a-zA-Z]+", "");
 
         if (cleanedName.isEmpty()) {
             errors.add("Le nom de la recette est incorrect");

@@ -2,18 +2,17 @@ package fr.univ.cotedazur.polytech.projet_td2_regime.notification;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import androidx.fragment.app.Fragment;
+
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
-import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 
 /**
  * A simple {@link Fragment} subclass.

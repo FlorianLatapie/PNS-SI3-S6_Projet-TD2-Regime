@@ -13,15 +13,17 @@ import java.util.List;
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 
-/** class issue de : https://www.youtube.com/watch?v=e3MDWAkWTyQ&ab_channel=Graven-D%C3%A9veloppement **/
+/**
+ * class issue de : https://www.youtube.com/watch?v=e3MDWAkWTyQ&ab_channel=Graven-D%C3%A9veloppement
+ **/
 
 public class CommentsAdapter extends BaseAdapter {
     private Context context;
     private List<Comment> comments;
     private LayoutInflater inflater;
 
-    public CommentsAdapter(Context context, List<Comment> comments){
-        this.context= context;
+    public CommentsAdapter(Context context, List<Comment> comments) {
+        this.context = context;
         this.comments = comments;
         this.inflater = LayoutInflater.from(context);
     }
@@ -47,9 +49,9 @@ public class CommentsAdapter extends BaseAdapter {
 
         Comment currentComment = getItem(i);
         User author = currentComment.getAuthor();
-        ((TextView)view.findViewById( R.id.commentText)).setText(currentComment.getText());
-        ((ImageView)view.findViewById( R.id.authorCommentPicture)).setImageResource(author.getImageProfile());
-        ((TextView)view.findViewById( R.id.authorCommentPseudo)).setText(author.getLastName() );
+        ((TextView) view.findViewById(R.id.commentText)).setText(currentComment.getText());
+        ((ImageView) view.findViewById(R.id.authorCommentPicture)).setImageResource(author.getImageProfile());
+        ((TextView) view.findViewById(R.id.authorCommentPseudo)).setText(author.getLastName());
 
         return view;
     }

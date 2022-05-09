@@ -20,18 +20,18 @@ public class PermissionFactory {
      * if it is not, request permissions and the result will come back to callbackActivity
      *
      * @param callbackActivity is the Activity where result is sent
-     * @param permission is the permission we would like to be granted
-     * @param arg is an argument... the arg can be use to remember the action witch involved to ask the permission
+     * @param permission       is the permission we would like to be granted
+     * @param arg              is an argument... the arg can be use to remember the action witch involved to ask the permission
      * @return true if permission is still granted, false else
      */
-    public static boolean buildAndCheck(Activity callbackActivity, String permission, String arg){
+    public static boolean buildAndCheck(Activity callbackActivity, String permission, String arg) {
         int permissionCheck = ContextCompat.checkSelfPermission(callbackActivity, permission);
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            Log.d(TAG,permission + " => permission NOT granted");
-            ActivityCompat.requestPermissions(callbackActivity, new String[]{permission,arg}, PERMISSIONS_REQUEST_READ_MEDIA);
+            Log.d(TAG, permission + " => permission NOT granted");
+            ActivityCompat.requestPermissions(callbackActivity, new String[]{permission, arg}, PERMISSIONS_REQUEST_READ_MEDIA);
             return false;
         }
-        Log.d(TAG,permission + " => permission granted");
-        return true ;
+        Log.d(TAG, permission + " => permission granted");
+        return true;
     }
 }

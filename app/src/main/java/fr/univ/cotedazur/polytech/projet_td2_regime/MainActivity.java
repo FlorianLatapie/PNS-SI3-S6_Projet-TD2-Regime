@@ -1,28 +1,21 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.*;
-import androidx.navigation.NavController;
-import androidx.navigation.ui.NavigationUI;
-
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.SearchView;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.time.LocalDateTime;
-import java.util.Date;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.create_meal.CreateMealActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;

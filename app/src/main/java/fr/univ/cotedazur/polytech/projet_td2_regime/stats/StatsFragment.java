@@ -209,7 +209,7 @@ public class StatsFragment extends Fragment {
         return true;
     }
 
-    private void onClickAddEventCalendar(View view){
+    private void onClickAddEventCalendar(View view) {
         Calendar cal = Calendar.getInstance();
         Intent intent = new Intent(Intent.ACTION_EDIT);
         // adds a new calendar event for the next day at 7:00 am

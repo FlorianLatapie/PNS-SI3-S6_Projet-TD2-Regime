@@ -12,13 +12,13 @@ public class myApplication extends Application {
     public static Meal meal;
 
     @Override
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
         createNotificationChannelHigh("High", "With Picture", NotificationManager.IMPORTANCE_HIGH);
     }
 
     private void createNotificationChannelHigh(String name, String description, int importance) {
-        if (Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_HIGH, name, importance);
             channel.setDescription(description);
 

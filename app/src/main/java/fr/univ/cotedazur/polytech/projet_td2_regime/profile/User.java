@@ -29,7 +29,7 @@ public class User {
     public User() {
     }
 
-    public User(User user){
+    public User(User user) {
         this.firstName = user.firstName;
         this.lastName = user.lastName;
         this.gender = user.gender;
@@ -210,9 +210,9 @@ public class User {
 
     public boolean hasCompleteCaloryGoal() {
         int cal = 0;
-        for(Meal m : eatenMeals){
-            cal+=m.getKcal();
+        for (Meal m : eatenMeals) {
+            cal += m.getKcal();
         }
-        return cal>getCalorieGoal();
+        return cal > getCalorieGoal();
     }
 }

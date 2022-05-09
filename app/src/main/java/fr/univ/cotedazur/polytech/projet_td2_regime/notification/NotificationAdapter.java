@@ -1,8 +1,6 @@
 package fr.univ.cotedazur.polytech.projet_td2_regime.notification;
 
-import android.app.Notification;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +10,6 @@ import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,8 +26,8 @@ public class NotificationAdapter extends BaseAdapter {
     private IListner listener;
     private User user;
 
-    public NotificationAdapter(Context context){
-        this.context= context;
+    public NotificationAdapter(Context context) {
+        this.context = context;
         this.user = UserManager.getInstance().getCurrentUser();
         if (user != null) {
             this.notificationList = user.getNotifications();
@@ -61,20 +58,20 @@ public class NotificationAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.notification_layout, null);
 
         Notif currentNotification = getItem(i);
-        System.out.println(currentNotification+"\n notification: "+ user.getNotifications());
+        System.out.println(currentNotification + "\n notification: " + user.getNotifications());
 
-        ((TextView)view.findViewById( R.id.title)).setText(currentNotification.getTitle());
-        ((TextView)view.findViewById( R.id.description)).setText(currentNotification.getDescription());
+        ((TextView) view.findViewById(R.id.title)).setText(currentNotification.getTitle());
+        ((TextView) view.findViewById(R.id.description)).setText(currentNotification.getDescription());
 
         ImageView notificationPicture = view.findViewById(R.id.imageView);
         new DownloadImageTask(notificationPicture, currentNotification.getImage()).execute();
 
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm");
-        ((TextView)view.findViewById( R.id.date)).setText(dateFormat.format(currentNotification.getDate()));
+        ((TextView) view.findViewById(R.id.date)).setText(dateFormat.format(currentNotification.getDate()));
 
-        ((ImageView)view.findViewById(R.id.delete)).setImageResource(R.drawable.delete);
+        ((ImageView) view.findViewById(R.id.delete)).setImageResource(R.drawable.delete);
 
-        ((ImageView)view.findViewById(R.id.delete)).setOnClickListener(new View.OnClickListener() {
+        ((ImageView) view.findViewById(R.id.delete)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 notificationList.remove(currentNotification);

@@ -62,7 +62,7 @@ public class MealsAdapter extends BaseAdapter {
         Meal meal = this.mealsList.get(position);
         tvName.setText(meal.getName());
 
-        if(meal.getImageLink() == null){
+        if (meal.getImageLink() == null) {
             mealPicture.setImageResource(meal.getPicture());
         } else {
             new DownloadImageTask(mealPicture, meal.getImageLink()).execute();
