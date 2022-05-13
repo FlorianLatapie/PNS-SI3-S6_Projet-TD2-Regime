@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.AbstractMealFactory;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.MealFactory;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
@@ -98,7 +99,8 @@ public class CreateMealActivity extends AppCompatActivity {
         int kcal = Integer.parseInt(((TextView) findViewById(R.id.mealKcalInput)).getText().toString().equals("") ? "0" : ((TextView) findViewById(R.id.mealKcalInput)).getText().toString());
         String authorName = this.user.getFirstName() + " " + this.user.getLastName();
 
-        Meal meal = MealFactory.build(1, name, image, preparationTime, nbOfPeople, ingredients, preparation, kcal, authorName);
+        AbstractMealFactory mealFactory = new MealFactory();
+        Meal meal = mealFactory.build(1, name, image, preparationTime, nbOfPeople, ingredients, preparation, kcal, authorName);
 
         List<String> errors = Meal.validate(meal);
         if (errors.size() > 0) {

@@ -9,15 +9,16 @@ public class MealsList {
 
     static {
         try {
-            mealArrayList.add(MealFactory.build(1, "Fromage", R.drawable.pizza3));
-            mealArrayList.add(MealFactory.build(1, "Chorizo", R.drawable.pizza2));
-            mealArrayList.add(MealFactory.build(1, "Poulet", R.drawable.meal1));
-            mealArrayList.add(MealFactory.build(1, "Royale", R.drawable.pizza7));
-            mealArrayList.add(MealFactory.build(1, "Calzone", R.drawable.pizza4));
-            mealArrayList.add(MealFactory.build(1, "Regina", R.drawable.pizza5));
-            mealArrayList.add(MealFactory.build(1, "indienne", R.drawable.pizza6));
-            mealArrayList.add(MealFactory.build(1, "Speciale", R.drawable.pizza8));
-            mealArrayList.add(MealFactory.build(1, "Végetarienne", R.drawable.pizza9));
+            AbstractMealFactory mealFactory = new MealFactory();
+            mealArrayList.add(mealFactory.build(1, "Fromage", R.drawable.pizza3));
+            mealArrayList.add(mealFactory.build(1, "Chorizo", R.drawable.pizza2));
+            mealArrayList.add(mealFactory.build(1, "Poulet", R.drawable.meal1));
+            mealArrayList.add(mealFactory.build(1, "Royale", R.drawable.pizza7));
+            mealArrayList.add(mealFactory.build(1, "Calzone", R.drawable.pizza4));
+            mealArrayList.add(mealFactory.build(1, "Regina", R.drawable.pizza5));
+            mealArrayList.add(mealFactory.build(1, "indienne", R.drawable.pizza6));
+            mealArrayList.add(mealFactory.build(1, "Speciale", R.drawable.pizza8));
+            mealArrayList.add(mealFactory.build(1, "Végetarienne", R.drawable.pizza9));
         } catch (Throwable e) {
         }
     }

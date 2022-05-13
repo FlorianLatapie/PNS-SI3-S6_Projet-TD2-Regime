@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import fr.univ.cotedazur.polytech.projet_td2_regime.meal.AbstractMealFactory;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.MealFactory;
 
@@ -68,7 +69,8 @@ public class UserManager {
                     System.out.println("prepar " + preparationTime + " nbPeople " + nbOfPeople + " kcal " + kcal);
                     Meal meal = null;
                     try {
-                        meal = MealFactory.build(1, (String) doc.get("name"), (String) doc.get("imageLink"), preparationTime, nbOfPeople, (String) doc.get("ingredients"), (String) doc.get("preparation"), kcal, (String) doc.get("authorName"));
+                        AbstractMealFactory mealFactory = new MealFactory();
+                        meal = mealFactory.build(1, (String) doc.get("name"), (String) doc.get("imageLink"), preparationTime, nbOfPeople, (String) doc.get("ingredients"), (String) doc.get("preparation"), kcal, (String) doc.get("authorName"));
                     } catch (Throwable throwable) {
                         throwable.printStackTrace();
                     }
@@ -86,7 +88,8 @@ public class UserManager {
                     System.out.println("prepar " + preparationTime + " nbPeople " + nbOfPeople + " kcal " + kcal);
                     Meal meal = null;
                     try {
-                        meal = MealFactory.build(1, (String) doc.get("name"), (String) doc.get("imageLink"), preparationTime, nbOfPeople, (String) doc.get("ingredients"), (String) doc.get("preparation"), kcal, (String) doc.get("authorName"));
+                        AbstractMealFactory mealFactory = new MealFactory();
+                        meal = mealFactory.build(1, (String) doc.get("name"), (String) doc.get("imageLink"), preparationTime, nbOfPeople, (String) doc.get("ingredients"), (String) doc.get("preparation"), kcal, (String) doc.get("authorName"));
                     } catch (Throwable throwable) {
                         throwable.printStackTrace();
                     }

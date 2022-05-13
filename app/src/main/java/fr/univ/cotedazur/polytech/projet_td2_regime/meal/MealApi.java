@@ -138,7 +138,9 @@ public class MealApi extends AsyncTask<Void, Void, List<Meal>> {
             }
         }
         reader.endObject();
-        Meal meal = MealFactory.build(1, name, image, prepTime, nbOfPeople, ingredients, ingredients, (int) calories, author);
+
+        AbstractMealFactory factory = new MealFactory();
+        Meal meal = factory.build(1, name, image, prepTime, nbOfPeople, ingredients, ingredients, (int) calories, author);
         return meal;
     }
 
