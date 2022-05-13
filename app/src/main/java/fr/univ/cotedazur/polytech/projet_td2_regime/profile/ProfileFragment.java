@@ -87,7 +87,7 @@ public class ProfileFragment extends Fragment {
         gridView.setExpanded(true);
 
         mealsList = new ArrayList<>();
-        /*db = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
         loadUserMeals();
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -101,7 +101,7 @@ public class ProfileFragment extends Fragment {
                 getActivity().startActivity(intent);
             }
 
-        });*/
+        });
 
         //MVC Call
         ViewMeal viewMeal = new ViewMeal(getActivity(), gridView);
