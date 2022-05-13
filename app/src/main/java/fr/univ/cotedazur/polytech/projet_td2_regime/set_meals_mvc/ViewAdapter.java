@@ -45,14 +45,21 @@ public class ViewAdapter extends BaseAdapter {
         LinearLayout layoutItem;
 
         //(1) : Réutilisation des layouts
-        layoutItem = (LinearLayout) (convertView == null ? inflater.inflate(R.layout.meal_layout, parent, false) : convertView);
+        layoutItem = (LinearLayout) (convertView == null ? inflater.inflate(R.layout.my_meals_layout, parent, false) : convertView);
 
         //(2) : Récupération des TextView de notre layout
-        TextView tvName = layoutItem.findViewById(R.id.mealName);
-        ImageView mealPicture = layoutItem.findViewById(R.id.mealPicture);
+        TextView tvName = layoutItem.findViewById(R.id.myMealName);
+        ImageView mealPicture = layoutItem.findViewById(R.id.myMealPicture);
 
         //(3) : Renseignement des valeurs
-        tvName.setText(model.get(position)+"");
+        Meal meal = model.get(position);
+        tvName.setText(meal.getName());
+
+        if (meal.getImageLink() == null) {
+            mealPicture.setImageResource(meal.getPicture());
+        } else {
+            new DownloadImageTask(mealPicture, meal.getImageLink()).execute();
+        }
 
         //On retourne l'item créé.
         return layoutItem;
