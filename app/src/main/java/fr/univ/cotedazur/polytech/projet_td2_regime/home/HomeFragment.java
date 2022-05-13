@@ -32,8 +32,7 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.MealApi;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
-import fr.univ.cotedazur.polytech.projet_td2_regime.set_meals.Controller;
-import fr.univ.cotedazur.polytech.projet_td2_regime.set_meals.Model;
+import fr.univ.cotedazur.polytech.projet_td2_regime.set_meals_mvc.ModelMeal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.util.Util;
 
 
@@ -41,7 +40,7 @@ public class HomeFragment extends Fragment implements IListner, Observer {
     ListView listView;
     ArrayList<Meal> mealsList;
     FirebaseFirestore db;
-    Model model;
+    ModelMeal model;
 
     public HomeFragment() {
         // Required empty public constructor

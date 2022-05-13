@@ -1,7 +1,7 @@
-package fr.univ.cotedazur.polytech.projet_td2_regime.set_meals;
+package fr.univ.cotedazur.polytech.projet_td2_regime.set_meals_mvc;
 
 import android.app.Activity;
-import android.widget.ActionMenuView;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,42 +18,25 @@ import java.util.List;
 import java.util.Observable;
 import java.util.concurrent.ExecutionException;
 
-import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealsAdatpter;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.MealApi;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.UserManager;
 import fr.univ.cotedazur.polytech.projet_td2_regime.util.Util;
 
-public class Model extends Observable {
-    private ListView listView;
-    private ArrayList<Meal> mealsList;
+public class ModelMeal extends Observable {
     private FirebaseFirestore db;
+    private final String TAG = "kure " + getClass().getSimpleName();
+    private ArrayList<Meal> mealsList;
+    private Controller controller;
     private Activity activity;
 
-    public Model(Activity activity){
-        this.activity = activity;
-        loadMealsFromApi();
-        loadMealsinListview();
+    public ModelMeal(Controller controller){
+        mealsList = new ArrayList<>();
     }
 
-    public void loadMealsFromApi(){
-        User currentUser = UserManager.getInstance().getCurrentUser();
-        String userDiet;
-        if (currentUser == null){
-            userDiet = "healthy";
-        } else {
-            userDiet = Util.replaceSpace(currentUser.getDiet().getEnglishName());
-        }
-
-        MealApi mealApi = new MealApi(userDiet, this.activity, this.listView);
-        try {
-            mealsList.addAll(mealApi.execute().get());
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 
     public void loadMealsinListview() {
@@ -67,16 +50,12 @@ public class Model extends Observable {
                                 Meal meal = d.toObject(Meal.class);
                                 mealsList.add(meal);
                             }
-                            /*Controller adapter = new Controller(activity.getApplicationContext(), mealsList);
-                            listView.setAdapter(adapter);*/
-                        } else {
-                            Toast.makeText(activity.getApplicationContext(), "Pas de données dans la base", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(activity.getApplicationContext(), "Erreur du chargement des données..", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Error");
             }
         });
     }
@@ -90,7 +69,19 @@ public class Model extends Observable {
         notifyObservers();
     }
 
-    public void addNewMeal(){
-        controler.addItemToList(new Meal());
+    public Object get(int position) {
+        return mealsList.get(position);
+    }
+
+    public void remove(int index) {
+        if (index<mealsList.size()) {
+            mealsList.remove(index);
+            setChanged();
+            notifyObservers();
+        }
+    }
+
+    public int size() {
+        return mealsList.size();
     }
 }

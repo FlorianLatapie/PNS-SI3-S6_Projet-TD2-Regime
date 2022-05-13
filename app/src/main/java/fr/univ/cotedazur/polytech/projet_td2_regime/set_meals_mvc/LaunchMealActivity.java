@@ -1,4 +1,4 @@
-package fr.univ.cotedazur.polytech.projet_td2_regime.set_meals;
+package fr.univ.cotedazur.polytech.projet_td2_regime.set_meals_mvc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,11 +20,11 @@ public class LaunchMealActivity extends AppCompatActivity {
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Model model = new Model(LaunchMealActivity.this);
+                /*ModelMeal model = new ModelMeal(Controller.this);
                 HomeFragment viewHome = new HomeFragment();
                 model.addObserver(viewHome);
 
-                Controller controller = new Controller(model, viewHome);
+                Controller controller = new Controller(model, viewHome);*/
             }
         });
     }
