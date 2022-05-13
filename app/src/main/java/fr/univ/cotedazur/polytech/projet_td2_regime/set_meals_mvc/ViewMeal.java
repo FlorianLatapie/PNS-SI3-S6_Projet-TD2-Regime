@@ -11,6 +11,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.util.ExpandableHeightGridView;
 
 public class ViewMeal implements Observer {
     private final String TAG = "kure " + getClass().getSimpleName();
@@ -28,10 +29,6 @@ public class ViewMeal implements Observer {
         this.controller = controller;
     }
 
-    public void onClickItem(int position){
-        controller.onClickItem(position);
-    }
-
     public ViewGroup getLayout() {
         return layout;
     }
@@ -41,8 +38,8 @@ public class ViewMeal implements Observer {
         ModelMeal model = (ModelMeal) observable;
         if (!modelCreated) {        //fist time only
             adapter.updateModel(model);
-            ListView listView = ((ListView)layout.findViewById(R.id.listviewTeam1));
-            listView.setAdapter(adapter);
+            ExpandableHeightGridView gridView = ((ExpandableHeightGridView)layout.findViewById(R.id.expandableHeightGridView));
+            gridView.setAdapter(adapter);
             modelCreated = true;
         }
         else {

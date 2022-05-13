@@ -26,6 +26,9 @@ import fr.univ.cotedazur.polytech.projet_td2_regime.home.MealActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.home.MyMealsAdapter;
 import fr.univ.cotedazur.polytech.projet_td2_regime.login.LoginActivity;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.set_meals_mvc.Controller;
+import fr.univ.cotedazur.polytech.projet_td2_regime.set_meals_mvc.ModelMeal;
+import fr.univ.cotedazur.polytech.projet_td2_regime.set_meals_mvc.ViewMeal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.util.ExpandableHeightGridView;
 
 
@@ -99,6 +102,16 @@ public class ProfileFragment extends Fragment {
             }
 
         });
+
+        //MVC Call
+        ViewMeal viewMeal = new ViewMeal(getActivity(), gridView);
+        ModelMeal model = new ModelMeal(null);
+        model.addObserver(viewMeal);
+        model.loadUserMeals();
+
+        Controller controller = new Controller(model, viewMeal);
+        model.setController(controller);
+        viewMeal.setListener(controller);
 
         return view;
     }

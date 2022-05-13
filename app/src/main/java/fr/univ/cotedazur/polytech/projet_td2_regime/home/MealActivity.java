@@ -132,7 +132,6 @@ public class MealActivity extends AppCompatActivity {
             Intent intent = new Intent(MealActivity.this, CommentsActivity.class);
             intent.putExtra("Meal", getIntent().getIntExtra("Meal", 0));
             startActivity(intent);
-
         }
     }
 

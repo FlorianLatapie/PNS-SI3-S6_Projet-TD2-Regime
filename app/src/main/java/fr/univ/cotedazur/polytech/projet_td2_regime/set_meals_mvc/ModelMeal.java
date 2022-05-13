@@ -18,6 +18,9 @@ import java.util.List;
 import java.util.Observable;
 import java.util.concurrent.ExecutionException;
 
+import fr.univ.cotedazur.polytech.projet_td2_regime.MainActivity;
+import fr.univ.cotedazur.polytech.projet_td2_regime.R;
+import fr.univ.cotedazur.polytech.projet_td2_regime.home.MyMealsAdapter;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.Meal;
 import fr.univ.cotedazur.polytech.projet_td2_regime.meal.MealApi;
 import fr.univ.cotedazur.polytech.projet_td2_regime.profile.User;
@@ -33,14 +36,17 @@ public class ModelMeal extends Observable {
 
     public ModelMeal(Controller controller){
         mealsList = new ArrayList<>();
+        db = FirebaseFirestore.getInstance();
     }
 
     public void setController(Controller controller) {
         this.controller = controller;
     }
 
-    public void loadMealsinListview() {
-        db.collection("recipes").get()
+    public void loadUserMeals() {
+        db.collection("recipes")
+                .whereEqualTo("authorName", "Bob Dylan")
+                .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -50,12 +56,14 @@ public class ModelMeal extends Observable {
                                 Meal meal = d.toObject(Meal.class);
                                 mealsList.add(meal);
                             }
+                        } else {
+                            Log.d("", "Error loading content");
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "Error");
+                Log.d("", "Error loading content");
             }
         });
     }
@@ -69,7 +77,7 @@ public class ModelMeal extends Observable {
         notifyObservers();
     }
 
-    public Object get(int position) {
+    public Meal get(int position) {
         return mealsList.get(position);
     }
 

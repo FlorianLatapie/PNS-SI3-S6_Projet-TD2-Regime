@@ -28,23 +28,13 @@ public class Controller implements IViewClick {
         return this.model.getMealsList();
     }
 
-    public void viewItemUpdated(int position){
-        this.model.addItemToList(position);
-    }
-
-    public void addListener(IListner listener) {
-        this.listener = listener;
-    }
-
     @Override
     public void onClickItem(int position) {
         Log.d(TAG, "item clicked = " + position );
         if (model.size()>0) {
             model.remove(position);
             if (model.size() == 0) {
-                Log.d(TAG, "empty team");
-                TextView label = ((ConstraintLayout) view.getLayout()).findViewById(R.id.labelTeam1);
-                label.setTextColor(Color.BLACK);
+                Log.d(TAG, "empty meals");
             }
         }
     }
